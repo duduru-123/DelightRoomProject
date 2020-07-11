@@ -1,6 +1,7 @@
 package com.delightroom.android.gitproject.common
 
 import android.app.Application
+import com.delightroom.android.gitproject.manager.RetrofitManager
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
@@ -14,6 +15,7 @@ class BaseApplication : Application() {
             androidContext(this@BaseApplication)
             modules(
                 listOf(
+                    managerModule,
                     viewModelModule,
                     repositoryModule,
                     dataSourceModule
@@ -22,6 +24,10 @@ class BaseApplication : Application() {
         }
     }
 
+
+    private val managerModule = module {
+        single { RetrofitManager(applicationContext) }
+    }
 
     private val viewModelModule = module {
     }
