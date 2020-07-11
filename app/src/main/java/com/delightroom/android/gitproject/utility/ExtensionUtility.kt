@@ -19,3 +19,6 @@ fun View.gone() {
 fun Any.logI(message: String?, distribution: String = "@@@@@@@@") {
     Log.i(distribution, message)
 }
+fun Any.logE(message: String?, distribution: String = "@@@@@@@@") {
+    Log.e(distribution, message)
+}
