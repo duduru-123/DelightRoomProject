@@ -3,7 +3,7 @@
     package="com.delightroom.android.gitproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    
+
     <application
         android:name=".common.BaseApplication"
         android:allowBackup="true"

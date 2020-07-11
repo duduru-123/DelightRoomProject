@@ -1,7 +1,9 @@
 package com.delightroom.android.gitproject.common
 
 import android.app.Application
+import com.delightroom.android.gitproject.datasource.remote.api.UserService
 import com.delightroom.android.gitproject.manager.RetrofitManager
+import com.delightroom.android.gitproject.repository.UserRepository
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
@@ -17,8 +19,7 @@ class BaseApplication : Application() {
                 listOf(
                     managerModule,
                     viewModelModule,
-                    repositoryModule,
-                    dataSourceModule
+                    repositoryModule
                 )
             )
         }
@@ -33,8 +34,6 @@ class BaseApplication : Application() {
     }
 
     private val repositoryModule = module {
-    }
-
-    private val dataSourceModule = module {
+        factory { UserRepository(get()) }
     }
 }

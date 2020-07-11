@@ -7,7 +7,6 @@ import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 class RetrofitManager(private val context: Context) {
@@ -17,7 +16,7 @@ class RetrofitManager(private val context: Context) {
         const val WRITE_TIMEOUT = 100L
         const val READ_TIMEOUT = 100L
 
-        const val BASE_URL = ""
+        const val BASE_URL = "https://api.github.com/"
     }
 
     private lateinit var builder: Retrofit.Builder
