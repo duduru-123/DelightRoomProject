@@ -6,10 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.BindingAdapter
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.delightroom.android.gitproject.R
+import com.delightroom.android.gitproject.databinding.FragmentUsersBinding
 import com.delightroom.android.gitproject.datasource.vo.UserVO
 import com.delightroom.android.gitproject.present.adapter.UsersPagingAdapter
 import com.delightroom.android.gitproject.present.viewmodel.UsersViewModel
@@ -20,6 +27,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class UsersFragment : Fragment() {
 
     private val usersViewModel by viewModel<UsersViewModel>()
+    private lateinit var binding: FragmentUsersBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +40,12 @@ class UsersFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         logI("onCreateView")
-        return inflater.inflate(R.layout.fragment_users, container, false)
+
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_users, container, false)
+        binding.viewModel = usersViewModel
+
+        return binding.root
+
     }
 
     override fun onAttach(context: Context) {
@@ -131,6 +145,22 @@ class UsersFragment : Fragment() {
     private val onUsersAdapterListener = object : UsersPagingAdapter.OnUsersAdapterListener {
         override fun onSelectItem(userVO: UserVO) {
             moveToUserDetailFragment(userVO.id)
+        }
+    }
+
+    object BindingAdapters {
+        /**
+         * binding list of UserVO
+         */
+        @JvmStatic
+        @BindingAdapter("app:items")
+        fun setBindItem(view: RecyclerView, items: PagedList<UserVO>?) {
+            logI("items: ${items?.size}")
+            view.adapter?.run {
+                if (this is UsersPagingAdapter) {
+                    this.submitList(items)
+                }
+            }
         }
     }
 }
