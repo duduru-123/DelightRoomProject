@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navGraphDetail"
+    android:id="@+id/navGraphUserDetail"
     app:startDestination="@id/userOverviewFragment">
 
     <fragment
@@ -14,9 +14,9 @@
         android:id="@+id/starredFragment"
         android:name="com.delightroom.android.gitproject.ui.StarredFragment"
         android:label="StarredFragment" />
+
     <fragment
-        android:id="@+id/usersFragment"
-        android:name="com.delightroom.android.gitproject.ui.UsersFragment"
-        android:label="fragment_repository"
-        tools:layout="@layout/fragment_repository" />
+        android:id="@+id/repositoryFragment"
+        android:name="com.delightroom.android.gitproject.ui.RepositoryFragment"
+        android:label="RepositoryFragment" />
 </navigation>
