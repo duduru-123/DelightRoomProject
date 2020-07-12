@@ -36,7 +36,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 
-
+    // coroutine
     def coroutine_version = '2.2.0'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$coroutine_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$coroutine_version"
@@ -58,4 +58,9 @@ dependencies {
     def koin_version = '2.0.1'
     implementation "org.koin:koin-androidx-scope:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    // navigation
+    def nav_version = "2.3.0-rc01"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 }
