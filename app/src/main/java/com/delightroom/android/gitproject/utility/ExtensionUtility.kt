@@ -3,6 +3,8 @@ package com.delightroom.android.gitproject.utility
 import android.util.Log
 import android.view.View
 import com.delightroom.android.gitproject.datasource.remote.model.User
+import com.delightroom.android.gitproject.datasource.remote.model.UserRepos
+import com.delightroom.android.gitproject.datasource.vo.ReposVO
 import com.delightroom.android.gitproject.datasource.vo.UserVO
 
 
@@ -12,6 +14,11 @@ import com.delightroom.android.gitproject.datasource.vo.UserVO
 fun User.convertToUserVO(): UserVO {
     return UserVO(
         id = this.login ?: ""
+    )
+}
+fun UserRepos.convertToReposVO(): ReposVO {
+    return ReposVO(
+        id = this.description ?: ""
     )
 }
 
