@@ -75,7 +75,7 @@ class StarredFragment : Fragment() {
      * init layout
      */
     private fun initLayout() {
-        swipeRefreshStarred.setOnRefreshListener {  }
+        swipeRefreshStarred.setOnRefreshListener { userDetailViewModel.refreshListOfStarredReposVO() }
 
         with(recyclerStarred) {
             layoutManager = LinearLayoutManager(context)

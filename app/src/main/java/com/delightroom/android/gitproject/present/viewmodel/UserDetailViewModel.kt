@@ -49,4 +49,12 @@ class UserDetailViewModel(
             }
         }, config).build()
     }
+
+
+    /**
+     * refresh list of starred reposVO
+     */
+    fun refreshListOfStarredReposVO() {
+        listOfStarredReposVO.value?.dataSource?.invalidate()
+    }
 }
