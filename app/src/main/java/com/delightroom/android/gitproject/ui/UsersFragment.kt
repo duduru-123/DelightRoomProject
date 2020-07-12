@@ -8,10 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.delightroom.android.gitproject.R
+import com.delightroom.android.gitproject.present.UsersViewModel
 import com.delightroom.android.gitproject.utility.logI
-import kotlinx.android.synthetic.main.fragment_user.*
+import kotlinx.android.synthetic.main.fragment_users.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class UserFragment : Fragment() {
+class UsersFragment : Fragment() {
+
+    private val usersViewModel by viewModel<UsersViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         logI("onCreate")
@@ -22,7 +27,7 @@ class UserFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         logI("onCreateView")
-        return inflater.inflate(R.layout.fragment_user, container, false)
+        return inflater.inflate(R.layout.fragment_users, container, false)
     }
 
     override fun onAttach(context: Context) {
