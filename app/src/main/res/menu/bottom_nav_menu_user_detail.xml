@@ -11,7 +11,7 @@
         android:title="@string/nav_starred" />
 
     <item
-        android:id="@+id/repositoryFragment"
+        android:id="@+id/userReposFragment"
         android:icon="@drawable/ic_face_24px"
-        android:title="@string/nav_repository" />
+        android:title="@string/nav_user_repos" />
 </menu>

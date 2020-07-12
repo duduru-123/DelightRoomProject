@@ -16,7 +16,7 @@
         android:label="StarredFragment" />
 
     <fragment
-        android:id="@+id/repositoryFragment"
-        android:name="com.delightroom.android.gitproject.ui.RepositoryFragment"
-        android:label="RepositoryFragment" />
+        android:id="@+id/userReposFragment"
+        android:name="com.delightroom.android.gitproject.ui.UserReposFragment"
+        android:label="UserReposFragment" />
 </navigation>
