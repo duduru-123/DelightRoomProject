@@ -3,9 +3,15 @@
     <item
         android:id="@+id/userOverviewFragment"
         android:icon="@drawable/ic_face_24px"
-        android:title="@string/nav_user" />
+        android:title="@string/nav_overview" />
+
     <item
         android:id="@+id/starredFragment"
         android:icon="@drawable/ic_face_24px"
-        android:title="@string/nav_user" />
+        android:title="@string/nav_starred" />
+
+    <item
+        android:id="@+id/repositoryFragment"
+        android:icon="@drawable/ic_face_24px"
+        android:title="@string/nav_repository" />
 </menu>
