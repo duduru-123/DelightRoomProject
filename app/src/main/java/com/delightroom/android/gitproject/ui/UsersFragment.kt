@@ -10,6 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.delightroom.android.gitproject.R
+import com.delightroom.android.gitproject.datasource.vo.UserVO
+import com.delightroom.android.gitproject.present.adapter.UsersPagingAdapter
 import com.delightroom.android.gitproject.present.viewmodel.UsersViewModel
 import com.delightroom.android.gitproject.utility.logI
 import kotlinx.android.synthetic.main.fragment_users.*
@@ -91,12 +93,9 @@ class UsersFragment : Fragment() {
      * init layout
      */
     private fun initLayout() {
-//            val direction = UsersFragmentDirections.actionUserFragmentToUserDetailFragment2("test")
-//            findNavController().navigate(direction)
-
         with(recyclerUsers) {
             layoutManager = LinearLayoutManager(context)
-            
+            adapter = UsersPagingAdapter(onUsersAdapterListener)
         }
     }
 
@@ -105,8 +104,30 @@ class UsersFragment : Fragment() {
      * init viewModel data of callback
      */
     private fun initViewModelCallbackData() {
-        usersViewModel.listOfUserVO.observe(viewLifecycleOwner, Observer {
-            logI("here result: ${it.size}")
+        usersViewModel.listOfUserVO.observe(viewLifecycleOwner, Observer { list ->
+            logI("here result: ${list.size}")
+            val adapter = recyclerUsers.adapter as UsersPagingAdapter
+            adapter.submitList(list)
         })
+    }
+
+
+    /**
+     * move to UserDetailFragment
+     */
+    private fun moveToUserDetailFragment(userId: String) {
+        val direction = UsersFragmentDirections.actionUserFragmentToUserDetailFragment2(userId)
+        findNavController().navigate(direction)
+    }
+
+
+    /**
+     * onUsersAdapterListener
+     * for dealing with event of recyclerUsers
+     */
+    private val onUsersAdapterListener = object : UsersPagingAdapter.OnUsersAdapterListener {
+        override fun onSelectItem(userVO: UserVO) {
+            moveToUserDetailFragment(userVO.id)
+        }
     }
 }
