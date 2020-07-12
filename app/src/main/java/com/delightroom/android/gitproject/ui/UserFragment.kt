@@ -12,11 +12,6 @@ import com.delightroom.android.gitproject.utility.logI
 import kotlinx.android.synthetic.main.fragment_user.*
 
 class UserFragment : Fragment() {
-    companion object {
-        @JvmStatic
-        fun newInstance() = UserFragment()
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         logI("onCreate")

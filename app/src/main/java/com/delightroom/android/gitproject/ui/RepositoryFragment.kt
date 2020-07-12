@@ -19,9 +19,4 @@ class RepositoryFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_repository, container, false)
     }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = RepositoryFragment()
-    }
 }
