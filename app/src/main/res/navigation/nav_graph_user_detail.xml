@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navGraphDetail"
+    app:startDestination="@id/userOverviewFragment">
+
+    <fragment
+        android:id="@+id/userOverviewFragment"
+        android:name="com.delightroom.android.gitproject.ui.UserOverviewFragment"
+        android:label="UserOverviewFragment" >
+        <argument
+            android:name="userId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+    </fragment>
+</navigation>

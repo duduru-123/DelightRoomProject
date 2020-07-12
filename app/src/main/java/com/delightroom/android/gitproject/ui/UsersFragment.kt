@@ -134,8 +134,8 @@ class UsersFragment : Fragment() {
      * move to UserDetailFragment
      */
     private fun moveToUserDetailFragment(userId: String) {
-        val direction = UsersFragmentDirections.actionUserFragmentToUserDetailFragment2(userId)
-        findNavController().navigate(direction)
+        val directions = UsersFragmentDirections.actionUserFragmentToUserDetailActivity(userId)
+        findNavController().navigate(directions)
     }
 
 

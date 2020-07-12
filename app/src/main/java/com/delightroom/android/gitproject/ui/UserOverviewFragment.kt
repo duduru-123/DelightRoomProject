@@ -10,20 +10,20 @@ import androidx.navigation.fragment.navArgs
 import com.delightroom.android.gitproject.R
 import com.delightroom.android.gitproject.utility.logI
 
-class UserDetailFragment : Fragment() {
+class UserOverviewFragment : Fragment() {
 
-    private val userDetailArgs by navArgs<UserDetailFragmentArgs>()
+    private val userOverviewFragmentArgs by navArgs<UserOverviewFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        logI("userDetailArgs.userId: ${userDetailArgs.userId}")
+        logI("userOverviewArgs.userId: ${userOverviewFragmentArgs.userId}")
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_user_detail, container, false)
+        return inflater.inflate(R.layout.fragment_user_overview, container, false)
     }
 }

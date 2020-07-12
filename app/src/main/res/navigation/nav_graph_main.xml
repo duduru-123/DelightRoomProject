@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/navGraphMain"
     app:startDestination="@id/userFragment">
 
     <fragment
@@ -11,13 +11,8 @@
         android:label="fragment_user"
         tools:layout="@layout/fragment_users" >
         <action
-            android:id="@+id/action_userFragment_to_userDetailFragment"
-            app:destination="@id/userDetailFragment" />
-        <action
-            android:id="@+id/action_userFragment_to_userDetailFragment2"
-            app:destination="@id/userDetailFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
+            android:id="@+id/action_userFragment_to_userDetailActivity"
+            app:destination="@id/userDetailActivity"
             app:popUpToInclusive="false" />
     </fragment>
 
@@ -26,14 +21,15 @@
         android:name="com.delightroom.android.gitproject.ui.RepositoryFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_users" />
-    <fragment
-        android:id="@+id/userDetailFragment"
-        android:name="com.delightroom.android.gitproject.ui.UserDetailFragment"
-        android:label="UserDetailFragment" >
+
+    <activity
+        android:id="@+id/userDetailActivity"
+        android:name="com.delightroom.android.gitproject.ui.UserDetailActivity"
+        android:label="UserDetailActivity" >
         <argument
             android:name="userId"
             app:argType="string"
-            app:nullable="true" />
-    </fragment>
-    <action android:id="@+id/action_global_userDetailFragment" app:destination="@id/userDetailFragment" />
+            app:nullable="true"
+            android:defaultValue="null" />
+    </activity>
 </navigation>

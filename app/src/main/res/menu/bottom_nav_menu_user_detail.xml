@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/userOverviewFragment"
+        android:icon="@drawable/ic_face_24px"
+        android:title="@string/nav_user" />
+</menu>
