@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.delightroom.android.gitproject.R
 import com.delightroom.android.gitproject.databinding.FragmentStarredBinding
 import com.delightroom.android.gitproject.databinding.FragmentUsersBinding
+import com.delightroom.android.gitproject.present.adapter.StarredPagingAdapter
 import com.delightroom.android.gitproject.present.viewmodel.UserDetailViewModel
 import com.delightroom.android.gitproject.utility.logI
 import kotlinx.android.synthetic.main.fragment_starred.*
@@ -78,6 +79,7 @@ class StarredFragment : Fragment() {
 
         with(recyclerStarred) {
             layoutManager = LinearLayoutManager(context)
+            adapter = StarredPagingAdapter()
         }
     }
 
@@ -86,11 +88,11 @@ class StarredFragment : Fragment() {
      * init viewModel data of callback
      */
     private fun initViewModelCallbackData() {
-//        usersViewModel.listOfUserVO.observe(viewLifecycleOwner, Observer { list ->
-//            val adapter = recyclerUsers.adapter as UsersPagingAdapter
-//            adapter.submitList(list)
-//
-//            swipeRefreshUsers.isRefreshing = false
-//        })
+        userDetailViewModel.listOfStarredReposVO.observe(viewLifecycleOwner, Observer { list ->
+            val adapter = recyclerStarred.adapter as StarredPagingAdapter
+            adapter.submitList(list)
+
+            swipeRefreshStarred.isRefreshing = false
+        })
     }
 }

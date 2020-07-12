@@ -1,7 +1,9 @@
 package com.delightroom.android.gitproject.utility
 
+import android.app.Activity
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.delightroom.android.gitproject.datasource.remote.model.User
 import com.delightroom.android.gitproject.datasource.remote.model.UserRepos
 import com.delightroom.android.gitproject.datasource.vo.ReposVO
@@ -48,4 +50,12 @@ fun Any.logI(message: String?, distribution: String = "@@@@@@@@") {
 
 fun Any.logE(message: String?, distribution: String = "@@@@@@@@") {
     Log.e(this::class.java.simpleName, "$distribution $message")
+}
+
+
+/**
+ * show toast
+ */
+fun Activity.showToast(message: String) {
+    Toast.makeText(this.applicationContext, message, Toast.LENGTH_SHORT).show()
 }

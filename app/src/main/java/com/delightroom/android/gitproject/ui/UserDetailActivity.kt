@@ -8,6 +8,7 @@ import androidx.navigation.ui.NavigationUI
 import com.delightroom.android.gitproject.R
 import com.delightroom.android.gitproject.present.viewmodel.UserDetailViewModel
 import com.delightroom.android.gitproject.utility.logI
+import com.delightroom.android.gitproject.utility.showToast
 import kotlinx.android.synthetic.main.activity_user_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -41,6 +42,13 @@ class UserDetailActivity : AppCompatActivity() {
      * init data
      */
     private fun initData(userId: String?) {
-        userDetailViewModel.userId = userId
+        if(userId == null) {
+            showToast(getString(R.string.no_data))
+
+            finish()
+            return
+        }
+
+        userDetailViewModel.setData(userId)
     }
 }
