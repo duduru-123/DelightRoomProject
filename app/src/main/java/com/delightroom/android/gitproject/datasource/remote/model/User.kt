@@ -2,53 +2,53 @@ package com.delightroom.android.gitproject.datasource.remote.model
 
 import com.google.gson.annotations.SerializedName
 
-data class User (
-    val login: String,
-    val id: Long,
+data class User(
+    val login: String?,
+    val id: Long?,
 
     @SerializedName("node_id")
-    val nodeID: String,
+    val nodeID: String?,
 
     @SerializedName("avatar_url")
-    val avatarURL: String,
+    val avatarURL: String?,
 
     @SerializedName("gravatar_id")
-    val gravatarID: String,
+    val gravatarID: String?,
 
-    val url: String,
+    val url: String?,
 
     @SerializedName("html_url")
-    val htmlURL: String,
+    val htmlURL: String?,
 
     @SerializedName("followers_url")
-    val followersURL: String,
+    val followersURL: String?,
 
     @SerializedName("following_url")
-    val followingURL: String,
+    val followingURL: String?,
 
     @SerializedName("gists_url")
-    val gistsURL: String,
+    val gistsURL: String?,
 
     @SerializedName("starred_url")
-    val starredURL: String,
+    val starredURL: String?,
 
     @SerializedName("subscriptions_url")
-    val subscriptionsURL: String,
+    val subscriptionsURL: String?,
 
     @SerializedName("organizations_url")
-    val organizationsURL: String,
+    val organizationsURL: String?,
 
     @SerializedName("repos_url")
-    val reposURL: String,
+    val reposURL: String?,
 
     @SerializedName("events_url")
-    val eventsURL: String,
+    val eventsURL: String?,
 
     @SerializedName("received_events_url")
-    val receivedEventsURL: String,
+    val receivedEventsURL: String?,
 
-    val type: String,
+    val type: String?,
 
     @SerializedName("site_admin")
-    val siteAdmin: Boolean
+    val siteAdmin: Boolean?
 )

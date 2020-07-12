@@ -7,74 +7,74 @@ data class UserDetail(
     val id: Long,
 
     @SerializedName("node_id")
-    val nodeID: String,
+    val nodeID: String?,
 
     @SerializedName("avatar_url")
-    val avatarURL: String,
+    val avatarURL: String?,
 
     @SerializedName("gravatar_id")
-    val gravatarID: String,
+    val gravatarID: String?,
 
-    val url: String,
+    val url: String?,
 
     @SerializedName("html_url")
-    val htmlURL: String,
+    val htmlURL: String?,
 
     @SerializedName("followers_url")
-    val followersURL: String,
+    val followersURL: String?,
 
     @SerializedName("following_url")
-    val followingURL: String,
+    val followingURL: String?,
 
     @SerializedName("gists_url")
-    val gistsURL: String,
+    val gistsURL: String?,
 
     @SerializedName("starred_url")
-    val starredURL: String,
+    val starredURL: String?,
 
     @SerializedName("subscriptions_url")
-    val subscriptionsURL: String,
+    val subscriptionsURL: String?,
 
     @SerializedName("organizations_url")
-    val organizationsURL: String,
+    val organizationsURL: String?,
 
     @SerializedName("repos_url")
-    val reposURL: String,
+    val reposURL: String?,
 
     @SerializedName("events_url")
-    val eventsURL: String,
+    val eventsURL: String?,
 
     @SerializedName("received_events_url")
-    val receivedEventsURL: String,
+    val receivedEventsURL: String?,
 
-    val type: String,
+    val type: String?,
 
     @SerializedName("site_admin")
-    val siteAdmin: Boolean,
+    val siteAdmin: Boolean?,
 
-    val name: String,
-    val company: String,
-    val blog: String,
-    val location: String,
-    val email: Any? = null,
-    val hireable: Any? = null,
-    val bio: Any? = null,
+    val name: String?,
+    val company: String?,
+    val blog: String?,
+    val location: String?,
+    val email: String? = null,
+    val hireable: String? = null,
+    val bio: String? = null,
 
     @SerializedName("twitter_username")
-    val twitterUsername: Any? = null,
+    val twitterUsername: String? = null,
 
     @SerializedName("public_repos")
-    val publicRepos: Long,
+    val publicRepos: Long?,
 
     @SerializedName("public_gists")
-    val publicGists: Long,
+    val publicGists: Long?,
 
-    val followers: Long,
-    val following: Long,
+    val followers: Long?,
+    val following: Long?,
 
     @SerializedName("created_at")
-    val createdAt: String,
+    val createdAt: String?,
 
     @SerializedName("updated_at")
-    val updatedAt: String
+    val updatedAt: String?
 )
