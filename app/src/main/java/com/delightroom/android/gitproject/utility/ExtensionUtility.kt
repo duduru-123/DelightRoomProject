@@ -17,8 +17,8 @@ fun View.gone() {
 
 
 fun Any.logI(message: String?, distribution: String = "@@@@@@@@") {
-    Log.i(distribution, message)
+    Log.i(this::class.java.simpleName, "$distribution $message")
 }
 fun Any.logE(message: String?, distribution: String = "@@@@@@@@") {
-    Log.e(distribution, message)
+    Log.e(this::class.java.simpleName, "$distribution $message")
 }
