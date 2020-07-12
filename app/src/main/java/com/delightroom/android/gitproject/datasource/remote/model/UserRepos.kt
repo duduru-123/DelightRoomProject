@@ -191,7 +191,7 @@ data class UserRepos (
     @SerializedName("open_issues_count")
     val openIssuesCount: Long?,
 
-    val license: String? = null,
+    val license: License? = null,
     val forks: Long?,
 
     @SerializedName("open_issues")
