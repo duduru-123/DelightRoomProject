@@ -8,7 +8,7 @@ import android.view.ViewGroup
 
 import com.delightroom.android.gitproject.R
 
-class RepositoryFragment : Fragment() {
+class UserDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -17,11 +17,11 @@ class RepositoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_repository, container, false)
+        return inflater.inflate(R.layout.fragment_user_detail, container, false)
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() = RepositoryFragment()
+        fun newInstance() = UserDetailFragment()
     }
 }

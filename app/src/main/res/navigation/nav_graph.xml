@@ -9,11 +9,30 @@
         android:id="@+id/userFragment"
         android:name="com.delightroom.android.gitproject.ui.UserFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" />
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_userFragment_to_userDetailFragment"
+            app:destination="@id/userDetailFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_userDetailFragment2"
+            app:destination="@id/userDetailFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popUpToInclusive="false" />
+    </fragment>
 
     <fragment
         android:id="@+id/repositoryFragment"
         android:name="com.delightroom.android.gitproject.ui.RepositoryFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" />
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="com.delightroom.android.gitproject.ui.UserDetailFragment"
+        android:label="UserDetailFragment" >
+        <argument
+            android:name="userId"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment><action android:id="@+id/action_global_userDetailFragment" app:destination="@id/userDetailFragment"/>
 </navigation>
