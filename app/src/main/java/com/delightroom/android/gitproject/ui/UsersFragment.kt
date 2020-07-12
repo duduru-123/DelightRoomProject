@@ -83,7 +83,7 @@ class UsersFragment : Fragment() {
      */
     private fun initLayout() {
         textTest.setOnClickListener {
-            val direction = UserFragmentDirections.actionUserFragmentToUserDetailFragment2("test")
+            val direction = UsersFragmentDirections.actionUserFragmentToUserDetailFragment2("test")
             findNavController().navigate(direction)
         }
     }
