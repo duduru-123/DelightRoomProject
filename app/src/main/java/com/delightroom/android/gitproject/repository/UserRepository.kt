@@ -33,4 +33,12 @@ class UserRepository(
     suspend fun requestUserRepos(userId: String): List<UserRepos> {
         return retrofitManager.createApi(UserService::class.java).getUserRepos(userId)
     }
+
+
+    /**
+     * request starred userRepos by userId
+     */
+    suspend fun requestUserStarredRepos(userId: String): List<UserRepos> {
+        return retrofitManager.createApi(UserService::class.java).getUserStarredRepos(userId)
+    }
 }

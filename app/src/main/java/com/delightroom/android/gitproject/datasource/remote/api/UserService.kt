@@ -28,10 +28,20 @@ interface UserService {
 
 
     /**
-     * request user by userId
+     * request userRepos by userId
      */
     @GET("/users/{userId}/repos")
     suspend fun getUserRepos(
+        @Path("userId")
+        userId: String
+    ): List<UserRepos>
+
+
+    /**
+     * request user starred repos by userId
+     */
+    @GET("/users/{userId}/starred")
+    suspend fun getUserStarredRepos(
         @Path("userId")
         userId: String
     ): List<UserRepos>
