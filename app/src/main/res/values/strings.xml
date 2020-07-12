@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">GitProject</string>
+
+    <!-- navigation tap title -->
+    <string name="nav_user">User</string>
+    <string name="nav_repository">Repository</string>
 </resources>
