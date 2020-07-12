@@ -8,15 +8,15 @@
     <fragment
         android:id="@+id/userOverviewFragment"
         android:name="com.delightroom.android.gitproject.ui.UserOverviewFragment"
-        android:label="UserOverviewFragment" />
+        android:label="fragment_user_overview" />
 
     <fragment
         android:id="@+id/starredFragment"
         android:name="com.delightroom.android.gitproject.ui.StarredFragment"
-        android:label="StarredFragment" />
+        android:label="fragment_starred" />
 
     <fragment
         android:id="@+id/userReposFragment"
         android:name="com.delightroom.android.gitproject.ui.UserReposFragment"
-        android:label="UserReposFragment" />
+        android:label="fragment_user_repos" />
 </navigation>

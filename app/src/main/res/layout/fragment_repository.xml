@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="viewModel" type="com.delightroom.android.gitproject.present.viewmodel.UserDetailViewModel"/>
+        <variable name="viewModel" type="com.delightroom.android.gitproject.present.viewmodel.UsersViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.UserDetailActivity">
+        tools:context=".ui.UsersFragment">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipeRefreshRepos"
+            android:id="@+id/swipeRefreshRepository"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerRepos"
+                android:id="@+id/recyclerRepository"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

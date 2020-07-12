@@ -18,9 +18,9 @@
 
     <fragment
         android:id="@+id/repositoryFragment"
-        android:name="com.delightroom.android.gitproject.ui.UserReposFragment"
-        android:label="fragment_user"
-        tools:layout="@layout/fragment_users" />
+        android:name="com.delightroom.android.gitproject.ui.RepositoryFragment"
+        android:label="fragment_repository"
+        tools:layout="@layout/fragment_repository" />
 
     <activity
         android:id="@+id/userDetailActivity"
