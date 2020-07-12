@@ -15,7 +15,7 @@ data class UserRepos (
     val fullName: String?,
 
     val private: Boolean?,
-    val owner: Owner,
+    val owner: User,
 
     @SerializedName("html_url")
     val htmlURL: String?,

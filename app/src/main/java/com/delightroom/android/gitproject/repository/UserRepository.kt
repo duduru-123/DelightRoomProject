@@ -30,15 +30,27 @@ class UserRepository(
     /**
      * request userRepos by userId
      */
-    suspend fun requestUserRepos(userId: String): List<UserRepos> {
-        return retrofitManager.createApi(UserService::class.java).getUserRepos(userId)
+    suspend fun requestUserRepos(
+        userId: String,
+        page: Int? = null,
+        pageSize: Int? = null,
+        order: String? = "desc"
+    ): List<UserRepos> {
+        return retrofitManager.createApi(UserService::class.java)
+            .getUserRepos(userId, page, pageSize, order)
     }
 
 
     /**
      * request starred userRepos by userId
      */
-    suspend fun requestUserStarredRepos(userId: String): List<UserRepos> {
-        return retrofitManager.createApi(UserService::class.java).getUserStarredRepos(userId)
+    suspend fun requestUserStarredRepos(
+        userId: String,
+        page: Int? = null,
+        pageSize: Int? = null,
+        order: String? = "desc"
+    ): List<UserRepos> {
+        return retrofitManager.createApi(UserService::class.java)
+            .getUserStarredRepos(userId, page, pageSize, order)
     }
 }

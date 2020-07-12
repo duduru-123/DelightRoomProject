@@ -5,6 +5,7 @@ import com.delightroom.android.gitproject.datasource.remote.model.UserDetail
 import com.delightroom.android.gitproject.datasource.remote.model.UserRepos
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface UserService {
@@ -33,7 +34,13 @@ interface UserService {
     @GET("/users/{userId}/repos")
     suspend fun getUserRepos(
         @Path("userId")
-        userId: String
+        userId: String,
+        @Query("page")
+        page: Int? = null,
+        @Query("per_page")
+        pageSize: Int? = null,
+        @Query("order")
+        order: String? = null
     ): List<UserRepos>
 
 
@@ -43,6 +50,12 @@ interface UserService {
     @GET("/users/{userId}/starred")
     suspend fun getUserStarredRepos(
         @Path("userId")
-        userId: String
-    ): List<UserRepos>
+        userId: String,
+        @Query("page")
+        page: Int? = null,
+        @Query("per_page")
+        pageSize: Int? = null,
+        @Query("order")
+        order: String? = null
+        ): List<UserRepos>
 }
