@@ -8,4 +8,6 @@ class UserDetailViewModel(
     private val retrofitManager: RetrofitManager,
     private val userRepository: UserRepository
 ) : ViewModel() {
+
+    var userId: String? = null
 }

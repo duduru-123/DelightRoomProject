@@ -4,4 +4,8 @@
         android:id="@+id/userOverviewFragment"
         android:icon="@drawable/ic_face_24px"
         android:title="@string/nav_user" />
+    <item
+        android:id="@+id/starredFragment"
+        android:icon="@drawable/ic_face_24px"
+        android:title="@string/nav_user" />
 </menu>

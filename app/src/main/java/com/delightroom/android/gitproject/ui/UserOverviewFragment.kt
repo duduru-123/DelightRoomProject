@@ -16,14 +16,13 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class UserOverviewFragment : Fragment() {
 
-    private val userOverviewFragmentArgs by navArgs<UserOverviewFragmentArgs>()
     private val userDetailViewModel by sharedViewModel<UserDetailViewModel>()
     private lateinit var binding: FragmentUserOverviewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        logI("userOverviewArgs.userId: ${userOverviewFragmentArgs.userId}")
+        logI("UserOverviewFragment.userId: ${userDetailViewModel.userId}")
     }
 
     override fun onCreateView(

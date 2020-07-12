@@ -4,4 +4,6 @@
     <!-- navigation tap title -->
     <string name="nav_user">User</string>
     <string name="nav_repository">Repository</string>
+    <string name="nav_overview">Overview</string>
+    <string name="nav_starred">Starred</string>
 </resources>

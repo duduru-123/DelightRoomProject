@@ -21,11 +21,26 @@ class UserDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user_detail)
 
         logI("userDetailActivityArgs.userId: ${userDetailActivityArgs.userId}")
-        val navController = findNavController(R.id.navHostUserDetail)
-        val bundle = Bundle().apply { putString("userId", userDetailActivityArgs.userId) }
 
-        navController.setGraph(navController.graph, bundle)
+        init()
+        initData(userDetailActivityArgs.userId)
+    }
+
+
+    /**
+     * init
+     */
+    private fun init() {
+        val navController = findNavController(R.id.navHostUserDetail)
 
         NavigationUI.setupWithNavController(bottomNavMenuUserDetail, navController)
+    }
+
+
+    /**
+     * init data
+     */
+    private fun initData(userId: String?) {
+        userDetailViewModel.userId = userId
     }
 }

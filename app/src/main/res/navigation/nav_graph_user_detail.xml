@@ -8,11 +8,10 @@
     <fragment
         android:id="@+id/userOverviewFragment"
         android:name="com.delightroom.android.gitproject.ui.UserOverviewFragment"
-        android:label="UserOverviewFragment" >
-        <argument
-            android:name="userId"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="null" />
-    </fragment>
+        android:label="UserOverviewFragment" />
+
+    <fragment
+        android:id="@+id/starredFragment"
+        android:name="com.delightroom.android.gitproject.ui.StarredFragment"
+        android:label="StarredFragment" />
 </navigation>
