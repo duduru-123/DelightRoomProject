@@ -14,16 +14,16 @@ import com.delightroom.android.gitproject.repository.UserRepository
 class UsersViewModel(
     private val retrofitManager: RetrofitManager,
     private val userRepository: UserRepository
-): ViewModel() {
+) : ViewModel() {
 
     // list of userVO
-    val listOfUserVO = createListOFUserVOLiveData()
+    val listOfUserVO = createListOfUserVOLiveData()
 
 
     /**
      * create live data
      */
-    private fun createListOFUserVOLiveData(): LiveData<PagedList<UserVO>> {
+    private fun createListOfUserVOLiveData(): LiveData<PagedList<UserVO>> {
         val pageSize = 20
         val config = PagedList.Config.Builder()
             .setInitialLoadSizeHint(pageSize + 10)
@@ -36,5 +36,13 @@ class UsersViewModel(
                 return UsersDataSource(retrofitManager, viewModelScope)
             }
         }, config).build()
+    }
+
+
+    /**
+     * refresh list of userVO
+     */
+    fun refreshListOfUserVO() {
+        listOfUserVO.value?.dataSource?.invalidate()
     }
 }

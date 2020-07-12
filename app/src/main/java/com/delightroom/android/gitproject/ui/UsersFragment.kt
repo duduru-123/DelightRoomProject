@@ -93,6 +93,8 @@ class UsersFragment : Fragment() {
      * init layout
      */
     private fun initLayout() {
+        swipeRefreshUsers.setOnRefreshListener { usersViewModel.refreshListOfUserVO() }
+
         with(recyclerUsers) {
             layoutManager = LinearLayoutManager(context)
             adapter = UsersPagingAdapter(onUsersAdapterListener)
@@ -105,9 +107,10 @@ class UsersFragment : Fragment() {
      */
     private fun initViewModelCallbackData() {
         usersViewModel.listOfUserVO.observe(viewLifecycleOwner, Observer { list ->
-            logI("here result: ${list.size}")
             val adapter = recyclerUsers.adapter as UsersPagingAdapter
             adapter.submitList(list)
+
+            swipeRefreshUsers.isRefreshing = false
         })
     }
 
