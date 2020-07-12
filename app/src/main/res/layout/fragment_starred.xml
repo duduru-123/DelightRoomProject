@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="viewModel" type="com.delightroom.android.gitproject.present.viewmodel.UserDetailViewModel"/>
+
+        <variable
+            name="viewModel"
+            type="com.delightroom.android.gitproject.present.viewmodel.UserDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

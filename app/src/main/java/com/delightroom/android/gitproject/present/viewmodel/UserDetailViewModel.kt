@@ -7,6 +7,7 @@ import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.delightroom.android.gitproject.datasource.paging.StarredDataSource
+import com.delightroom.android.gitproject.datasource.paging.UserReposDataSource
 import com.delightroom.android.gitproject.datasource.vo.ReposVO
 import com.delightroom.android.gitproject.manager.RetrofitManager
 import com.delightroom.android.gitproject.repository.UserRepository
@@ -20,6 +21,7 @@ class UserDetailViewModel(
 
     // list of reposVO
     lateinit var listOfStarredReposVO: LiveData<PagedList<ReposVO>>
+    lateinit var listOfUserReposReposVO: LiveData<PagedList<ReposVO>>
 
 
     /**
@@ -29,11 +31,12 @@ class UserDetailViewModel(
         this.userId = userId
 
         listOfStarredReposVO = createListOfStarredReposVOLiveData()
+        listOfUserReposReposVO = createListOfUserReposReposVOLiveData()
     }
 
 
     /**
-     * create live data
+     * create starred live data
      */
     private fun createListOfStarredReposVOLiveData(): LiveData<PagedList<ReposVO>> {
         val pageSize = 20
@@ -52,9 +55,36 @@ class UserDetailViewModel(
 
 
     /**
+     * create user repos live data
+     */
+    private fun createListOfUserReposReposVOLiveData(): LiveData<PagedList<ReposVO>> {
+        val pageSize = 20
+        val config = PagedList.Config.Builder()
+            .setInitialLoadSizeHint(pageSize + 10)
+            .setPageSize(pageSize)
+            .setPrefetchDistance(10)
+            .build()
+
+        return LivePagedListBuilder(object : DataSource.Factory<Int, ReposVO>() {
+            override fun create(): DataSource<Int, ReposVO> {
+                return UserReposDataSource(retrofitManager, viewModelScope, userId)
+            }
+        }, config).build()
+    }
+
+
+    /**
      * refresh list of starred reposVO
      */
     fun refreshListOfStarredReposVO() {
         listOfStarredReposVO.value?.dataSource?.invalidate()
+    }
+
+
+    /**
+     * refresh list of user repos reposVO
+     */
+    fun refreshListOfUserReposReposVO() {
+        listOfUserReposReposVO.value?.dataSource?.invalidate()
     }
 }
