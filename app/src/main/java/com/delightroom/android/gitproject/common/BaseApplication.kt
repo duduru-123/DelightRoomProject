@@ -1,9 +1,8 @@
 package com.delightroom.android.gitproject.common
 
 import android.app.Application
-import com.delightroom.android.gitproject.datasource.remote.api.UserService
 import com.delightroom.android.gitproject.manager.RetrofitManager
-import com.delightroom.android.gitproject.present.UsersViewModel
+import com.delightroom.android.gitproject.present.viewmodel.UsersViewModel
 import com.delightroom.android.gitproject.repository.UserRepository
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -32,7 +31,7 @@ class BaseApplication : Application() {
     }
 
     private val viewModelModule = module {
-        viewModel { UsersViewModel(get()) }
+        viewModel { UsersViewModel(get(), get()) }
     }
 
     private val repositoryModule = module {
