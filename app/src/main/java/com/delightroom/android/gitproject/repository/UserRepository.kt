@@ -14,7 +14,11 @@ class UserRepository(
     /**
      * request all users
      */
-    suspend fun requestUsers(): List<User> {
+    suspend fun requestUsers(
+        page: Int? = null,
+        pageSize: Int? = null,
+        order: String? = "desc"
+    ): List<User> {
         return retrofitManager.createApi(UserService::class.java).getUsers()
     }
 

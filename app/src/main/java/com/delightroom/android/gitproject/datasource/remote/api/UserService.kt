@@ -15,7 +15,14 @@ interface UserService {
      * request all users
      */
     @GET("/users")
-    suspend fun getUsers(): List<User>
+    suspend fun getUsers(
+        @Query("page")
+        page: Int? = null,
+        @Query("per_page")
+        pageSize: Int? = null,
+        @Query("order")
+        order: String? = null
+    ): List<User>
 
 
     /**
@@ -57,5 +64,5 @@ interface UserService {
         pageSize: Int? = null,
         @Query("order")
         order: String? = null
-        ): List<UserRepos>
+    ): List<UserRepos>
 }
