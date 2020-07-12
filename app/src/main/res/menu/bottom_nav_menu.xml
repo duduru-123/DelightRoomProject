@@ -7,6 +7,6 @@
 
     <item
         android:id="@+id/repositoryFragment"
-        android:icon="@drawable/ic_face_24px"
+        android:icon="@drawable/ic_folder_24px"
         android:title="@string/nav_repository" />
 </menu>
