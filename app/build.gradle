@@ -82,4 +82,7 @@ dependencies {
     implementation "androidx.paging:paging-runtime:$paging_version" // For Kotlin use paging-runtime-ktx
     // alternatively - without Android dependencies for testing
     testImplementation "androidx.paging:paging-common:$paging_version"
+
+    // fresco
+    implementation 'com.facebook.fresco:fresco:2.2.0'
 }
