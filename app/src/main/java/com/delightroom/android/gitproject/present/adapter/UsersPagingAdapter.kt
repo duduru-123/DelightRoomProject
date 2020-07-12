@@ -1,14 +1,12 @@
 package com.delightroom.android.gitproject.present.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.delightroom.android.gitproject.R
+import com.delightroom.android.gitproject.databinding.ItemUsersBinding
 import com.delightroom.android.gitproject.datasource.vo.UserVO
-import kotlinx.android.synthetic.main.item_users.view.*
 
 class UsersPagingAdapter(
     private val onUsersAdapterListener: OnUsersAdapterListener
@@ -19,13 +17,13 @@ class UsersPagingAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_users, parent, false)
-        return ViewHolder(view, onUsersAdapterListener)
+        val binding = ItemUsersBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val userVO = getItem(position) ?: return
-        holder.init(userVO)
+        holder.init(userVO, onUsersAdapterListener)
     }
 
 
@@ -33,14 +31,12 @@ class UsersPagingAdapter(
      * viewHolder
      */
     class ViewHolder(
-        private val view: View,
-        private val onUsersAdapterListener: OnUsersAdapterListener
-    ) : RecyclerView.ViewHolder(view) {
+        private val binding: ItemUsersBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun init(userVO: UserVO) {
-            with(view) {
-                textUsersName.text = userVO.id
-            }
+        fun init(userVO: UserVO, onUsersAdapterListener: OnUsersAdapterListener) {
+            binding.userVO = userVO
+            binding.clickListener = onUsersAdapterListener
         }
     }
 

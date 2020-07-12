@@ -43,6 +43,7 @@ class UsersFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_users, container, false)
         binding.viewModel = usersViewModel
+        binding.lifecycleOwner = this
 
         return binding.root
 

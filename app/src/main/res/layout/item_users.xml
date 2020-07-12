@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="150dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/textUsersName"
-        style="@style/UserName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
+        <variable
+            name="userVO"
+            type="com.delightroom.android.gitproject.datasource.vo.UserVO" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <variable
+            name="clickListener"
+            type="com.delightroom.android.gitproject.present.adapter.UsersPagingAdapter.OnUsersAdapterListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:onClick="@{() -> clickListener.onSelectItem(userVO)}">
+
+        <TextView
+            android:id="@+id/textUsersName"
+            style="@style/UserName"
+            android:text="@{userVO.id}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
