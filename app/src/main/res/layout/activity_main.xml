@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_bg_color"
     tools:context=".MainActivity">
 
     <fragment
-        android:id="@+id/fragmentUser"
+        android:id="@+id/navHost"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -21,6 +22,7 @@
         android:id="@+id/bottomNavMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/gray_80666666"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu" />
 

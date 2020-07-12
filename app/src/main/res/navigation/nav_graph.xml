@@ -10,4 +10,10 @@
         android:name="com.delightroom.android.gitproject.ui.UserFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" />
+
+    <fragment
+        android:id="@+id/repositoryFragment"
+        android:name="com.delightroom.android.gitproject.ui.RepositoryFragment"
+        android:label="fragment_user"
+        tools:layout="@layout/fragment_user" />
 </navigation>
