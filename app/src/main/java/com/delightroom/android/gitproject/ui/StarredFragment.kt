@@ -25,6 +25,10 @@ class StarredFragment : Fragment() {
     private val userDetailViewModel by sharedViewModel<UserDetailViewModel>()
     private lateinit var binding: FragmentStarredBinding
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        logI("onAttach")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,11 +48,6 @@ class StarredFragment : Fragment() {
 
         return binding.root
 
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        logI("onAttach")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
