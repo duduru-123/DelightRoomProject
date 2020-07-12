@@ -5,14 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.navArgs
 
 import com.delightroom.android.gitproject.R
+import com.delightroom.android.gitproject.databinding.FragmentUserOverviewBinding
+import com.delightroom.android.gitproject.present.viewmodel.UserDetailViewModel
 import com.delightroom.android.gitproject.utility.logI
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class UserOverviewFragment : Fragment() {
 
     private val userOverviewFragmentArgs by navArgs<UserOverviewFragmentArgs>()
+    private val userDetailViewModel by sharedViewModel<UserDetailViewModel>()
+    private lateinit var binding: FragmentUserOverviewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +30,12 @@ class UserOverviewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_user_overview, container, false)
+        binding.viewModel = userDetailViewModel
+        binding.lifecycleOwner = this
+
         return inflater.inflate(R.layout.fragment_user_overview, container, false)
     }
 }
