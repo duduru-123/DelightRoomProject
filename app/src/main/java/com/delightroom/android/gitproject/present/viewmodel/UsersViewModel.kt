@@ -16,12 +16,14 @@ class UsersViewModel(
     private val userRepository: UserRepository
 ): ViewModel() {
 
+    // list of userVO
+    val listOfUserVO = createListOFUserVOLiveData()
 
 
     /**
      * create live data
      */
-    private fun createListOFUserVOLiveData(songId: String): LiveData<PagedList<UserVO>> {
+    private fun createListOFUserVOLiveData(): LiveData<PagedList<UserVO>> {
         val pageSize = 20
         val config = PagedList.Config.Builder()
             .setInitialLoadSizeHint(pageSize + 10)

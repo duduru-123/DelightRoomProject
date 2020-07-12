@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.delightroom.android.gitproject.R
 import com.delightroom.android.gitproject.present.viewmodel.UsersViewModel
@@ -40,6 +41,13 @@ class UsersFragment : Fragment() {
         logI("onActivityCreated")
 
         initLayout()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        logI("onViewCreated")
+
+        initViewModelCallbackData()
     }
 
     override fun onResume() {
@@ -86,5 +94,15 @@ class UsersFragment : Fragment() {
             val direction = UsersFragmentDirections.actionUserFragmentToUserDetailFragment2("test")
             findNavController().navigate(direction)
         }
+    }
+
+
+    /**
+     * init viewModel data of callback
+     */
+    private fun initViewModelCallbackData() {
+        usersViewModel.listOfUserVO.observe(viewLifecycleOwner, Observer {
+            logI("here result: ${it.size}")
+        })
     }
 }
