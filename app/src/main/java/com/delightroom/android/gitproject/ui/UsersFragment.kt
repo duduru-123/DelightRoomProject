@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.delightroom.android.gitproject.R
 import com.delightroom.android.gitproject.present.viewmodel.UsersViewModel
 import com.delightroom.android.gitproject.utility.logI
@@ -90,9 +91,12 @@ class UsersFragment : Fragment() {
      * init layout
      */
     private fun initLayout() {
-        textTest.setOnClickListener {
-            val direction = UsersFragmentDirections.actionUserFragmentToUserDetailFragment2("test")
-            findNavController().navigate(direction)
+//            val direction = UsersFragmentDirections.actionUserFragmentToUserDetailFragment2("test")
+//            findNavController().navigate(direction)
+
+        with(recyclerUsers) {
+            layoutManager = LinearLayoutManager(context)
+            
         }
     }
 
