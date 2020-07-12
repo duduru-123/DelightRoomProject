@@ -22,11 +22,12 @@ import com.delightroom.android.gitproject.present.adapter.UsersPagingAdapter
 import com.delightroom.android.gitproject.present.viewmodel.UsersViewModel
 import com.delightroom.android.gitproject.utility.logI
 import kotlinx.android.synthetic.main.fragment_users.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UsersFragment : Fragment() {
 
-    private val usersViewModel by viewModel<UsersViewModel>()
+    private val usersViewModel by sharedViewModel<UsersViewModel>()
     private lateinit var binding: FragmentUsersBinding
 
 
