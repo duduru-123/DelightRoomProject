@@ -9,8 +9,13 @@ import androidx.paging.PagedList
 import com.delightroom.android.gitproject.datasource.paging.StarredDataSource
 import com.delightroom.android.gitproject.datasource.paging.UserReposDataSource
 import com.delightroom.android.gitproject.datasource.vo.ReposVO
+import com.delightroom.android.gitproject.datasource.vo.UserDetailVO
 import com.delightroom.android.gitproject.manager.RetrofitManager
 import com.delightroom.android.gitproject.repository.UserRepository
+import com.delightroom.android.gitproject.utility.logE
+import com.delightroom.android.gitproject.utility.logI
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class UserDetailViewModel(
     private val retrofitManager: RetrofitManager,
@@ -20,6 +25,7 @@ class UserDetailViewModel(
     var userId: String = ""
 
     // list of reposVO
+    lateinit var userDetailVO: LiveData<UserDetailVO>
     lateinit var listOfStarredReposVO: LiveData<PagedList<ReposVO>>
     lateinit var listOfUserReposReposVO: LiveData<PagedList<ReposVO>>
 
@@ -32,6 +38,22 @@ class UserDetailViewModel(
 
         listOfStarredReposVO = createListOfStarredReposVOLiveData()
         listOfUserReposReposVO = createListOfUserReposReposVOLiveData()
+    }
+
+
+    /**
+     * request user detail vo
+     */
+    fun requestUserDetail() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                userDetailVO = userRepository.requestUser(userId)
+                logI("userDetailVO.value?.id: ${userDetailVO.value?.id}")
+
+            } catch (e: Exception) {
+                logE(e.message)
+            }
+        }
     }
 
 

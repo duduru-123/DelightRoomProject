@@ -5,8 +5,10 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.delightroom.android.gitproject.datasource.remote.model.User
+import com.delightroom.android.gitproject.datasource.remote.model.UserDetail
 import com.delightroom.android.gitproject.datasource.remote.model.UserRepos
 import com.delightroom.android.gitproject.datasource.vo.ReposVO
+import com.delightroom.android.gitproject.datasource.vo.UserDetailVO
 import com.delightroom.android.gitproject.datasource.vo.UserVO
 
 
@@ -18,9 +20,16 @@ fun User.convertToUserVO(): UserVO {
         id = this.login ?: ""
     )
 }
+
 fun UserRepos.convertToReposVO(): ReposVO {
     return ReposVO(
         id = this.description ?: ""
+    )
+}
+
+fun UserDetail.convertToUserDetailVO(): UserDetailVO {
+    return UserDetailVO(
+        id = this.login
     )
 }
 

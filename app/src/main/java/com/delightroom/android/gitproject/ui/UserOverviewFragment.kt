@@ -23,6 +23,7 @@ class UserOverviewFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         logI("UserOverviewFragment.userId: ${userDetailViewModel.userId}")
+        initRemoteData()
     }
 
     override fun onCreateView(
@@ -35,6 +36,18 @@ class UserOverviewFragment : Fragment() {
         binding.viewModel = userDetailViewModel
         binding.lifecycleOwner = this
 
-        return inflater.inflate(R.layout.fragment_user_overview, container, false)
+        return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+    }
+
+    /**
+     * init layout
+     */
+    private fun initRemoteData() {
+        userDetailViewModel.requestUserDetail()
     }
 }
