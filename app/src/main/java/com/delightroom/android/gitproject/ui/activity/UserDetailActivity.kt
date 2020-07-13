@@ -1,6 +1,7 @@
 package com.delightroom.android.gitproject.ui.activity
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.navArgs
@@ -25,6 +26,17 @@ class UserDetailActivity : AppCompatActivity() {
 
         init()
         initData(userDetailActivityArgs.userId)
+        initLayout()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.getItemId()) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 
@@ -41,14 +53,26 @@ class UserDetailActivity : AppCompatActivity() {
     /**
      * init data
      */
-    private fun initData(userId: String?) {
-        if(userId == null) {
+    private fun initData(userLogin: String?) {
+        if(userLogin == null) {
             showToast(getString(R.string.no_data))
 
             finish()
             return
         }
 
-        userDetailViewModel.setData(userId)
+        userDetailViewModel.setData(userLogin)
+    }
+
+
+    /**
+     * init layout
+     */
+    private fun initLayout() {
+        setSupportActionBar(toolbarUserDetail)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.title = userDetailViewModel.userLogin
     }
 }

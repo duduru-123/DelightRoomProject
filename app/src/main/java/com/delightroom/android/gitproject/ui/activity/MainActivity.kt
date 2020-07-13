@@ -21,7 +21,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        NavigationUI.setupWithNavController(bottomNavMenuMain, findNavController(R.id.navHostMain))
+        init()
+        initLayout()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -38,5 +39,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+
+    /**
+     * init
+     */
+    private fun init() {
+        NavigationUI.setupWithNavController(bottomNavMenuMain, findNavController(R.id.navHostMain))
+    }
+
+
+    /**
+     * init layout
+     */
+    private fun initLayout() {
+        setSupportActionBar(toolbarMain)
     }
 }

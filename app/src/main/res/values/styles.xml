@@ -8,7 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-
     <!-- Font -->
     <style name="font_base">
         <item name="android:layout_width">wrap_content</item>

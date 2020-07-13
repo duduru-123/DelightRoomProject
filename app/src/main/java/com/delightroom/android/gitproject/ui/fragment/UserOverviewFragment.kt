@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.fragment.navArgs
 
 import com.delightroom.android.gitproject.R
 import com.delightroom.android.gitproject.databinding.FragmentUserOverviewBinding
@@ -22,7 +21,7 @@ class UserOverviewFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        logI("UserOverviewFragment.userId: ${userDetailViewModel.userId}")
+        logI("UserOverviewFragment.userId: ${userDetailViewModel.userLogin}")
         initRemoteData()
     }
 

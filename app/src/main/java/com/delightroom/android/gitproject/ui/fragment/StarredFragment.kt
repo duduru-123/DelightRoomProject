@@ -32,7 +32,7 @@ class StarredFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         logI("onCreate")
-        logI("StarredFragment.userId: ${userDetailViewModel.userId}")
+        logI("StarredFragment.userId: ${userDetailViewModel.userLogin}")
     }
 
     override fun onCreateView(

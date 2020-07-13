@@ -7,6 +7,16 @@
     android:background="@color/main_bg_color"
     tools:context=".ui.activity.MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/toolbarMain"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/main_bg_color"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
     <fragment
         android:id="@+id/navHostMain"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -14,7 +24,7 @@
         android:layout_height="0dp"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavMenuMain"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarMain"
         app:layout_constraintVertical_weight="1"
         app:navGraph="@navigation/nav_graph_main" />
 

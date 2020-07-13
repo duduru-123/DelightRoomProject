@@ -23,7 +23,7 @@ class UserDetailViewModel(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
-    var userId: String = ""
+    var userLogin: String = ""
 
     // list of reposVO
     var userDetailVO = MutableLiveData<UserDetailVO>()
@@ -35,7 +35,7 @@ class UserDetailViewModel(
      * set data
      */
     fun setData(userId: String) {
-        this.userId = userId
+        this.userLogin = userId
 
         listOfStarredReposVO = createListOfStarredReposVOLiveData()
         listOfUserReposReposVO = createListOfUserReposReposVOLiveData()
@@ -48,7 +48,7 @@ class UserDetailViewModel(
     fun requestUserDetail() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val result = userRepository.requestUser(userId)
+                val result = userRepository.requestUser(userLogin)
                 userDetailVO.postValue(result)
                 logI("userDetailVO: $result")
 
@@ -72,7 +72,7 @@ class UserDetailViewModel(
 
         return LivePagedListBuilder(object : DataSource.Factory<Int, ReposVO>() {
             override fun create(): DataSource<Int, ReposVO> {
-                return StarredDataSource(retrofitManager, viewModelScope, userId)
+                return StarredDataSource(retrofitManager, viewModelScope, userLogin)
             }
         }, config).build()
     }
@@ -91,7 +91,7 @@ class UserDetailViewModel(
 
         return LivePagedListBuilder(object : DataSource.Factory<Int, ReposVO>() {
             override fun create(): DataSource<Int, ReposVO> {
-                return UserReposDataSource(retrofitManager, viewModelScope, userId)
+                return UserReposDataSource(retrofitManager, viewModelScope, userLogin)
             }
         }, config).build()
     }
