@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.delightroom.android.gitproject.present.viewmodel.UserDetailViewModel" />
@@ -14,14 +16,128 @@
         android:layout_height="match_parent"
         tools:context=".ui.fragment.UserOverviewFragment">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.userDetailVO.id}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideBegin"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideEnd"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/imgUserThumb"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="@+id/guideBegin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:updateUrl="@{viewModel.userDetailVO.thumbUrl}"
+            fresco:placeholderImage="@drawable/ic_sentiment_satisfied_24px" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textUserName"
+            style="@style/base_16"
+            android:layout_width="0dp"
+            android:layout_marginStart="20dp"
+            android:text="@{viewModel.userDetailVO.name}"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toTopOf="@+id/textUserLogin"
+            app:layout_constraintEnd_toEndOf="@+id/guideEnd"
+            app:layout_constraintStart_toEndOf="@+id/imgUserThumb"
+            app:layout_constraintTop_toTopOf="@+id/imgUserThumb"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="namename" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textUserLogin"
+            style="@style/base_16"
+            android:layout_width="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@{viewModel.userDetailVO.login}"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/imgUserThumb"
+            app:layout_constraintEnd_toEndOf="@+id/guideEnd"
+            app:layout_constraintStart_toEndOf="@+id/imgUserThumb"
+            app:layout_constraintTop_toBottomOf="@+id/textUserName"
+            tools:text="namename" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textUserBio"
+            style="@style/base_14"
+            android:layout_width="0dp"
+            android:layout_marginTop="15dp"
+            android:text="@{viewModel.userDetailVO.bio}"
+            app:goneUnlessByText="@{viewModel.userDetailVO.bio}"
+            app:layout_constraintEnd_toEndOf="@+id/guideEnd"
+            app:layout_constraintStart_toStartOf="@+id/guideBegin"
+            app:layout_constraintTop_toBottomOf="@+id/imgUserThumb" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textUserFollowing"
+            style="@style/base_18"
+            android:layout_marginTop="30dp"
+            android:text="@{@string/following_count(viewModel.userDetailVO.followingCount)}"
+            android:textColor="@color/gray_666666"
+            app:layout_constraintEnd_toStartOf="@+id/textUserFollowers"
+            app:layout_constraintStart_toStartOf="@+id/guideBegin"
+            app:layout_constraintTop_toBottomOf="@+id/textUserBio"
+            tools:text="FOLLOWING (0)" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textUserFollowers"
+            style="@style/base_18"
+            android:text="@{@string/followers_count(viewModel.userDetailVO.followersCount)}"
+            android:textColor="@color/gray_666666"
+            app:layout_constraintEnd_toEndOf="@id/guideEnd"
+            app:layout_constraintStart_toEndOf="@+id/textUserFollowing"
+            app:layout_constraintTop_toTopOf="@+id/textUserFollowing"
+            tools:text="FOLLOWERS (0)" />
+
+        <View
+            style="@style/Divider"
+            app:goneUnlessByText="@{viewModel.userDetailVO.company}"
+            app:layout_constraintBottom_toTopOf="@+id/textUserCompany"
+            app:layout_constraintEnd_toEndOf="@id/guideEnd"
+            app:layout_constraintStart_toStartOf="@id/guideBegin"
+            app:layout_constraintTop_toBottomOf="@+id/textUserFollowing" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textUserCompany"
+            style="@style/UserInfoTitle"
+            android:drawableLeft="@drawable/ic_work_24px"
+            android:text="@{viewModel.userDetailVO.company}"
+            app:goneUnlessByText="@{viewModel.userDetailVO.company}"
+            app:layout_constraintEnd_toEndOf="@id/guideEnd"
+            app:layout_constraintStart_toStartOf="@id/guideBegin"
+            app:layout_constraintTop_toBottomOf="@+id/textUserFollowing"
+            tools:text="company" />
+
+        <View
+            style="@style/Divider"
+            app:goneUnlessByText="@{viewModel.userDetailVO.location}"
+            app:layout_constraintBottom_toTopOf="@+id/textUserHome"
+            app:layout_constraintEnd_toEndOf="@id/guideEnd"
+            app:layout_constraintStart_toStartOf="@id/guideBegin"
+            app:layout_constraintTop_toBottomOf="@+id/textUserCompany" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textUserHome"
+            style="@style/UserInfoTitle"
+            android:drawableStart="@drawable/ic_place_24px"
+            android:text="@{viewModel.userDetailVO.location}"
+            app:goneUnlessByText="@{viewModel.userDetailVO.location}"
+            app:layout_constraintEnd_toEndOf="@id/guideEnd"
+            app:layout_constraintStart_toStartOf="@id/guideBegin"
+            app:layout_constraintTop_toBottomOf="@+id/textUserCompany"
+            tools:text="home" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

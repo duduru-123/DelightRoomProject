@@ -50,7 +50,7 @@ class UserDetailViewModel(
             try {
                 val result = userRepository.requestUser(userId)
                 userDetailVO.postValue(result)
-                logI("userDetailVO.value?.id: ${userDetailVO.value?.id}")
+                logI("userDetailVO: $result")
 
             } catch (e: Exception) {
                 logE(e.message)

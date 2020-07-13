@@ -12,5 +12,7 @@
     <color name="whtie_ffffff">#ffffff</color>
 
     <color name="gray_80666666">#80666666</color>
+    <color name="gray_30666666">#30666666</color>
+    <color name="gray_666666">#666666</color>
 
 </resources>

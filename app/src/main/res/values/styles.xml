@@ -9,6 +9,34 @@
     </style>
 
 
+    <!-- Font -->
+    <style name="font_base">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="base_12" parent="@style/font_base">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="base_14" parent="@style/font_base">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="base_16" parent="@style/font_base">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="base_18" parent="@style/font_base">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+
+    <!-- Custom -->
     <style name="UserName">
         <item name="android:textSize">14sp</item>
         <item name="android:layout_width">wrap_content</item>
@@ -16,5 +44,18 @@
         <item name="android:textColor">@android:color/black</item>
     </style>
 
+    <style name="UserInfoTitle" parent="base_18">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">10dp</item>
+    </style>
 
+    <style name="Divider">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:background">@color/gray_30666666</item>
+    </style>
 </resources>

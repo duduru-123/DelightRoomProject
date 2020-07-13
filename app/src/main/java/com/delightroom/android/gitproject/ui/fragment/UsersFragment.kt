@@ -149,20 +149,4 @@ class UsersFragment : Fragment() {
             moveToUserDetailFragment(userVO.id)
         }
     }
-
-    object BindingAdapters {
-        /**
-         * binding list of UserVO
-         */
-        @JvmStatic
-        @BindingAdapter("app:items")
-        fun setBindItem(view: RecyclerView, items: PagedList<UserVO>?) {
-            logI("items: ${items?.size}")
-            view.adapter?.run {
-                if (this is UsersPagingAdapter) {
-                    this.submitList(items)
-                }
-            }
-        }
-    }
 }

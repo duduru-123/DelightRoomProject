@@ -10,4 +10,10 @@
     <string name="nav_starred">Starred</string>
 
     <string name="no_data">There is no data.</string>
+
+
+
+    <!-- UserOverviewFragment -->
+    <string name="following_count">FOLLOWING(%d)</string>
+    <string name="followers_count">FOLLOWERS(%d)</string>
 </resources>
