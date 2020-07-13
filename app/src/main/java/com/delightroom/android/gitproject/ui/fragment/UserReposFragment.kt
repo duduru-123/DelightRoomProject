@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import com.delightroom.android.gitproject.R
 import com.delightroom.android.gitproject.common.DefaultItemDecoration
 import com.delightroom.android.gitproject.databinding.FragmentUserReposBinding
-import com.delightroom.android.gitproject.present.adapter.UserReposPagingAdapter
+import com.delightroom.android.gitproject.present.adapter.RepositoryPagingAdapter
 import com.delightroom.android.gitproject.present.viewmodel.UserDetailViewModel
 import com.delightroom.android.gitproject.utility.logI
 import com.delightroom.android.gitproject.utility.px
@@ -71,7 +71,7 @@ class UserReposFragment : Fragment() {
 
         with(recyclerUserRepos) {
             layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
-            adapter = UserReposPagingAdapter()
+            adapter = RepositoryPagingAdapter()
             addItemDecoration(DefaultItemDecoration(10.px))
         }
     }
@@ -82,7 +82,7 @@ class UserReposFragment : Fragment() {
      */
     private fun initViewModelCallbackData() {
         userDetailViewModel.listOfUserReposReposVO.observe(viewLifecycleOwner, Observer { list ->
-            val adapter = recyclerUserRepos.adapter as UserReposPagingAdapter
+            val adapter = recyclerUserRepos.adapter as RepositoryPagingAdapter
             adapter.submitList(list)
 
             swipeRefreshUserRepos.isRefreshing = false

@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.delightroom.android.gitproject.databinding.ItemUserReposBinding
 import com.delightroom.android.gitproject.datasource.vo.ReposVO
 
-class StarredPagingAdapter() :
-    PagedListAdapter<ReposVO, StarredPagingAdapter.ViewHolder>(DiffItemCallback()) {
+class RepositoryPagingAdapter() :
+    PagedListAdapter<ReposVO, RepositoryPagingAdapter.ViewHolder>(DiffItemCallback()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,10 +35,6 @@ class StarredPagingAdapter() :
         }
     }
 
-
-    /**
-     * diff callback
-     */
     private class DiffItemCallback : DiffUtil.ItemCallback<ReposVO>() {
         override fun areItemsTheSame(oldItem: ReposVO, newItem: ReposVO): Boolean =
             oldItem.id == newItem.id

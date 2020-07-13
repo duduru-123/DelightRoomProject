@@ -8,15 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.delightroom.android.gitproject.R
 import com.delightroom.android.gitproject.common.DefaultItemDecoration
 import com.delightroom.android.gitproject.databinding.FragmentStarredBinding
-import com.delightroom.android.gitproject.databinding.FragmentUsersBinding
-import com.delightroom.android.gitproject.present.adapter.StarredPagingAdapter
+import com.delightroom.android.gitproject.present.adapter.RepositoryPagingAdapter
 import com.delightroom.android.gitproject.present.viewmodel.UserDetailViewModel
 import com.delightroom.android.gitproject.utility.logI
 import com.delightroom.android.gitproject.utility.px
@@ -81,7 +77,7 @@ class StarredFragment : Fragment() {
 
         with(recyclerStarred) {
             layoutManager = LinearLayoutManager(context)
-            adapter = StarredPagingAdapter()
+            adapter = RepositoryPagingAdapter()
             addItemDecoration(DefaultItemDecoration(10.px))
         }
     }
@@ -92,7 +88,7 @@ class StarredFragment : Fragment() {
      */
     private fun initViewModelCallbackData() {
         userDetailViewModel.listOfStarredReposVO.observe(viewLifecycleOwner, Observer { list ->
-            val adapter = recyclerStarred.adapter as StarredPagingAdapter
+            val adapter = recyclerStarred.adapter as RepositoryPagingAdapter
             adapter.submitList(list)
 
             swipeRefreshStarred.isRefreshing = false
