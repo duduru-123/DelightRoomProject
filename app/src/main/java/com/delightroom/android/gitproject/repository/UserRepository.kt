@@ -30,11 +30,9 @@ class UserRepository(
     /**
      * request user by userId
      */
-    suspend fun requestUser(userId: String): LiveData<UserDetailVO> {
+    suspend fun requestUser(userId: String): UserDetailVO {
         val userDetail = retrofitManager.createApi(UserService::class.java).getUser(userId)
-        return MutableLiveData<UserDetailVO>().apply {
-            postValue(userDetail.convertToUserDetailVO())
-        }
+        return userDetail.convertToUserDetailVO()
     }
 
 

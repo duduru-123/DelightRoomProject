@@ -1,6 +1,7 @@
 package com.delightroom.android.gitproject.present.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.DataSource
@@ -25,7 +26,7 @@ class UserDetailViewModel(
     var userId: String = ""
 
     // list of reposVO
-    lateinit var userDetailVO: LiveData<UserDetailVO>
+    var userDetailVO = MutableLiveData<UserDetailVO>()
     lateinit var listOfStarredReposVO: LiveData<PagedList<ReposVO>>
     lateinit var listOfUserReposReposVO: LiveData<PagedList<ReposVO>>
 
@@ -47,7 +48,8 @@ class UserDetailViewModel(
     fun requestUserDetail() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                userDetailVO = userRepository.requestUser(userId)
+                val result = userRepository.requestUser(userId)
+                userDetailVO.postValue(result)
                 logI("userDetailVO.value?.id: ${userDetailVO.value?.id}")
 
             } catch (e: Exception) {
