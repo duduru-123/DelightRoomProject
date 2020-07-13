@@ -9,5 +9,6 @@ data class UserDetailVO(
     var followingCount: Long = 0L,
     var followersCount: Long = 0L,
     var blogUrl: String,
-    var company: String
+    var company: String,
+    var location: String
 )

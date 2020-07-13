@@ -37,7 +37,8 @@ fun UserDetail.convertToUserDetailVO(): UserDetailVO {
         followersCount = this.followers ?: 0L,
         followingCount = this.following ?: 0L,
         blogUrl = this.blog ?: "",
-        company = this.company ?: ""
+        company = this.company ?: "",
+        location = this.location ?: ""
     )
 }
 
