@@ -37,10 +37,7 @@
 
 
     <!-- Custom -->
-    <style name="UserName">
-        <item name="android:textSize">14sp</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="UserName" parent="base_14">
         <item name="android:textColor">@android:color/black</item>
     </style>
 
@@ -58,4 +55,12 @@
         <item name="android:layout_marginEnd">10dp</item>
         <item name="android:background">@color/gray_30666666</item>
     </style>
+
+    <style name="ReposContent" parent="base_12">
+        <item name="android:drawablePadding">2dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:textColor">@color/gray_80666666</item>
+    </style>
+
 </resources>

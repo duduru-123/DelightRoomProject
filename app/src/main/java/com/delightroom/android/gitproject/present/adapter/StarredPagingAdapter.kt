@@ -35,6 +35,10 @@ class StarredPagingAdapter() :
         }
     }
 
+
+    /**
+     * diff callback
+     */
     private class DiffItemCallback : DiffUtil.ItemCallback<ReposVO>() {
         override fun areItemsTheSame(oldItem: ReposVO, newItem: ReposVO): Boolean =
             oldItem.id == newItem.id

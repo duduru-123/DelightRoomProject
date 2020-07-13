@@ -1,11 +1,13 @@
 package com.delightroom.android.gitproject.present.adapter
 
+import android.graphics.Color
 import android.view.View
-import androidx.core.widget.ImageViewCompat
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.RecyclerView
 import com.delightroom.android.gitproject.datasource.vo.UserVO
+import com.delightroom.android.gitproject.utility.getDateYYYYMMdd
 import com.delightroom.android.gitproject.utility.logI
 import com.facebook.drawee.view.SimpleDraweeView
 
@@ -46,5 +48,46 @@ object BindingAdapters {
     @BindingAdapter("app:updateUrl")
     fun updateUrl(imageView: SimpleDraweeView, url: String?) {
         imageView.setImageURI(url)
+    }
+
+
+    /**
+     * update date format YYYY MMM dd
+     */
+    @JvmStatic
+    @BindingAdapter("app:updateDate")
+    fun updateDate(textView: TextView, time: Long) {
+        textView.text = getDateYYYYMMdd(time)
+    }
+
+
+    /**
+     * update file size
+     */
+    @JvmStatic
+    @BindingAdapter("app:updateSize")
+    fun updateSize(textView: TextView, size: Long) {
+        //todo update size
+        textView.text = "${size}MB"
+    }
+
+
+    /**
+     * update language color
+     */
+    @JvmStatic
+    @BindingAdapter("app:updateLanguageColor")
+    fun updateLanguageColor(textView: TextView, language: String?) {
+        if (language == null) return
+
+        val colorId = when (language) {
+            "Kotlin" -> Color.MAGENTA
+            "JavaScript" -> Color.YELLOW
+            "HTML" -> Color.RED
+            "TypeScript" -> Color.BLUE
+            else -> Color.GREEN
+        }
+
+        textView.setTextColor(colorId)
     }
 }

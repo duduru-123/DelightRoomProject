@@ -13,15 +13,88 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp">
 
-        <TextView
-            android:id="@+id/textUsersName"
-            style="@style/UserName"
-            android:text="@{reposVO.id}"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideBegin"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="10dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideEnd"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="10dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textReposName"
+            style="@style/base_16"
+            android:layout_width="0dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{reposVO.name}"
+            app:goneUnlessByText="@{reposVO.name}"
+            app:layout_constraintEnd_toEndOf="@+id/guideEnd"
+            app:layout_constraintStart_toStartOf="@id/guideBegin"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text=" name name name name name name name name name name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textReposStarsCount"
+            style="@style/ReposContent"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="3dp"
+            android:drawableStart="@drawable/ic_star_24px"
+            android:text="@{Long.toString(reposVO.starsCount)}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@id/guideBegin"
+            app:layout_constraintTop_toBottomOf="@+id/textReposName"
+            tools:text="0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textReposForksCount"
+            style="@style/ReposContent"
+            android:drawableStart="@drawable/ic_file_copy_black_18dp"
+            android:text="@{Long.toString(reposVO.forksCount)}"
+            app:layout_constraintBottom_toBottomOf="@+id/textReposStarsCount"
+            app:layout_constraintStart_toEndOf="@+id/textReposStarsCount"
+            app:layout_constraintTop_toTopOf="@+id/textReposStarsCount"
+            tools:text="0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textReposUpdateTime"
+            style="@style/ReposContent"
+            android:drawableStart="@drawable/ic_access_time_black_18dp"
+            app:updateDate="@{reposVO.updateTime}"
+            app:layout_constraintBottom_toBottomOf="@+id/textReposStarsCount"
+            app:layout_constraintStart_toEndOf="@+id/textReposForksCount"
+            app:layout_constraintTop_toTopOf="@+id/textReposStarsCount"
+            tools:text="2020 07 08" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textReposSize"
+            style="@style/ReposContent"
+            android:drawableStart="@drawable/ic_access_time_black_18dp"
+            app:updateSize="@{reposVO.size}"
+            app:layout_constraintBottom_toBottomOf="@+id/textReposStarsCount"
+            app:layout_constraintStart_toEndOf="@+id/textReposUpdateTime"
+            app:layout_constraintTop_toTopOf="@+id/textReposStarsCount"
+            tools:text="123MB" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textReposLanguage"
+            style="@style/ReposContent"
+            android:drawablePadding="0dp"
+            android:text="@{reposVO.language}"
+            app:updateLanguageColor="@{reposVO.language}"
+            app:layout_constraintBottom_toBottomOf="@+id/textReposStarsCount"
+            app:layout_constraintStart_toEndOf="@+id/textReposSize"
+            app:layout_constraintTop_toTopOf="@+id/textReposStarsCount"
+            tools:text="Kotlin" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

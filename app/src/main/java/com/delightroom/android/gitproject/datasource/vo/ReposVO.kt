@@ -5,7 +5,8 @@ data class ReposVO (
     var name: String,
     var size: Long = 0L,
     val language: String,
-    var startCount: Long=0L,
+    var starsCount: Long=0L,
     var forksCount: Long=0L,
-    var private: Boolean = false
+    var private: Boolean = false,
+    var updateTime: Long = 0L
 )
