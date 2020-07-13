@@ -9,11 +9,16 @@
             name="reposVO"
             type="com.delightroom.android.gitproject.datasource.vo.ReposVO" />
 
+        <variable
+            name="clickListener"
+            type="com.delightroom.android.gitproject.present.adapter.RepositoryPagingAdapter.OnRepositoryAdapterListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onSelectItem(reposVO)}"
         android:paddingBottom="5dp">
 
         <androidx.constraintlayout.widget.Guideline

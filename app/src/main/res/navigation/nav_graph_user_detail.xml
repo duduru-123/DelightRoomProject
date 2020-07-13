@@ -13,10 +13,23 @@
     <fragment
         android:id="@+id/starredFragment"
         android:name="com.delightroom.android.gitproject.ui.fragment.StarredFragment"
-        android:label="fragment_starred" />
+        android:label="fragment_starred" >
+        <action
+            android:id="@+id/action_starredFragment_to_repositoryActivity"
+            app:destination="@id/repositoryActivity" />
+    </fragment>
 
     <fragment
         android:id="@+id/userReposFragment"
         android:name="com.delightroom.android.gitproject.ui.fragment.UserReposFragment"
-        android:label="fragment_user_repos" />
+        android:label="fragment_user_repos" >
+        <action
+            android:id="@+id/action_userReposFragment_to_repositoryActivity"
+            app:destination="@id/repositoryActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/repositoryActivity"
+        android:name="com.delightroom.android.gitproject.ui.activity.RepositoryActivity"
+        android:label="activity_repository"
+        tools:layout="@layout/activity_repository" />
 </navigation>

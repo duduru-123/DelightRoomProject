@@ -8,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.delightroom.android.gitproject.R
 import com.delightroom.android.gitproject.common.DefaultItemDecoration
 import com.delightroom.android.gitproject.databinding.FragmentStarredBinding
+import com.delightroom.android.gitproject.datasource.vo.ReposVO
 import com.delightroom.android.gitproject.present.adapter.RepositoryPagingAdapter
 import com.delightroom.android.gitproject.present.viewmodel.UserDetailViewModel
 import com.delightroom.android.gitproject.utility.logI
@@ -77,7 +79,7 @@ class StarredFragment : Fragment() {
 
         with(recyclerStarred) {
             layoutManager = LinearLayoutManager(context)
-            adapter = RepositoryPagingAdapter()
+            adapter = RepositoryPagingAdapter(onRepositoryAdapterListener)
             addItemDecoration(DefaultItemDecoration(10.px))
         }
     }
@@ -93,5 +95,26 @@ class StarredFragment : Fragment() {
 
             swipeRefreshStarred.isRefreshing = false
         })
+    }
+
+
+    /**
+     * move to RepositoryActivity
+     */
+    private fun moveToRepositoryActivity(reposVO: ReposVO) {
+        val directions = StarredFragmentDirections.actionStarredFragmentToRepositoryActivity()
+        findNavController().navigate(directions)
+    }
+
+
+    /**
+     * onUsersAdapterListener
+     * for dealing with event of recyclerUsers
+     */
+    private val onRepositoryAdapterListener = object :
+        RepositoryPagingAdapter.OnRepositoryAdapterListener {
+        override fun onSelectItem(reposVO: ReposVO) {
+            moveToRepositoryActivity(reposVO)
+        }
     }
 }

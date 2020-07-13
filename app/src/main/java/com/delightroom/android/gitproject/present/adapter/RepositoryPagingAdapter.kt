@@ -8,13 +8,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.delightroom.android.gitproject.databinding.ItemUserReposBinding
 import com.delightroom.android.gitproject.datasource.vo.ReposVO
 
-class RepositoryPagingAdapter() :
+class RepositoryPagingAdapter(
+    private val onRepositoryAdapterListener: OnRepositoryAdapterListener
+) :
     PagedListAdapter<ReposVO, RepositoryPagingAdapter.ViewHolder>(DiffItemCallback()) {
 
+    interface OnRepositoryAdapterListener {
+        fun onSelectItem(reposVO: ReposVO)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemUserReposBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+        val binding =
+            ItemUserReposBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding, onRepositoryAdapterListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -27,11 +33,13 @@ class RepositoryPagingAdapter() :
      * viewHolder
      */
     class ViewHolder(
-        private val binding: ItemUserReposBinding
+        private val binding: ItemUserReposBinding,
+        private val onRepositoryAdapterListener: OnRepositoryAdapterListener
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun init(reposVO: ReposVO) {
             binding.reposVO = reposVO
+            binding.clickListener = onRepositoryAdapterListener
         }
     }
 

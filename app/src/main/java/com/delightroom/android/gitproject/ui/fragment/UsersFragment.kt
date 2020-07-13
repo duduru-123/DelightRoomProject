@@ -6,13 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.delightroom.android.gitproject.R
 import com.delightroom.android.gitproject.common.DefaultItemDecoration
 import com.delightroom.android.gitproject.databinding.FragmentUsersBinding
@@ -132,9 +129,9 @@ class UsersFragment : Fragment() {
 
 
     /**
-     * move to UserDetailFragment
+     * move to UserDetailActivity
      */
-    private fun moveToUserDetailFragment(userId: String) {
+    private fun moveToUserDetailActivity(userId: String) {
         val directions =
             UsersFragmentDirections.actionUserFragmentToUserDetailActivity(
                 userId
@@ -149,7 +146,7 @@ class UsersFragment : Fragment() {
      */
     private val onUsersAdapterListener = object : UsersPagingAdapter.OnUsersAdapterListener {
         override fun onSelectItem(userVO: UserVO) {
-            moveToUserDetailFragment(userVO.login)
+            moveToUserDetailActivity(userVO.login)
         }
     }
 }

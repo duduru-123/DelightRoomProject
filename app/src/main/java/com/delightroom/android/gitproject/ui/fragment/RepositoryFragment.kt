@@ -19,6 +19,7 @@ import com.delightroom.android.gitproject.R
 import com.delightroom.android.gitproject.common.DefaultItemDecoration
 import com.delightroom.android.gitproject.databinding.FragmentRepositoryBinding
 import com.delightroom.android.gitproject.databinding.FragmentUsersBinding
+import com.delightroom.android.gitproject.datasource.vo.ReposVO
 import com.delightroom.android.gitproject.datasource.vo.UserVO
 import com.delightroom.android.gitproject.present.adapter.RepositoryPagingAdapter
 import com.delightroom.android.gitproject.present.adapter.UsersPagingAdapter
@@ -82,7 +83,7 @@ class RepositoryFragment : Fragment() {
 
         with(recyclerRepository) {
             layoutManager = LinearLayoutManager(context)
-            adapter = RepositoryPagingAdapter()
+            adapter = RepositoryPagingAdapter(onRepositoryAdapterListener)
             addItemDecoration(DefaultItemDecoration(10.px))
         }
     }
@@ -98,5 +99,16 @@ class RepositoryFragment : Fragment() {
 
             swipeRefreshRepository.isRefreshing = false
         })
+    }
+
+
+    /**
+     * onUsersAdapterListener
+     * for dealing with event of recyclerUsers
+     */
+    private val onRepositoryAdapterListener = object :
+        RepositoryPagingAdapter.OnRepositoryAdapterListener {
+        override fun onSelectItem(reposVO: ReposVO) {
+        }
     }
 }
