@@ -23,7 +23,13 @@ fun User.convertToUserVO(): UserVO {
 
 fun UserRepos.convertToReposVO(): ReposVO {
     return ReposVO(
-        id = this.description ?: ""
+        id = this.id ?: 0L,
+        size = this.size?: 0L,
+        name = this.name?: "",
+        language = this.language ?: "",
+        startCount = this.stargazersCount ?: 0L,
+        forksCount = this.forksCount ?: 0L,
+        private = this.private ?: false
     )
 }
 
