@@ -16,12 +16,15 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.delightroom.android.gitproject.R
+import com.delightroom.android.gitproject.common.DefaultItemDecoration
 import com.delightroom.android.gitproject.databinding.FragmentRepositoryBinding
 import com.delightroom.android.gitproject.databinding.FragmentUsersBinding
 import com.delightroom.android.gitproject.datasource.vo.UserVO
+import com.delightroom.android.gitproject.present.adapter.RepositoryPagingAdapter
 import com.delightroom.android.gitproject.present.adapter.UsersPagingAdapter
 import com.delightroom.android.gitproject.present.viewmodel.UsersViewModel
 import com.delightroom.android.gitproject.utility.logI
+import com.delightroom.android.gitproject.utility.px
 import kotlinx.android.synthetic.main.fragment_repository.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -75,10 +78,12 @@ class RepositoryFragment : Fragment() {
      * init layout
      */
     private fun initLayout() {
-        swipeRefreshRepository.setOnRefreshListener { usersViewModel.refreshListOfUserVO() }
+        swipeRefreshRepository.setOnRefreshListener { usersViewModel.refreshListOfReposVO() }
 
         with(recyclerRepository) {
             layoutManager = LinearLayoutManager(context)
+            adapter = RepositoryPagingAdapter()
+            addItemDecoration(DefaultItemDecoration(10.px))
         }
     }
 
@@ -87,12 +92,12 @@ class RepositoryFragment : Fragment() {
      * init viewModel data of callback
      */
     private fun initViewModelCallbackData() {
-//        usersViewModel.listOfUserVO.observe(viewLifecycleOwner, Observer { list ->
-//            val adapter = recyclerUsers.adapter as UsersPagingAdapter
-//            adapter.submitList(list)
-//
-//            swipeRefreshRepository.isRefreshing = false
-//        })
+        usersViewModel.listOfRepositoryReposVO.observe(viewLifecycleOwner, Observer { list ->
+            val adapter = recyclerRepository.adapter as RepositoryPagingAdapter
+            adapter.submitList(list)
+
+            swipeRefreshRepository.isRefreshing = false
+        })
     }
 
 }

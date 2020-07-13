@@ -65,4 +65,18 @@ interface UserService {
         @Query("order")
         order: String? = null
     ): List<UserRepos>
+
+
+    /**
+     * request user starred repos by userId
+     */
+    @GET("/repos")
+    suspend fun getRepository(
+        @Query("page")
+        page: Int? = null,
+        @Query("per_page")
+        pageSize: Int? = null,
+        @Query("order")
+        order: String? = null
+    ): List<UserRepos>
 }
