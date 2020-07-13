@@ -13,11 +13,13 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.delightroom.android.gitproject.R
+import com.delightroom.android.gitproject.common.DefaultItemDecoration
 import com.delightroom.android.gitproject.databinding.FragmentStarredBinding
 import com.delightroom.android.gitproject.databinding.FragmentUsersBinding
 import com.delightroom.android.gitproject.present.adapter.StarredPagingAdapter
 import com.delightroom.android.gitproject.present.viewmodel.UserDetailViewModel
 import com.delightroom.android.gitproject.utility.logI
+import com.delightroom.android.gitproject.utility.px
 import kotlinx.android.synthetic.main.fragment_starred.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -80,6 +82,7 @@ class StarredFragment : Fragment() {
         with(recyclerStarred) {
             layoutManager = LinearLayoutManager(context)
             adapter = StarredPagingAdapter()
+            addItemDecoration(DefaultItemDecoration(10.px))
         }
     }
 

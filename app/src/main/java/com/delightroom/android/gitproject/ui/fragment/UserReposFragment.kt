@@ -9,10 +9,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 
 import com.delightroom.android.gitproject.R
+import com.delightroom.android.gitproject.common.DefaultItemDecoration
 import com.delightroom.android.gitproject.databinding.FragmentUserReposBinding
 import com.delightroom.android.gitproject.present.adapter.UserReposPagingAdapter
 import com.delightroom.android.gitproject.present.viewmodel.UserDetailViewModel
 import com.delightroom.android.gitproject.utility.logI
+import com.delightroom.android.gitproject.utility.px
 import kotlinx.android.synthetic.main.fragment_user_repos.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -70,6 +72,7 @@ class UserReposFragment : Fragment() {
         with(recyclerUserRepos) {
             layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
             adapter = UserReposPagingAdapter()
+            addItemDecoration(DefaultItemDecoration(10.px))
         }
     }
 
