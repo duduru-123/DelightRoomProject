@@ -22,14 +22,22 @@ fun User.convertToUserVO(): UserVO {
 }
 
 fun UserRepos.convertToReposVO(): ReposVO {
+    val updateAt = this.createdAt
+    val updateDate = if(updateAt == null) {
+       0L
+    } else {
+        getDateMillis(updateAt)
+    }
+
     return ReposVO(
         id = this.id ?: 0L,
-        size = this.size?: 0L,
-        name = this.name?: "",
+        size = this.size ?: 0L,
+        name = this.name ?: "",
         language = this.language ?: "",
-        startCount = this.stargazersCount ?: 0L,
+        starsCount = this.stargazersCount ?: 0L,
         forksCount = this.forksCount ?: 0L,
-        private = this.private ?: false
+        private = this.private ?: false,
+        updateTime = updateDate
     )
 }
 
