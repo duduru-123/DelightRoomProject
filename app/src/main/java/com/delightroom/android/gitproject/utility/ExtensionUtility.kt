@@ -17,7 +17,9 @@ import com.delightroom.android.gitproject.datasource.vo.UserVO
  */
 fun User.convertToUserVO(): UserVO {
     return UserVO(
-        id = this.login ?: ""
+        id = this.id ?: 0,
+        login = this.login ?: "",
+        thumbUrl = this.avatarURL ?: ""
     )
 }
 
