@@ -90,4 +90,9 @@ dependencies {
 
     // fresco
     implementation 'com.facebook.fresco:fresco:2.2.0'
+
+
+    //Joda Time
+    def joda_version = '2.10.1.2'
+    api "net.danlew:android.joda:$joda_version"
 }
