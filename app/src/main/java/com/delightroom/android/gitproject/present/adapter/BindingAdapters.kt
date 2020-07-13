@@ -82,7 +82,7 @@ object BindingAdapters {
 
         val colorId = when (language) {
             "Kotlin" -> Color.MAGENTA
-            "JavaScript" -> Color.GRAY
+            "JavaScript" -> Color.MAGENTA
             "HTML" -> Color.RED
             "TypeScript" -> Color.BLUE
             else -> Color.GREEN
