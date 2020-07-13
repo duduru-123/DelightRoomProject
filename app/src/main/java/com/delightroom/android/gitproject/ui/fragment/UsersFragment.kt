@@ -14,11 +14,13 @@ import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.delightroom.android.gitproject.R
+import com.delightroom.android.gitproject.common.DefaultItemDecoration
 import com.delightroom.android.gitproject.databinding.FragmentUsersBinding
 import com.delightroom.android.gitproject.datasource.vo.UserVO
 import com.delightroom.android.gitproject.present.adapter.UsersPagingAdapter
 import com.delightroom.android.gitproject.present.viewmodel.UsersViewModel
 import com.delightroom.android.gitproject.utility.logI
+import com.delightroom.android.gitproject.utility.px
 import kotlinx.android.synthetic.main.fragment_users.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -111,6 +113,7 @@ class UsersFragment : Fragment() {
         with(recyclerUsers) {
             layoutManager = LinearLayoutManager(context)
             adapter = UsersPagingAdapter(onUsersAdapterListener)
+            addItemDecoration(DefaultItemDecoration(10.px))
         }
     }
 
@@ -146,7 +149,7 @@ class UsersFragment : Fragment() {
      */
     private val onUsersAdapterListener = object : UsersPagingAdapter.OnUsersAdapterListener {
         override fun onSelectItem(userVO: UserVO) {
-            moveToUserDetailFragment(userVO.id)
+            moveToUserDetailFragment(userVO.login)
         }
     }
 }
