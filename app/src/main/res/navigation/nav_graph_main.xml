@@ -27,7 +27,7 @@
         android:name="com.delightroom.android.gitproject.ui.activity.UserDetailActivity"
         android:label="UserDetailActivity" >
         <argument
-            android:name="userId"
+            android:name="userLogin"
             app:argType="string"
             app:nullable="true"
             android:defaultValue="null" />

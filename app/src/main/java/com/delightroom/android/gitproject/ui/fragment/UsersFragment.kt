@@ -131,10 +131,10 @@ class UsersFragment : Fragment() {
     /**
      * move to UserDetailActivity
      */
-    private fun moveToUserDetailActivity(userId: String) {
+    private fun moveToUserDetailActivity(userLogin: String) {
         val directions =
             UsersFragmentDirections.actionUserFragmentToUserDetailActivity(
-                userId
+                userLogin
             )
         findNavController().navigate(directions)
     }

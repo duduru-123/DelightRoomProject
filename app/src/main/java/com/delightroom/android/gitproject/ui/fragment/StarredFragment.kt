@@ -102,7 +102,9 @@ class StarredFragment : Fragment() {
      * move to RepositoryActivity
      */
     private fun moveToRepositoryActivity(reposVO: ReposVO) {
-        val directions = StarredFragmentDirections.actionStarredFragmentToRepositoryActivity()
+        val directions = StarredFragmentDirections.actionStarredFragmentToRepositoryActivity(
+            reposVO.userLogin, reposName = reposVO.name
+        )
         findNavController().navigate(directions)
     }
 

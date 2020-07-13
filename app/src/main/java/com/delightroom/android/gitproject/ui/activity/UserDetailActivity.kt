@@ -22,10 +22,8 @@ class UserDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_detail)
 
-        logI("userDetailActivityArgs.userId: ${userDetailActivityArgs.userId}")
-
         init()
-        initData(userDetailActivityArgs.userId)
+        initData(userDetailActivityArgs.userLogin)
         initLayout()
     }
 

@@ -39,6 +39,7 @@ fun UserRepos.convertToReposVO(): ReposVO {
         starsCount = this.stargazersCount ?: 0L,
         forksCount = this.forksCount ?: 0L,
         private = this.private ?: false,
+        userLogin = this.owner.login ?: "",
         updateTime = updateDate
     )
 }

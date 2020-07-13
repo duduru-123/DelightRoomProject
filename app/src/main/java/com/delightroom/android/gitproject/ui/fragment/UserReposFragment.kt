@@ -96,7 +96,9 @@ class UserReposFragment : Fragment() {
      * move to RepositoryActivity
      */
     private fun moveToRepositoryActivity(reposVO: ReposVO) {
-        val directions = UserReposFragmentDirections.actionUserReposFragmentToRepositoryActivity()
+        val directions = UserReposFragmentDirections.actionUserReposFragmentToRepositoryActivity(
+            reposVO.userLogin, reposName = reposVO.name
+        )
         findNavController().navigate(directions)
     }
 
