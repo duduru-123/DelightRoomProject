@@ -30,9 +30,12 @@
             android:orientation="vertical"
             app:layout_constraintGuide_end="20dp" />
 
+
+        <!-- Profile -->
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/imgUserThumb"
             android:layout_width="90dp"
+            fresco:roundedCornerRadius="100dp"
             android:layout_height="90dp"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="@+id/guideBegin"
@@ -42,9 +45,11 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textUserName"
-            style="@style/base_16"
+            style="@style/base_18"
             android:layout_width="0dp"
             android:layout_marginStart="20dp"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:text="@{viewModel.userDetailVO.name}"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toTopOf="@+id/textUserLogin"
@@ -52,12 +57,14 @@
             app:layout_constraintStart_toEndOf="@+id/imgUserThumb"
             app:layout_constraintTop_toTopOf="@+id/imgUserThumb"
             app:layout_constraintVertical_chainStyle="packed"
-            tools:text="namename" />
+            tools:text="name name name name name name name name name name name name name name name name name name name" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textUserLogin"
             style="@style/base_16"
             android:layout_width="0dp"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:text="@{viewModel.userDetailVO.login}"
@@ -66,12 +73,13 @@
             app:layout_constraintEnd_toEndOf="@+id/guideEnd"
             app:layout_constraintStart_toEndOf="@+id/imgUserThumb"
             app:layout_constraintTop_toBottomOf="@+id/textUserName"
-            tools:text="namename" />
+            tools:text="login login login login login login login login login login login login login login login login" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textUserBio"
             style="@style/base_14"
             android:layout_width="0dp"
+            tools:text="content content contentcontent content contentcontent content contentcontent content contentcontent content contentcontent content content"
             android:layout_marginTop="15dp"
             android:text="@{viewModel.userDetailVO.bio}"
             app:goneUnlessByText="@{viewModel.userDetailVO.bio}"
@@ -79,6 +87,8 @@
             app:layout_constraintStart_toStartOf="@+id/guideBegin"
             app:layout_constraintTop_toBottomOf="@+id/imgUserThumb" />
 
+
+        <!-- Following, Followers -->
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textUserFollowing"
             style="@style/base_18"
@@ -100,6 +110,8 @@
             app:layout_constraintTop_toTopOf="@+id/textUserFollowing"
             tools:text="FOLLOWERS (0)" />
 
+
+        <!-- User Info -->
         <View
             style="@style/Divider"
             app:goneUnlessByText="@{viewModel.userDetailVO.company}"
@@ -107,7 +119,6 @@
             app:layout_constraintEnd_toEndOf="@id/guideEnd"
             app:layout_constraintStart_toStartOf="@id/guideBegin"
             app:layout_constraintTop_toBottomOf="@+id/textUserFollowing" />
-
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textUserCompany"
