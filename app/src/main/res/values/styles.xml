@@ -37,9 +37,6 @@
 
 
     <!-- Custom -->
-    <style name="UserName" parent="base_14">
-        <item name="android:textColor">@android:color/black</item>
-    </style>
 
     <style name="UserInfoTitle" parent="base_18">
         <item name="android:layout_width">0dp</item>

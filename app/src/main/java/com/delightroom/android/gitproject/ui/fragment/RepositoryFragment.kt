@@ -99,5 +99,4 @@ class RepositoryFragment : Fragment() {
             swipeRefreshRepository.isRefreshing = false
         })
     }
-
 }

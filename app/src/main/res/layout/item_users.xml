@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -16,16 +17,46 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:onClick="@{() -> clickListener.onSelectItem(userVO)}">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideBegin"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideEnd"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/imgUserThumb"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:layout_constraintStart_toStartOf="@+id/guideBegin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:updateUrl="@{userVO.thumbUrl}"
+            fresco:placeholderImage="@drawable/ic_sentiment_satisfied_24px"
+            fresco:roundedCornerRadius="100dp" />
+
         <TextView
-            android:id="@+id/textUsersName"
-            style="@style/UserName"
-            android:text="@{userVO.id}"
+            android:id="@+id/textUsersLogin"
+            style="@style/base_16"
+            android:layout_width="0dp"
+            android:layout_marginStart="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{userVO.login}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="@id/guideEnd"
+            app:layout_constraintStart_toEndOf="@+id/imgUserThumb"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="name name name name name name name name name name name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
