@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/userOverviewFragment"
-        android:icon="@drawable/ic_face_24px"
+        android:icon="@drawable/ic_person_24px"
         android:title="@string/nav_overview" />
 
     <item
         android:id="@+id/starredFragment"
-        android:icon="@drawable/ic_face_24px"
+        android:icon="@drawable/ic_star_24px"
         android:title="@string/nav_starred" />
 
     <item
         android:id="@+id/userReposFragment"
-        android:icon="@drawable/ic_face_24px"
+        android:icon="@drawable/ic_folder_24px"
         android:title="@string/nav_user_repos" />
 </menu>
