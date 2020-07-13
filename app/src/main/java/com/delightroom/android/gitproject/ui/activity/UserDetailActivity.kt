@@ -7,7 +7,6 @@ import androidx.navigation.navArgs
 import androidx.navigation.ui.NavigationUI
 import com.delightroom.android.gitproject.R
 import com.delightroom.android.gitproject.present.viewmodel.UserDetailViewModel
-import com.delightroom.android.gitproject.ui.UserDetailActivityArgs
 import com.delightroom.android.gitproject.utility.logI
 import com.delightroom.android.gitproject.utility.showToast
 import kotlinx.android.synthetic.main.activity_user_detail.*
