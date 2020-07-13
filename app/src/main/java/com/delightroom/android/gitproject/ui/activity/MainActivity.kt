@@ -1,4 +1,4 @@
-package com.delightroom.android.gitproject.ui
+package com.delightroom.android.gitproject.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

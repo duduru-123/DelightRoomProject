@@ -1,4 +1,4 @@
-package com.delightroom.android.gitproject.ui
+package com.delightroom.android.gitproject.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -20,6 +20,7 @@ import com.delightroom.android.gitproject.databinding.FragmentUsersBinding
 import com.delightroom.android.gitproject.datasource.vo.UserVO
 import com.delightroom.android.gitproject.present.adapter.UsersPagingAdapter
 import com.delightroom.android.gitproject.present.viewmodel.UsersViewModel
+import com.delightroom.android.gitproject.ui.UsersFragmentDirections
 import com.delightroom.android.gitproject.utility.logI
 import kotlinx.android.synthetic.main.fragment_users.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -135,7 +136,10 @@ class UsersFragment : Fragment() {
      * move to UserDetailFragment
      */
     private fun moveToUserDetailFragment(userId: String) {
-        val directions = UsersFragmentDirections.actionUserFragmentToUserDetailActivity(userId)
+        val directions =
+            UsersFragmentDirections.actionUserFragmentToUserDetailActivity(
+                userId
+            )
         findNavController().navigate(directions)
     }
 

@@ -1,4 +1,4 @@
-package com.delightroom.android.gitproject.ui
+package com.delightroom.android.gitproject.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

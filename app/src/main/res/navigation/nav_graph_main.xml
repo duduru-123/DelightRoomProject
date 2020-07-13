@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.delightroom.android.gitproject.ui.UsersFragment"
+        android:name="com.delightroom.android.gitproject.ui.fragment.UsersFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_users" >
         <action
@@ -18,13 +18,13 @@
 
     <fragment
         android:id="@+id/repositoryFragment"
-        android:name="com.delightroom.android.gitproject.ui.RepositoryFragment"
+        android:name="com.delightroom.android.gitproject.ui.fragment.RepositoryFragment"
         android:label="fragment_repository"
         tools:layout="@layout/fragment_repository" />
 
     <activity
         android:id="@+id/userDetailActivity"
-        android:name="com.delightroom.android.gitproject.ui.UserDetailActivity"
+        android:name="com.delightroom.android.gitproject.ui.activity.UserDetailActivity"
         android:label="UserDetailActivity" >
         <argument
             android:name="userId"

@@ -7,16 +7,16 @@
 
     <fragment
         android:id="@+id/userOverviewFragment"
-        android:name="com.delightroom.android.gitproject.ui.UserOverviewFragment"
+        android:name="com.delightroom.android.gitproject.ui.fragment.UserOverviewFragment"
         android:label="fragment_user_overview" />
 
     <fragment
         android:id="@+id/starredFragment"
-        android:name="com.delightroom.android.gitproject.ui.StarredFragment"
+        android:name="com.delightroom.android.gitproject.ui.fragment.StarredFragment"
         android:label="fragment_starred" />
 
     <fragment
         android:id="@+id/userReposFragment"
-        android:name="com.delightroom.android.gitproject.ui.UserReposFragment"
+        android:name="com.delightroom.android.gitproject.ui.fragment.UserReposFragment"
         android:label="fragment_user_repos" />
 </navigation>
