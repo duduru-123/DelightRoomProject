@@ -29,7 +29,15 @@ fun UserRepos.convertToReposVO(): ReposVO {
 
 fun UserDetail.convertToUserDetailVO(): UserDetailVO {
     return UserDetailVO(
-        id = this.login
+        id = this.id ?: 0,
+        login = this.login ?: "",
+        thumbUrl = this.avatarURL ?: "",
+        bio = this.bio ?: "",
+        name = this.name ?: "",
+        followersCount = this.followers ?: 0L,
+        followingCount = this.following ?: 0L,
+        blogUrl = this.blog ?: "",
+        company = this.company ?: ""
     )
 }
 

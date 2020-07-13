@@ -3,8 +3,8 @@ package com.delightroom.android.gitproject.datasource.remote.model
 import com.google.gson.annotations.SerializedName
 
 data class UserDetail( 
-    val login: String,
-    val id: Long,
+    val login: String?,
+    val id: Long?,
 
     @SerializedName("node_id")
     val nodeID: String?,
