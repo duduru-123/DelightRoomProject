@@ -79,4 +79,16 @@ interface UserService {
         @Query("order")
         order: String? = null
     ): List<UserRepos>
+
+
+    /**
+     * request specific repository of user
+     */
+    @GET("/repos/{userLogin}/{reposName}")
+    suspend fun getUserRepository(
+        @Path("userLogin")
+        userLogin: String,
+        @Path("reposName")
+        reposName: String
+    ): UserRepos
 }

@@ -23,7 +23,7 @@ class UserDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user_detail)
 
         init()
-        initData(userDetailActivityArgs.userLogin)
+        initData()
         initLayout()
     }
 
@@ -51,8 +51,10 @@ class UserDetailActivity : AppCompatActivity() {
     /**
      * init data
      */
-    private fun initData(userLogin: String?) {
-        if(userLogin == null) {
+    private fun initData() {
+        val userLogin = userDetailActivityArgs.userLogin
+
+        if (userLogin == null) {
             showToast(getString(R.string.no_data))
 
             finish()

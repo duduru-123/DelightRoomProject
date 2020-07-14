@@ -2,6 +2,7 @@ package com.delightroom.android.gitproject.common
 
 import android.app.Application
 import com.delightroom.android.gitproject.manager.RetrofitManager
+import com.delightroom.android.gitproject.present.viewmodel.ReposDetailViewModel
 import com.delightroom.android.gitproject.present.viewmodel.UserDetailViewModel
 import com.delightroom.android.gitproject.present.viewmodel.UsersViewModel
 import com.delightroom.android.gitproject.repository.UserRepository
@@ -36,6 +37,7 @@ class BaseApplication : Application() {
     private val viewModelModule = module {
         viewModel { UsersViewModel(get(), get()) }
         viewModel { UserDetailViewModel(get(), get()) }
+        viewModel { ReposDetailViewModel(get()) }
     }
 
     private val repositoryModule = module {

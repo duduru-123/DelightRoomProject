@@ -1,13 +1,12 @@
 package com.delightroom.android.gitproject.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.delightroom.android.gitproject.datasource.remote.api.UserService
 import com.delightroom.android.gitproject.datasource.remote.model.User
-import com.delightroom.android.gitproject.datasource.remote.model.UserDetail
 import com.delightroom.android.gitproject.datasource.remote.model.UserRepos
+import com.delightroom.android.gitproject.datasource.vo.ReposDetailVO
 import com.delightroom.android.gitproject.datasource.vo.UserDetailVO
 import com.delightroom.android.gitproject.manager.RetrofitManager
+import com.delightroom.android.gitproject.utility.convertToReposDetailVO
 import com.delightroom.android.gitproject.utility.convertToUserDetailVO
 
 class UserRepository(
@@ -61,5 +60,19 @@ class UserRepository(
     ): List<UserRepos> {
         return retrofitManager.createApi(UserService::class.java)
             .getUserStarredRepos(userId, page, pageSize, order)
+    }
+
+
+    /**
+     * request specific repository of user
+     */
+    suspend fun requestUserRepository(
+        userLogin: String,
+        reposName: String
+    ): ReposDetailVO {
+        val userRepos = retrofitManager.createApi(UserService::class.java)
+            .getUserRepository(userLogin, reposName)
+
+        return userRepos.convertToReposDetailVO()
     }
 }
