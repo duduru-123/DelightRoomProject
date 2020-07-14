@@ -56,7 +56,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textUserLogin"
-            style="@style/base_18"
+            style="@style/base_20"
             android:layout_marginStart="5dp"
             android:text="@{viewModel.reposDetailVO.userLogin}"
             app:layout_constraintBottom_toBottomOf="@id/imgUserThumb"
@@ -75,7 +75,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textReposName"
-            style="@style/base_18"
+            style="@style/base_20"
             android:layout_marginStart="4dp"
             android:text="@{viewModel.reposDetailVO.name}"
             android:textStyle="bold"
