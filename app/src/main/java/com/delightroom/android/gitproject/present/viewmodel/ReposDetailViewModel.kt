@@ -40,6 +40,8 @@ class ReposDetailViewModel(
                     updateLanguages(languageResult)
                 }
 
+                
+
                 logI("result: $result")
 
             } catch (e: Exception) {

@@ -22,5 +22,10 @@ data class ReposDetailVO (
     var languagesUrl:String,
     var languages: List<String>? = null,
     var htmlUrl: String,
-    var description: String
+    var description: String,
+    var gitUrl: String,
+    var sshUrl: String,
+    var cloneUrl: String,
+    var svnUrl: String,
+    var homepage: String
 )

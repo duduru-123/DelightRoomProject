@@ -89,7 +89,12 @@ fun UserRepos.convertToReposDetailVO(): ReposDetailVO {
         licenseUrl = this.license?.url ?: "",
         languagesUrl = this.languagesURL ?: "",
         htmlUrl = this.htmlURL ?: "",
-        description = this.description ?: ""
+        description = this.description ?: "",
+        gitUrl = this.gitURL ?: "",
+        sshUrl = this.sshURL ?: "",
+        cloneUrl = this.cloneURL ?: "",
+        svnUrl = this.svnURL ?: "",
+        homepage = this.homepage ?: ""
     )
 }
 
