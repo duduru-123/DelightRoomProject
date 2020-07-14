@@ -6,7 +6,7 @@
         android:title="@string/nav_overview" />
 
     <item
-        android:id="@+id/commitsFragment"
+        android:id="@+id/commentsFragment"
         android:icon="@drawable/ic_work_24px"
-        android:title="@string/nav_commit" />
+        android:title="@string/nav_comments" />
 </menu>

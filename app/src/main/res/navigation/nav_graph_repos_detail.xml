@@ -5,9 +5,12 @@
     android:id="@+id/navGraphReposDetail"
     app:startDestination="@id/reposOverviewFragment">
 
-
     <fragment
         android:id="@+id/reposOverviewFragment"
         android:name="com.delightroom.android.gitproject.ui.fragment.ReposOverviewFragment"
         android:label="ReposOverviewFragment" />
+    <fragment
+        android:id="@+id/commentsFragment"
+        android:name="com.delightroom.android.gitproject.ui.fragment.CommentsFragment"
+        android:label="CommentsFragment" />
 </navigation>
