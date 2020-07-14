@@ -8,6 +8,7 @@
     <string name="nav_overview">Overview</string>
     <string name="nav_user_repos">User Repos</string>
     <string name="nav_starred">Starred</string>
+    <string name="nav_commit">Commit</string>
 
     <string name="no_data">There is no data.</string>
 

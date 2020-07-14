@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/reposOverviewFragment"
+        android:icon="@drawable/ic_folder_24px"
+        android:title="@string/nav_overview" />
+
+    <item
+        android:id="@+id/commitsFragment"
+        android:icon="@drawable/ic_work_24px"
+        android:title="@string/nav_commit" />
+</menu>
