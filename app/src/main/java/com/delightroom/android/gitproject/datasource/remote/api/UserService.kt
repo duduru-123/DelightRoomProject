@@ -1,5 +1,6 @@
 package com.delightroom.android.gitproject.datasource.remote.api
 
+import com.delightroom.android.gitproject.datasource.remote.model.Comment
 import com.delightroom.android.gitproject.datasource.remote.model.User
 import com.delightroom.android.gitproject.datasource.remote.model.UserDetail
 import com.delightroom.android.gitproject.datasource.remote.model.UserRepos
@@ -103,4 +104,22 @@ interface UserService {
         @Path("reposName")
         reposName: String
     ): Map<String, Int>
+
+
+    /**
+     * request comments of repository
+     */
+    @GET("/repos/{userLogin}/{reposName}/comments")
+    suspend fun getComments(
+        @Path("userLogin")
+        userLogin: String,
+        @Path("reposName")
+        reposName: String,
+        @Query("page")
+        page: Int? = null,
+        @Query("per_page")
+        pageSize: Int? = null,
+        @Query("order")
+        order: String? = null
+    ): List<Comment>
 }
