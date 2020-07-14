@@ -84,43 +84,6 @@
             app:layout_constraintTop_toTopOf="@+id/imgUserThumb"
             tools:text="name  name" />
 
-
-        <!-- repos count info -->
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textWatchersCount"
-            style="@style/ReposCountInfo"
-            android:layout_marginTop="20dp"
-            android:drawableStart="@drawable/ic_visibility_24px"
-            android:text="@{Long.toString(viewModel.reposDetailVO.watchersCount)}"
-            app:goneUnlessByText="@{Long.toString(viewModel.reposDetailVO.watchersCount)}"
-            app:layout_constraintEnd_toStartOf="@+id/textStarsCount"
-            app:layout_constraintStart_toStartOf="@id/guideBegin"
-            app:layout_constraintTop_toBottomOf="@+id/imgUserThumb"
-            tools:text="20" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textStarsCount"
-            style="@style/ReposCountInfo"
-            android:drawableStart="@drawable/ic_star_24px"
-            android:text="@{Long.toString(viewModel.reposDetailVO.starsCount)}"
-            app:goneUnlessByText="@{Long.toString(viewModel.reposDetailVO.starsCount)}"
-            app:layout_constraintEnd_toStartOf="@+id/textForksCount"
-            app:layout_constraintStart_toEndOf="@+id/textWatchersCount"
-            app:layout_constraintTop_toTopOf="@+id/textWatchersCount"
-            tools:text="20" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textForksCount"
-            style="@style/ReposCountInfo"
-            android:drawableStart="@drawable/ic_file_copy_black_18dp"
-            android:text="@{Long.toString(viewModel.reposDetailVO.forksCount)}"
-            app:goneUnlessByText="@{Long.toString(viewModel.reposDetailVO.forksCount)}"
-            app:layout_constraintEnd_toEndOf="@id/guideEnd"
-            app:layout_constraintStart_toEndOf="@+id/textStarsCount"
-            app:layout_constraintTop_toTopOf="@+id/textWatchersCount"
-            tools:text="20" />
-
-
         <!-- description  -->
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textReposDescription"
@@ -132,18 +95,65 @@
             app:goneUnlessByText="@{viewModel.reposDetailVO.description}"
             app:layout_constraintEnd_toEndOf="@+id/guideEnd"
             app:layout_constraintStart_toStartOf="@+id/guideBegin"
-            app:layout_constraintTop_toBottomOf="@+id/textWatchersCount"
+            app:layout_constraintTop_toBottomOf="@+id/imgUserThumb"
             tools:text="content content contentcontent content contentcontent content contentcontent content contentcontent content contentcontent content content" />
 
-        <!-- languages -->
+
+        <!-- repos count info -->
         <View
-            android:id="@+id/dividerLanguages"
+            android:id="@+id/dividerCountInfo"
             style="@style/Divider"
+            android:layout_marginStart="0dp"
             android:layout_marginTop="20dp"
             app:goneUnlessByText="@{viewModel.languages}"
             app:layout_constraintEnd_toEndOf="@id/guideEnd"
             app:layout_constraintStart_toStartOf="@id/guideBegin"
             app:layout_constraintTop_toBottomOf="@id/textReposDescription" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textWatchersCount"
+            style="@style/ReposCountInfo"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_visibility_24px"
+            android:text="@{Long.toString(viewModel.reposDetailVO.watchersCount)}"
+            app:goneUnlessByText="@{Long.toString(viewModel.reposDetailVO.watchersCount)}"
+            app:layout_constraintStart_toStartOf="@id/guideBegin"
+            app:layout_constraintTop_toBottomOf="@+id/dividerCountInfo"
+            tools:text="20" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textStarsCount"
+            style="@style/ReposCountInfo"
+            android:layout_marginStart="10dp"
+            android:drawableStart="@drawable/ic_star_24px"
+            android:text="@{Long.toString(viewModel.reposDetailVO.starsCount)}"
+            app:goneUnlessByText="@{Long.toString(viewModel.reposDetailVO.starsCount)}"
+            app:layout_constraintStart_toEndOf="@+id/textWatchersCount"
+            app:layout_constraintTop_toTopOf="@+id/textWatchersCount"
+            tools:text="20" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textForksCount"
+            style="@style/ReposCountInfo"
+            android:layout_marginStart="10dp"
+            android:drawableStart="@drawable/ic_file_copy_black_18dp"
+            android:text="@{Long.toString(viewModel.reposDetailVO.forksCount)}"
+            app:goneUnlessByText="@{Long.toString(viewModel.reposDetailVO.forksCount)}"
+            app:layout_constraintStart_toEndOf="@+id/textStarsCount"
+            app:layout_constraintTop_toTopOf="@+id/textWatchersCount"
+            tools:text="20" />
+
+
+        <!-- languages -->
+        <View
+            android:id="@+id/dividerLanguages"
+            style="@style/Divider"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="20dp"
+            app:goneUnlessByText="@{viewModel.languages}"
+            app:layout_constraintEnd_toEndOf="@id/guideEnd"
+            app:layout_constraintStart_toStartOf="@id/guideBegin"
+            app:layout_constraintTop_toBottomOf="@id/textWatchersCount" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textLanguagesTitle"
@@ -172,6 +182,7 @@
         <View
             android:id="@+id/dividerLicense"
             style="@style/Divider"
+            android:layout_marginStart="0dp"
             android:layout_marginTop="20dp"
             app:goneUnlessByText="@{viewModel.reposDetailVO.licenseName}"
             app:layout_constraintEnd_toEndOf="@id/guideEnd"

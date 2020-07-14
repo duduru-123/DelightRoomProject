@@ -40,7 +40,7 @@ class ReposDetailViewModel(
                     updateLanguages(languageResult)
                 }
 
-                
+
 
                 logI("result: $result")
 
