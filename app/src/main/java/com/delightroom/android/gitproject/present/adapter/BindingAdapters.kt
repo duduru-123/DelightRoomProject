@@ -131,7 +131,7 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter("app:updateSwipeRefreshLayout")
     fun updateLanguageColor(layout: SwipeRefreshLayout, isRefreshing: Boolean) {
-        logI("isRefreshing: $isRefreshing")
-        layout.isRefreshing = isRefreshing
+        if (!isRefreshing) layout.isRefreshing = isRefreshing
+
     }
 }
