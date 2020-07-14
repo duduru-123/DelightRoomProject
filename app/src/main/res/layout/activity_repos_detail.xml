@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/main_bg_color"
-        tools:context=".ui.activity.RepositoryActivity">
+        tools:context=".ui.activity.ReposDetailActivity">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideBegin"
@@ -135,19 +135,70 @@
             app:layout_constraintTop_toBottomOf="@+id/textWatchersCount"
             tools:text="content content contentcontent content contentcontent content contentcontent content contentcontent content contentcontent content content" />
 
+        <!-- languages -->
+        <View
+            android:id="@+id/dividerLanguages"
+            style="@style/Divider"
+            android:layout_marginTop="20dp"
+            app:goneUnlessByText="@{viewModel.languages}"
+            app:layout_constraintEnd_toEndOf="@id/guideEnd"
+            app:layout_constraintStart_toStartOf="@id/guideBegin"
+            app:layout_constraintTop_toBottomOf="@id/textReposDescription" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textLanguagesTitle"
+            style="@style/base_16"
+            android:layout_marginTop="10dp"
+            android:text="@string/languages"
+            android:textStyle="bold"
+            app:goneUnlessByText="@{viewModel.languages}"
+            app:layout_constraintStart_toStartOf="@id/guideBegin"
+            app:layout_constraintTop_toBottomOf="@+id/dividerLanguages" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textLanguagesContent"
+            style="@style/base_16"
+            android:layout_width="0dp"
+            android:layout_marginTop="5dp"
+            android:text="@{viewModel.languages}"
+            android:textColor="@color/gray_aa666666"
+            app:goneUnlessByText="@{viewModel.languages}"
+            app:layout_constraintEnd_toEndOf="@id/guideEnd"
+            app:layout_constraintStart_toStartOf="@id/guideBegin"
+            app:layout_constraintTop_toBottomOf="@+id/textLanguagesTitle"
+            tools:text="language language language language language language" />
 
         <!-- license -->
         <View
+            android:id="@+id/dividerLicense"
             style="@style/Divider"
+            android:layout_marginTop="20dp"
             app:goneUnlessByText="@{viewModel.reposDetailVO.licenseName}"
             app:layout_constraintEnd_toEndOf="@id/guideEnd"
             app:layout_constraintStart_toStartOf="@id/guideBegin"
-            app:layout_constraintTop_toBottomOf="@id/textReposDescription"
-            android:layout_marginTop="20dp"/>
+            app:layout_constraintTop_toBottomOf="@id/textLanguagesContent" />
 
-        <TextV
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textLicenseTitle"
+            style="@style/base_16"
+            android:layout_marginTop="10dp"
+            android:text="@string/license"
+            android:textStyle="bold"
+            app:goneUnlessByText="@{viewModel.reposDetailVO.licenseName}"
+            app:layout_constraintStart_toStartOf="@id/guideBegin"
+            app:layout_constraintTop_toBottomOf="@+id/dividerLicense" />
 
-
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/base_16"
+            android:layout_width="0dp"
+            android:layout_marginTop="5dp"
+            android:text="@{viewModel.reposDetailVO.licenseName}"
+            android:textColor="@color/gray_aa666666"
+            app:goneUnlessByText="@{viewModel.reposDetailVO.licenseName}"
+            app:layout_constraintEnd_toEndOf="@id/guideEnd"
+            app:layout_constraintStart_toStartOf="@id/guideBegin"
+            app:layout_constraintTop_toBottomOf="@+id/textLicenseTitle"
+            tools:text="apatchapatchapatch" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

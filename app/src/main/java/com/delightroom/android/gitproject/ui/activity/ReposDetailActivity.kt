@@ -6,16 +6,16 @@ import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.navArgs
 import com.delightroom.android.gitproject.R
-import com.delightroom.android.gitproject.databinding.ActivityRepositoryBinding
+import com.delightroom.android.gitproject.databinding.ActivityReposDetailBinding
 import com.delightroom.android.gitproject.present.viewmodel.ReposDetailViewModel
-import kotlinx.android.synthetic.main.activity_repository.*
+import kotlinx.android.synthetic.main.activity_repos_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class RepositoryActivity : AppCompatActivity() {
+class ReposDetailActivity : AppCompatActivity() {
 
     private val reposDetailViewModel by viewModel<ReposDetailViewModel>()
-    private val repositoryActivityArgs by navArgs<RepositoryActivityArgs>()
-    private lateinit var binding: ActivityRepositoryBinding
+    private val reposDetailActivityArgs by navArgs<ReposDetailActivityArgs>()
+    private lateinit var binding: ActivityReposDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +39,12 @@ class RepositoryActivity : AppCompatActivity() {
      * init
      */
     private fun init() {
-        val userLogin = repositoryActivityArgs.userLogin ?: return
-        val reposName = repositoryActivityArgs.reposName ?: return
+        val userLogin = reposDetailActivityArgs.userLogin ?: return
+        val reposName = reposDetailActivityArgs.reposName ?: return
 
         reposDetailViewModel.setData(userLogin, reposName)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_repository)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_repos_detail)
         binding.viewModel = reposDetailViewModel
         binding.lifecycleOwner = this
     }

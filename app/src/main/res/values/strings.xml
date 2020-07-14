@@ -15,4 +15,8 @@
     <!-- UserOverviewFragment -->
     <string name="following_count">FOLLOWING(%d)</string>
     <string name="followers_count">FOLLOWERS(%d)</string>
+
+    <!-- ReposDetailActivity -->
+    <string name="license">License</string>
+    <string name="languages">Languages</string>
 </resources>

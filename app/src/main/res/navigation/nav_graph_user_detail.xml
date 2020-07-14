@@ -29,9 +29,9 @@
     </fragment>
     <activity
         android:id="@+id/repositoryActivity"
-        android:name="com.delightroom.android.gitproject.ui.activity.RepositoryActivity"
+        android:name="com.delightroom.android.gitproject.ui.activity.ReposDetailActivity"
         android:label="activity_repository"
-        tools:layout="@layout/activity_repository" >
+        tools:layout="@layout/activity_repos_detail" >
         <argument
             android:name="userLogin"
             app:argType="string"

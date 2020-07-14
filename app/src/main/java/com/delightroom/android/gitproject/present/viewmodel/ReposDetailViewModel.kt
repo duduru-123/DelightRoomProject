@@ -18,6 +18,7 @@ class ReposDetailViewModel(
     var userLogin: String = ""
     var reposName: String = ""
     var reposDetailVO = MutableLiveData<ReposDetailVO>()
+    var languages = MutableLiveData<String>()
 
 
     /**
@@ -32,11 +33,42 @@ class ReposDetailViewModel(
                 val result = userRepository.requestUserRepository(userLogin, reposName)
                 reposDetailVO.postValue(result)
 
+                val languagesUrl = result.languagesUrl
+
+                if (languagesUrl != "") {
+                    val languageResult = userRepository.requestLanguages(userLogin, reposName)
+                    updateLanguages(languageResult)
+                }
+
                 logI("result: $result")
 
             } catch (e: Exception) {
                 logE(e.message)
             }
         }
+    }
+
+
+    /**
+     * update languages
+     */
+    private fun updateLanguages(languageResult: Map<String, Int>) {
+        val languages = if (languageResult.isEmpty()) {
+            ""
+        } else {
+            val listOfLanguage = languageResult.toList()
+            val totalSize = listOfLanguage.sumBy { it.second }
+            var result = ""
+            listOfLanguage.forEach {
+                val rate = it.second.toFloat() / totalSize.toFloat() * 100f
+                result += "${it.first}: ${String.format("%.1f", rate)}%"
+
+                if (listOfLanguage.last() != it) result += ",  "
+            }
+
+            result
+        }
+
+        this.languages.postValue(languages)
     }
 }
