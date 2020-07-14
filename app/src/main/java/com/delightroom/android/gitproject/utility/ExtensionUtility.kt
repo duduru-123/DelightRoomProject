@@ -4,13 +4,11 @@ import android.app.Activity
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.delightroom.android.gitproject.datasource.remote.model.Comment
 import com.delightroom.android.gitproject.datasource.remote.model.User
 import com.delightroom.android.gitproject.datasource.remote.model.UserDetail
 import com.delightroom.android.gitproject.datasource.remote.model.UserRepos
-import com.delightroom.android.gitproject.datasource.vo.ReposDetailVO
-import com.delightroom.android.gitproject.datasource.vo.ReposVO
-import com.delightroom.android.gitproject.datasource.vo.UserDetailVO
-import com.delightroom.android.gitproject.datasource.vo.UserVO
+import com.delightroom.android.gitproject.datasource.vo.*
 
 
 /**
@@ -95,6 +93,21 @@ fun UserRepos.convertToReposDetailVO(): ReposDetailVO {
         cloneUrl = this.cloneURL ?: "",
         svnUrl = this.svnURL ?: "",
         homepage = this.homepage ?: ""
+    )
+}
+
+fun Comment.convertToCommentVO(): CommentVO {
+    val updateAt = this.createdAt
+    val updateDate = if (updateAt == null) {
+        0L
+    } else {
+        getDateMillis(updateAt)
+    }
+
+    return CommentVO(
+        id = this.id ?: 0L,
+        body = this.body ?: "",
+        updateTime = updateDate
     )
 }
 
