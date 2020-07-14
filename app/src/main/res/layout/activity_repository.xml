@@ -1,9 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activity.RepositoryActivity">
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.delightroom.android.gitproject.present.viewmodel.ReposDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_bg_color"
+        tools:context=".ui.activity.RepositoryActivity">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideBegin"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideEnd"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarReposDetail"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/main_bg_color"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+
+        <!-- name -->
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/imgUserThumb"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/guideBegin"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarReposDetail"
+            app:updateUrl="@{viewModel.reposDetailVO.userThumbUrl}"
+            fresco:placeholderImage="@drawable/ic_sentiment_satisfied_24px"
+            fresco:roundedCornerRadius="100dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textUserLogin"
+            style="@style/base_18"
+            android:layout_marginStart="5dp"
+            android:text="@{viewModel.reposDetailVO.userLogin}"
+            app:layout_constraintBottom_toBottomOf="@id/imgUserThumb"
+            app:layout_constraintStart_toEndOf="@id/imgUserThumb"
+            app:layout_constraintTop_toTopOf="@id/imgUserThumb"
+            tools:text="namename" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textNameDivider"
+            style="@style/base_18"
+            android:layout_marginStart="4dp"
+            android:text="/"
+            app:layout_constraintBottom_toBottomOf="@+id/imgUserThumb"
+            app:layout_constraintStart_toEndOf="@+id/textUserLogin"
+            app:layout_constraintTop_toTopOf="@+id/imgUserThumb" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textReposName"
+            style="@style/base_18"
+            android:layout_marginStart="4dp"
+            android:text="@{viewModel.reposDetailVO.name}"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imgUserThumb"
+            app:layout_constraintStart_toEndOf="@+id/textNameDivider"
+            app:layout_constraintTop_toTopOf="@+id/imgUserThumb"
+            tools:text="name  name" />
+
+
+        <!-- repos count info -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textWatchersCount"
+            style="@style/ReposCountInfo"
+            android:layout_marginTop="30dp"
+            android:drawableStart="@drawable/ic_visibility_24px"
+            android:text="@{Long.toString(viewModel.reposDetailVO.watchersCount)}"
+            app:goneUnlessByText="@{Long.toString(viewModel.reposDetailVO.watchersCount)}"
+            app:layout_constraintEnd_toStartOf="@+id/textStarsCount"
+            app:layout_constraintStart_toStartOf="@id/guideBegin"
+            app:layout_constraintTop_toBottomOf="@+id/imgUserThumb"
+            tools:text="20" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textStarsCount"
+            style="@style/ReposCountInfo"
+            android:drawableStart="@drawable/ic_star_24px"
+            android:text="@{Long.toString(viewModel.reposDetailVO.starsCount)}"
+            app:goneUnlessByText="@{Long.toString(viewModel.reposDetailVO.starsCount)}"
+            app:layout_constraintEnd_toStartOf="@+id/textForksCount"
+            app:layout_constraintStart_toEndOf="@+id/textWatchersCount"
+            app:layout_constraintTop_toTopOf="@+id/textWatchersCount"
+            tools:text="20" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textForksCount"
+            style="@style/ReposCountInfo"
+            android:drawableStart="@drawable/ic_file_copy_black_18dp"
+            android:text="@{Long.toString(viewModel.reposDetailVO.forksCount)}"
+            app:goneUnlessByText="@{Long.toString(viewModel.reposDetailVO.forksCount)}"
+            app:layout_constraintEnd_toEndOf="@id/guideEnd"
+            app:layout_constraintStart_toEndOf="@+id/textStarsCount"
+            app:layout_constraintTop_toTopOf="@+id/textWatchersCount"
+            tools:text="20" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

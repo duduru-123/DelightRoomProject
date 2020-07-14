@@ -15,6 +15,8 @@ class ReposDetailViewModel(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
+    var userLogin: String = ""
+    var reposName: String = ""
     var reposDetailVO = MutableLiveData<ReposDetailVO>()
 
 
@@ -22,6 +24,9 @@ class ReposDetailViewModel(
      * set data
      */
     fun setData(userLogin: String, reposName: String) {
+        this.userLogin = userLogin
+        this.reposName = reposName
+
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val result = userRepository.requestUserRepository(userLogin, reposName)
