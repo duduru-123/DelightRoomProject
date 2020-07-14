@@ -75,4 +75,16 @@ class UserRepository(
 
         return userRepos.convertToReposDetailVO()
     }
+
+
+    /**
+     * request languages of repository
+     */
+    suspend fun requestLanguages(
+        userLogin: String,
+        reposName: String
+    ): Map<String, Int> {
+        return retrofitManager.createApi(UserService::class.java)
+            .getLanguages(userLogin, reposName)
+    }
 }

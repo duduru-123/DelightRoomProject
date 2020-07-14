@@ -91,4 +91,16 @@ interface UserService {
         @Path("reposName")
         reposName: String
     ): UserRepos
+
+
+    /**
+     * request languages of repository
+     */
+    @GET("/repos/{userLogin}/{reposName}/languages")
+    suspend fun getLanguages(
+        @Path("userLogin")
+        userLogin: String,
+        @Path("reposName")
+        reposName: String
+    ): Map<String, Int>
 }
