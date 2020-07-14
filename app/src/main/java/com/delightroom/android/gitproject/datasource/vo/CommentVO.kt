@@ -1,7 +1,8 @@
 package com.delightroom.android.gitproject.datasource.vo
 
-data class CommentVO (
+data class CommentVO(
     var id: Long,
     var body: String,
-    var updateTime: Long = 0L
+    var updateTime: Long = 0L,
+    var userLogin: String
 )

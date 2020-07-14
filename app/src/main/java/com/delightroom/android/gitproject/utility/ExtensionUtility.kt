@@ -107,7 +107,8 @@ fun Comment.convertToCommentVO(): CommentVO {
     return CommentVO(
         id = this.id ?: 0L,
         body = this.body ?: "",
-        updateTime = updateDate
+        updateTime = updateDate,
+        userLogin = this.user?.login ?: ""
     )
 }
 
