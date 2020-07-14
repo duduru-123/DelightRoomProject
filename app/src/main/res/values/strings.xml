@@ -20,4 +20,8 @@
     <!-- ReposDetailActivity -->
     <string name="license">License</string>
     <string name="languages">Languages</string>
+
+    <!-- CommitsFragment -->
+    <string name="branch">Branch</string>
+
 </resources>
