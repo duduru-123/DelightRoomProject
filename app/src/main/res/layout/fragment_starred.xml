@@ -19,12 +19,14 @@
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshStarred"
             android:layout_width="match_parent"
+            app:updateSwipeRefreshLayout="@{viewModel.isLoading}"
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerStarred"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                app:listOfReposVO="@{viewModel.listOfStarredReposVO}" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,11 +20,13 @@
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshUserRepos"
             android:layout_width="match_parent"
+            app:updateSwipeRefreshLayout="@{viewModel.isLoading}"
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerUserRepos"
                 android:layout_width="match_parent"
+                app:listOfReposVO="@{viewModel.listOfUserReposReposVO}"
                 android:layout_height="match_parent" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

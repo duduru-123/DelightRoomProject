@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="viewModel" type="com.delightroom.android.gitproject.present.viewmodel.UsersViewModel"/>
+
+        <variable
+            name="viewModel"
+            type="com.delightroom.android.gitproject.present.viewmodel.UsersViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,11 +19,13 @@
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshRepository"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:updateSwipeRefreshLayout="@{viewModel.isLoading}">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerRepository"
                 android:layout_width="match_parent"
+                app:listOfReposVO="@{viewModel.listOfRepositoryReposVO}"
                 android:layout_height="match_parent" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
