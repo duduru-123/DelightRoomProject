@@ -6,6 +6,9 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.delightroom.android.gitproject.datasource.vo.CommentVO
+import com.delightroom.android.gitproject.datasource.vo.ReposVO
 import com.delightroom.android.gitproject.datasource.vo.UserVO
 import com.delightroom.android.gitproject.utility.getDateYYYYMMdd
 import com.delightroom.android.gitproject.utility.logI
@@ -16,11 +19,41 @@ object BindingAdapters {
      * binding list of UserVO
      */
     @JvmStatic
-    @BindingAdapter("app:items")
-    fun setBindItem(view: RecyclerView, items: PagedList<UserVO>?) {
+    @BindingAdapter("app:listOfUserVO")
+    fun setBindItemForUserVO(view: RecyclerView, items: PagedList<UserVO>?) {
         logI("items: ${items?.size}")
         view.adapter?.run {
             if (this is UsersPagingAdapter) {
+                this.submitList(items)
+            }
+        }
+    }
+
+
+    /**
+     * binding list of ReposVO
+     */
+    @JvmStatic
+    @BindingAdapter("app:listOfReposVO")
+    fun setBindItemForReposVO(view: RecyclerView, items: PagedList<ReposVO>?) {
+        logI("items: ${items?.size}")
+        view.adapter?.run {
+            if (this is RepositoryPagingAdapter) {
+                this.submitList(items)
+            }
+        }
+    }
+
+
+    /**
+     * binding list of CommentVO
+     */
+    @JvmStatic
+    @BindingAdapter("app:listOfCommentVO")
+    fun setBindItemForCommentVO(view: RecyclerView, items: PagedList<CommentVO>?) {
+        logI("items: ${items?.size}")
+        view.adapter?.run {
+            if (this is CommentsPagingAdapter) {
                 this.submitList(items)
             }
         }
@@ -89,5 +122,16 @@ object BindingAdapters {
         }
 
         textView.setTextColor(colorId)
+    }
+
+
+    /**
+     * update isRefreshing of swipeRefreshLayout
+     */
+    @JvmStatic
+    @BindingAdapter("app:updateSwipeRefreshLayout")
+    fun updateLanguageColor(layout: SwipeRefreshLayout, isRefreshing: Boolean) {
+        logI("isRefreshing: $isRefreshing")
+        layout.isRefreshing = isRefreshing
     }
 }

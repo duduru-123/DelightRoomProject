@@ -1,6 +1,7 @@
 package com.delightroom.android.gitproject.present.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.DataSource
@@ -21,6 +22,7 @@ class UsersViewModel(
     // list of userVO
     val listOfUserVO = createListOfUserVOLiveData()
     val listOfRepositoryReposVO = createListOfReposVOLiveData()
+    val isLoading = MutableLiveData<Boolean>().apply { value = false }
 
 
     /**
@@ -51,7 +53,7 @@ class UsersViewModel(
 
         return LivePagedListBuilder(object : DataSource.Factory<Int, UserVO>() {
             override fun create(): DataSource<Int, UserVO> {
-                return UsersDataSource(retrofitManager, viewModelScope)
+                return UsersDataSource(retrofitManager, viewModelScope, isLoading)
             }
         }, config).build()
     }
@@ -70,7 +72,7 @@ class UsersViewModel(
 
         return LivePagedListBuilder(object : DataSource.Factory<Int, ReposVO>() {
             override fun create(): DataSource<Int, ReposVO> {
-                return RepositoryDataSource(retrofitManager, viewModelScope)
+                return RepositoryDataSource(retrofitManager, viewModelScope, isLoading)
             }
         }, config).build()
     }

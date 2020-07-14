@@ -1,5 +1,6 @@
 package com.delightroom.android.gitproject.datasource.paging
 
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.delightroom.android.gitproject.datasource.remote.api.UserService
 import com.delightroom.android.gitproject.datasource.vo.CommentVO
@@ -17,7 +18,8 @@ class CommentsDataSource(
     retrofitManager: RetrofitManager,
     private val viewModelScope: CoroutineScope,
     private val userLogin: String,
-    private val reposName: String
+    private val reposName: String,
+    private val isLoading: MutableLiveData<Boolean>
 ) : PageKeyedDataSource<Int, CommentVO>() {
 
     private val apiInterFace = retrofitManager.createApi(UserService::class.java)
@@ -27,6 +29,8 @@ class CommentsDataSource(
         callback: LoadInitialCallback<Int, CommentVO>
     ) {
         viewModelScope.launch(Dispatchers.IO) {
+            isLoading.postValue(true)
+
             try {
                 val currentPage = 0
                 val pageSize = params.requestedLoadSize
@@ -43,9 +47,10 @@ class CommentsDataSource(
                 callback.onResult(listOfConvertVO, null, nextPage)
 
             } catch (e: Exception) {
-
                 logE(e.message)
             }
+
+            isLoading.postValue(false)
         }
     }
 
@@ -54,6 +59,8 @@ class CommentsDataSource(
         callback: LoadCallback<Int, CommentVO>
     ) {
         viewModelScope.launch(Dispatchers.IO) {
+            isLoading.postValue(true)
+
             try {
                 val currentPage = params.key
                 val pageSize = params.requestedLoadSize
@@ -72,6 +79,8 @@ class CommentsDataSource(
             } catch (e: Exception) {
                 logE(e.message)
             }
+
+            isLoading.postValue(false)
         }
     }
 

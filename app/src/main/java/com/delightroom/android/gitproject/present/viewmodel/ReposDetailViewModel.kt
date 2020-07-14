@@ -27,6 +27,7 @@ class ReposDetailViewModel(
     var reposDetailVO = MutableLiveData<ReposDetailVO>()
     var languages = MutableLiveData<String>()
     val listOfCommentVO = createListOfCommentVOLiveData()
+    val isLoading = MutableLiveData<Boolean>().apply { value = false }
 
 
 
@@ -106,7 +107,7 @@ class ReposDetailViewModel(
 
         return LivePagedListBuilder(object : DataSource.Factory<Int, CommentVO>() {
             override fun create(): DataSource<Int, CommentVO> {
-                return CommentsDataSource(retrofitManager, viewModelScope, userLogin, reposName)
+                return CommentsDataSource(retrofitManager, viewModelScope, userLogin, reposName, isLoading)
             }
         }, config).build()
     }

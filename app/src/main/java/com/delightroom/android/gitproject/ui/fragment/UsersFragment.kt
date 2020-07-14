@@ -6,10 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.delightroom.android.gitproject.R
 import com.delightroom.android.gitproject.common.DefaultItemDecoration
 import com.delightroom.android.gitproject.databinding.FragmentUsersBinding
@@ -61,8 +64,6 @@ class UsersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         logI("onViewCreated")
-
-        initViewModelCallbackData()
     }
 
     override fun onResume() {
@@ -112,19 +113,6 @@ class UsersFragment : Fragment() {
             adapter = UsersPagingAdapter(onUsersAdapterListener)
             addItemDecoration(DefaultItemDecoration(10.px))
         }
-    }
-
-
-    /**
-     * init viewModel data of callback
-     */
-    private fun initViewModelCallbackData() {
-        usersViewModel.listOfUserVO.observe(viewLifecycleOwner, Observer { list ->
-            val adapter = recyclerUsers.adapter as UsersPagingAdapter
-            adapter.submitList(list)
-
-            swipeRefreshUsers.isRefreshing = false
-        })
     }
 
 

@@ -29,6 +29,7 @@ class UserDetailViewModel(
     var userDetailVO = MutableLiveData<UserDetailVO>()
     lateinit var listOfStarredReposVO: LiveData<PagedList<ReposVO>>
     lateinit var listOfUserReposReposVO: LiveData<PagedList<ReposVO>>
+    val isLoading = MutableLiveData<Boolean>().apply { value = false }
 
 
     /**
@@ -72,7 +73,7 @@ class UserDetailViewModel(
 
         return LivePagedListBuilder(object : DataSource.Factory<Int, ReposVO>() {
             override fun create(): DataSource<Int, ReposVO> {
-                return StarredDataSource(retrofitManager, viewModelScope, userLogin)
+                return StarredDataSource(retrofitManager, viewModelScope, userLogin, isLoading)
             }
         }, config).build()
     }
@@ -91,7 +92,7 @@ class UserDetailViewModel(
 
         return LivePagedListBuilder(object : DataSource.Factory<Int, ReposVO>() {
             override fun create(): DataSource<Int, ReposVO> {
-                return UserReposDataSource(retrofitManager, viewModelScope, userLogin)
+                return UserReposDataSource(retrofitManager, viewModelScope, userLogin, isLoading)
             }
         }, config).build()
     }

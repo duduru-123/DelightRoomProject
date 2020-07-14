@@ -1,5 +1,6 @@
 package com.delightroom.android.gitproject.datasource.paging
 
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.delightroom.android.gitproject.datasource.remote.api.UserService
 import com.delightroom.android.gitproject.datasource.vo.ReposVO
@@ -13,7 +14,8 @@ import kotlinx.coroutines.launch
 
 class RepositoryDataSource(
     retrofitManager: RetrofitManager,
-    private val viewModelScope: CoroutineScope
+    private val viewModelScope: CoroutineScope,
+    private val isLoading: MutableLiveData<Boolean>
 ) : PageKeyedDataSource<Int, ReposVO>() {
 
     private val apiInterFace = retrofitManager.createApi(UserService::class.java)
@@ -23,9 +25,13 @@ class RepositoryDataSource(
         callback: LoadInitialCallback<Int, ReposVO>
     ) {
         viewModelScope.launch(Dispatchers.IO) {
+            isLoading.postValue(true)
+
             try {
                 val currentPage = 0
                 val pageSize = params.requestedLoadSize
+
+
                 val result = apiInterFace.getRepository(
                     page = currentPage,
                     pageSize = pageSize
@@ -40,6 +46,8 @@ class RepositoryDataSource(
 
                 logE(e.message)
             }
+
+            isLoading.postValue(false)
         }
     }
 
@@ -48,6 +56,8 @@ class RepositoryDataSource(
         callback: LoadCallback<Int, ReposVO>
     ) {
         viewModelScope.launch(Dispatchers.IO) {
+            isLoading.postValue(true)
+
             try {
                 val currentPage = params.key
                 val pageSize = params.requestedLoadSize
@@ -64,6 +74,8 @@ class RepositoryDataSource(
             } catch (e: Exception) {
                 logE(e.message)
             }
+
+            isLoading.postValue(false)
         }
     }
 

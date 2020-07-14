@@ -70,8 +70,6 @@ class RepositoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         logI("onViewCreated")
-
-        initViewModelCallbackData()
     }
 
 
@@ -86,19 +84,6 @@ class RepositoryFragment : Fragment() {
             adapter = RepositoryPagingAdapter(onRepositoryAdapterListener)
             addItemDecoration(DefaultItemDecoration(10.px))
         }
-    }
-
-
-    /**
-     * init viewModel data of callback
-     */
-    private fun initViewModelCallbackData() {
-        usersViewModel.listOfRepositoryReposVO.observe(viewLifecycleOwner, Observer { list ->
-            val adapter = recyclerRepository.adapter as RepositoryPagingAdapter
-            adapter.submitList(list)
-
-            swipeRefreshRepository.isRefreshing = false
-        })
     }
 
 

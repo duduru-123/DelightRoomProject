@@ -60,8 +60,6 @@ class CommentsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         logI("onViewCreated")
-
-        initViewModelCallbackData()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -81,19 +79,6 @@ class CommentsFragment : Fragment() {
             adapter = CommentsPagingAdapter(onCommentsPagingAdapter)
             addItemDecoration(DefaultItemDecoration(10.px))
         }
-    }
-
-
-    /**
-     * init viewModel data of callback
-     */
-    private fun initViewModelCallbackData() {
-        reposDetailViewModel.listOfCommentVO.observe(viewLifecycleOwner, Observer { list ->
-            val adapter = recyclerComments.adapter as CommentsPagingAdapter
-            adapter.submitList(list)
-
-            swipeRefreshComments.isRefreshing = false
-        })
     }
 
 

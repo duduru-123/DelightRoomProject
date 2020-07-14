@@ -1,5 +1,6 @@
 package com.delightroom.android.gitproject.datasource.paging
 
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.delightroom.android.gitproject.datasource.remote.api.UserService
 import com.delightroom.android.gitproject.datasource.vo.ReposVO
@@ -14,7 +15,8 @@ import kotlinx.coroutines.launch
 class StarredDataSource(
     retrofitManager: RetrofitManager,
     private val viewModelScope: CoroutineScope,
-    private val userId: String
+    private val userId: String,
+    private val isLoading: MutableLiveData<Boolean>
 ) : PageKeyedDataSource<Int, ReposVO>() {
 
     private val apiInterFace = retrofitManager.createApi(UserService::class.java)
@@ -24,6 +26,8 @@ class StarredDataSource(
         callback: LoadInitialCallback<Int, ReposVO>
     ) {
         viewModelScope.launch(Dispatchers.IO) {
+            isLoading.postValue(true)
+
             try {
                 val currentPage = 0
                 val pageSize = params.requestedLoadSize
@@ -42,6 +46,8 @@ class StarredDataSource(
 
                 logE(e.message)
             }
+
+            isLoading.postValue(false)
         }
     }
 
@@ -50,6 +56,8 @@ class StarredDataSource(
         callback: LoadCallback<Int, ReposVO>
     ) {
         viewModelScope.launch(Dispatchers.IO) {
+            isLoading.postValue(true)
+
             try {
                 val currentPage = params.key
                 val pageSize = params.requestedLoadSize
@@ -67,6 +75,8 @@ class StarredDataSource(
             } catch (e: Exception) {
                 logE(e.message)
             }
+
+            isLoading.postValue(false)
         }
     }
 
