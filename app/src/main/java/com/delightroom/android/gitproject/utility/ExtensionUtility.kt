@@ -88,7 +88,8 @@ fun UserRepos.convertToReposDetailVO(): ReposDetailVO {
         licenseName = this.license?.name ?: "",
         licenseUrl = this.license?.url ?: "",
         languagesUrl = this.languagesURL ?: "",
-        htmlUrl = this.htmlURL ?: ""
+        htmlUrl = this.htmlURL ?: "",
+        description = this.description ?: ""
     )
 }
 

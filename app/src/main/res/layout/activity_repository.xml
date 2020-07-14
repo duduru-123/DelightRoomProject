@@ -84,18 +84,31 @@
             app:layout_constraintTop_toTopOf="@+id/imgUserThumb"
             tools:text="name  name" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textReposDescription"
+            style="@style/base_16"
+            android:layout_width="0dp"
+            android:textColor="@color/gray_aa666666"
+            tools:text="content content contentcontent content contentcontent content contentcontent content contentcontent content contentcontent content content"
+            android:layout_marginTop="15dp"
+            android:text="@{viewModel.reposDetailVO.description}"
+            app:goneUnlessByText="@{viewModel.reposDetailVO.description}"
+            app:layout_constraintEnd_toEndOf="@+id/guideEnd"
+            app:layout_constraintStart_toStartOf="@+id/guideBegin"
+            app:layout_constraintTop_toBottomOf="@+id/imgUserThumb" />
+
 
         <!-- repos count info -->
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textWatchersCount"
             style="@style/ReposCountInfo"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:drawableStart="@drawable/ic_visibility_24px"
             android:text="@{Long.toString(viewModel.reposDetailVO.watchersCount)}"
             app:goneUnlessByText="@{Long.toString(viewModel.reposDetailVO.watchersCount)}"
             app:layout_constraintEnd_toStartOf="@+id/textStarsCount"
             app:layout_constraintStart_toStartOf="@id/guideBegin"
-            app:layout_constraintTop_toBottomOf="@+id/imgUserThumb"
+            app:layout_constraintTop_toBottomOf="@+id/textReposDescription"
             tools:text="20" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -119,6 +132,7 @@
             app:layout_constraintStart_toEndOf="@+id/textStarsCount"
             app:layout_constraintTop_toTopOf="@+id/textWatchersCount"
             tools:text="20" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

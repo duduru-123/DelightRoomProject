@@ -21,5 +21,6 @@ data class ReposDetailVO (
     var licenseUrl: String,
     var languagesUrl:String,
     var languages: List<String>? = null,
-    var htmlUrl: String
+    var htmlUrl: String,
+    var description: String
 )
