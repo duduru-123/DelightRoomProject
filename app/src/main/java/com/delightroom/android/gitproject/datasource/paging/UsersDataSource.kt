@@ -18,7 +18,7 @@ class UsersDataSource(
     private val isLoading: MutableLiveData<Boolean>
 ) : PageKeyedDataSource<Int, UserVO>() {
 
-    private val apiInterFace = retrofitManager.createApi(UserService::class.java)
+    private val userApi = retrofitManager.createApi(UserService::class.java)
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
@@ -30,7 +30,7 @@ class UsersDataSource(
             try {
                 val currentPage = 0
                 val pageSize = params.requestedLoadSize
-                val result = apiInterFace.getUsers(page = currentPage, pageSize = pageSize)
+                val result = userApi.getUsers(page = currentPage, pageSize = pageSize)
                 val listOfUserVO = result.map { it.convertToUserVO() }.toList()
                 val nextPage = currentPage + 1
 
@@ -56,7 +56,7 @@ class UsersDataSource(
             try {
                 val currentPage = params.key
                 val pageSize = params.requestedLoadSize
-                val result = apiInterFace.getUsers(page = currentPage, pageSize = pageSize)
+                val result = userApi.getUsers(page = currentPage, pageSize = pageSize)
                 val listOfUserVO = result.map { it.convertToUserVO() }.toList()
                 val nextPage = currentPage + 1
 

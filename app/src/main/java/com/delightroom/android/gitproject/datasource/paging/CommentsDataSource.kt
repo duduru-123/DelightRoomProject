@@ -2,12 +2,10 @@ package com.delightroom.android.gitproject.datasource.paging
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import com.delightroom.android.gitproject.datasource.remote.api.UserService
+import com.delightroom.android.gitproject.datasource.remote.api.ReposService
 import com.delightroom.android.gitproject.datasource.vo.CommentVO
-import com.delightroom.android.gitproject.datasource.vo.ReposVO
 import com.delightroom.android.gitproject.manager.RetrofitManager
 import com.delightroom.android.gitproject.utility.convertToCommentVO
-import com.delightroom.android.gitproject.utility.convertToReposVO
 import com.delightroom.android.gitproject.utility.logE
 import com.delightroom.android.gitproject.utility.logI
 import kotlinx.coroutines.CoroutineScope
@@ -22,7 +20,7 @@ class CommentsDataSource(
     private val isLoading: MutableLiveData<Boolean>
 ) : PageKeyedDataSource<Int, CommentVO>() {
 
-    private val apiInterFace = retrofitManager.createApi(UserService::class.java)
+    private val reposApi = retrofitManager.createApi(ReposService::class.java)
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
@@ -34,7 +32,7 @@ class CommentsDataSource(
             try {
                 val currentPage = 0
                 val pageSize = params.requestedLoadSize
-                val result = apiInterFace.getComments(
+                val result = reposApi.getComments(
                     userLogin = userLogin,
                     reposName = reposName,
                     page = currentPage,
@@ -64,7 +62,7 @@ class CommentsDataSource(
             try {
                 val currentPage = params.key
                 val pageSize = params.requestedLoadSize
-                val result = apiInterFace.getComments(
+                val result = reposApi.getComments(
                     userLogin = userLogin,
                     reposName = reposName,
                     page = currentPage,

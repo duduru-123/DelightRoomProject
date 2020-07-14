@@ -2,7 +2,7 @@ package com.delightroom.android.gitproject.datasource.paging
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
-import com.delightroom.android.gitproject.datasource.remote.api.UserService
+import com.delightroom.android.gitproject.datasource.remote.api.ReposService
 import com.delightroom.android.gitproject.datasource.vo.ReposVO
 import com.delightroom.android.gitproject.manager.RetrofitManager
 import com.delightroom.android.gitproject.utility.convertToReposVO
@@ -18,7 +18,7 @@ class RepositoryDataSource(
     private val isLoading: MutableLiveData<Boolean>
 ) : PageKeyedDataSource<Int, ReposVO>() {
 
-    private val apiInterFace = retrofitManager.createApi(UserService::class.java)
+    private val reposApi = retrofitManager.createApi(ReposService::class.java)
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
@@ -32,7 +32,7 @@ class RepositoryDataSource(
                 val pageSize = params.requestedLoadSize
 
 
-                val result = apiInterFace.getRepository(
+                val result = reposApi.getRepository(
                     page = currentPage,
                     pageSize = pageSize
                 )
@@ -61,7 +61,7 @@ class RepositoryDataSource(
             try {
                 val currentPage = params.key
                 val pageSize = params.requestedLoadSize
-                val result = apiInterFace.getRepository(
+                val result = reposApi.getRepository(
                     page = currentPage,
                     pageSize = pageSize
                 )

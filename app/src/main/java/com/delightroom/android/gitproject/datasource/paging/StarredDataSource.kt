@@ -19,7 +19,7 @@ class StarredDataSource(
     private val isLoading: MutableLiveData<Boolean>
 ) : PageKeyedDataSource<Int, ReposVO>() {
 
-    private val apiInterFace = retrofitManager.createApi(UserService::class.java)
+    private val userApi = retrofitManager.createApi(UserService::class.java)
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
@@ -31,7 +31,7 @@ class StarredDataSource(
             try {
                 val currentPage = 0
                 val pageSize = params.requestedLoadSize
-                val result = apiInterFace.getUserStarredRepos(
+                val result = userApi.getUserStarredRepos(
                     userId = userId,
                     page = currentPage,
                     pageSize = pageSize
@@ -61,7 +61,7 @@ class StarredDataSource(
             try {
                 val currentPage = params.key
                 val pageSize = params.requestedLoadSize
-                val result = apiInterFace.getUserStarredRepos(
+                val result = userApi.getUserStarredRepos(
                     userId = userId,
                     page = currentPage,
                     pageSize = pageSize
