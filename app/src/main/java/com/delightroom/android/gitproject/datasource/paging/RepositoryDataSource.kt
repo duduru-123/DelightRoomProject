@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class RepositoryDataSource(
     retrofitManager: RetrofitManager,
-    private val viewModelScope: CoroutineScope,
+    private val job: CoroutineScope,
     private val isLoading: MutableLiveData<Boolean>
 ) : PageKeyedDataSource<Int, ReposVO>() {
 
@@ -24,28 +24,25 @@ class RepositoryDataSource(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, ReposVO>
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
+        job.launch {
             isLoading.postValue(true)
 
-            try {
-                val currentPage = 0
-                val pageSize = params.requestedLoadSize
+
+            val currentPage = 0
+            val pageSize = params.requestedLoadSize
 
 
-                val result = reposApi.getRepository(
-                    page = currentPage,
-                    pageSize = pageSize
-                )
-                val listOfUserVO = result.map { it.convertToReposVO() }.toList()
-                val nextPage = currentPage + 1
+            val result = reposApi.getRepository(
+                page = currentPage,
+                pageSize = pageSize
+            )
+            val listOfUserVO = result.map { it.convertToReposVO() }.toList()
+            val nextPage = currentPage + 1
 
-                logI("loadInitial size: ${listOfUserVO.size}")
-                callback.onResult(listOfUserVO, null, nextPage)
+            logI("loadInitial size: ${listOfUserVO.size}")
+            callback.onResult(listOfUserVO, null, nextPage)
 
-            } catch (e: Exception) {
 
-                logE(e.message)
-            }
 
             isLoading.postValue(false)
         }
@@ -55,7 +52,7 @@ class RepositoryDataSource(
         params: LoadParams<Int>,
         callback: LoadCallback<Int, ReposVO>
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
+        job.launch {
             isLoading.postValue(true)
 
             try {
@@ -83,7 +80,7 @@ class RepositoryDataSource(
         params: LoadParams<Int>,
         callback: LoadCallback<Int, ReposVO>
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
+        job.launch {
             try {
             } catch (e: Exception) {
                 logE(e.message)

@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class UsersDataSource(
     retrofitManager: RetrofitManager,
-    private val viewModelScope: CoroutineScope,
+    private val job: CoroutineScope,
     private val isLoading: MutableLiveData<Boolean>
 ) : PageKeyedDataSource<Int, UserVO>() {
 
@@ -24,23 +24,17 @@ class UsersDataSource(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, UserVO>
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
+        job.launch {
             isLoading.postValue(true)
 
-            try {
-                val currentPage = 0
-                val pageSize = params.requestedLoadSize
-                val result = userApi.getUsers(page = currentPage, pageSize = pageSize)
-                val listOfUserVO = result.map { it.convertToUserVO() }.toList()
-                val nextPage = currentPage + 1
+            val currentPage = 0
+            val pageSize = params.requestedLoadSize
+            val result = userApi.getUsers(page = currentPage, pageSize = pageSize)
+            val listOfUserVO = result.map { it.convertToUserVO() }.toList()
+            val nextPage = currentPage + 1
 
-                logI("loadInitial size: ${listOfUserVO.size}")
-                callback.onResult(listOfUserVO, null, nextPage)
-
-            } catch (e: Exception) {
-
-                logE(e.message)
-            }
+            logI("loadInitial size: ${listOfUserVO.size}")
+            callback.onResult(listOfUserVO, null, nextPage)
 
             isLoading.postValue(false)
         }
@@ -50,22 +44,18 @@ class UsersDataSource(
         params: LoadParams<Int>,
         callback: LoadCallback<Int, UserVO>
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
+        job.launch {
             isLoading.postValue(true)
 
-            try {
-                val currentPage = params.key
-                val pageSize = params.requestedLoadSize
-                val result = userApi.getUsers(page = currentPage, pageSize = pageSize)
-                val listOfUserVO = result.map { it.convertToUserVO() }.toList()
-                val nextPage = currentPage + 1
+            val currentPage = params.key
+            val pageSize = params.requestedLoadSize
+            val result = userApi.getUsers(page = currentPage, pageSize = pageSize)
+            val listOfUserVO = result.map { it.convertToUserVO() }.toList()
+            val nextPage = currentPage + 1
 
-                logI("loadAfter size: ${listOfUserVO.size}")
+            logI("loadAfter size: ${listOfUserVO.size}")
 
-                callback.onResult(listOfUserVO, nextPage)
-            } catch (e: Exception) {
-                logE(e.message)
-            }
+            callback.onResult(listOfUserVO, nextPage)
 
             isLoading.postValue(false)
         }
@@ -75,7 +65,7 @@ class UsersDataSource(
         params: LoadParams<Int>,
         callback: LoadCallback<Int, UserVO>
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
+        job.launch {
             try {
             } catch (e: Exception) {
                 logE(e.message)

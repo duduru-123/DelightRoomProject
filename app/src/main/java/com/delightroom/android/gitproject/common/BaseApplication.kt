@@ -35,7 +35,7 @@ class BaseApplication : Application() {
     }
 
     private val viewModelModule = module {
-        viewModel { UsersViewModel(get(), get()) }
+        viewModel { UsersViewModel(applicationContext ,get(), get()) }
         viewModel { UserDetailViewModel(get(), get()) }
         viewModel { ReposDetailViewModel(get(), get()) }
     }
