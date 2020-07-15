@@ -18,8 +18,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> clickListener.onSelectItem(reposVO)}"
-        android:paddingBottom="5dp">
+        android:background="@drawable/bottom_line_gray_1"
+        android:paddingBottom="10dp"
+        android:onClick="@{() -> clickListener.onSelectItem(reposVO)}">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideBegin"
@@ -74,20 +75,20 @@
             android:id="@+id/textReposUpdateTime"
             style="@style/ReposContent"
             android:drawableStart="@drawable/ic_access_time_black_18dp"
-            app:updateDate="@{reposVO.updateTime}"
             app:layout_constraintBottom_toBottomOf="@+id/textReposStarsCount"
             app:layout_constraintStart_toEndOf="@+id/textReposForksCount"
             app:layout_constraintTop_toTopOf="@+id/textReposStarsCount"
+            app:updateDate="@{reposVO.updateTime}"
             tools:text="2020 07 08" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textReposSize"
             style="@style/ReposContent"
             android:drawableStart="@drawable/ic_access_time_black_18dp"
-            app:updateSize="@{reposVO.size}"
             app:layout_constraintBottom_toBottomOf="@+id/textReposStarsCount"
             app:layout_constraintStart_toEndOf="@+id/textReposUpdateTime"
             app:layout_constraintTop_toTopOf="@+id/textReposStarsCount"
+            app:updateSize="@{reposVO.size}"
             tools:text="123MB" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -95,10 +96,10 @@
             style="@style/ReposContent"
             android:drawablePadding="0dp"
             android:text="@{reposVO.language}"
-            app:updateLanguageColor="@{reposVO.language}"
             app:layout_constraintBottom_toBottomOf="@+id/textReposStarsCount"
             app:layout_constraintStart_toEndOf="@+id/textReposSize"
             app:layout_constraintTop_toTopOf="@+id/textReposStarsCount"
+            app:updateLanguageColor="@{reposVO.language}"
             tools:text="Kotlin" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

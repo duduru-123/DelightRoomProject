@@ -89,7 +89,7 @@ class RepositoryFragment : Fragment() {
 
     /**
      * onUsersAdapterListener
-     * for dealing with event of recyclerUsers
+     * for dealing with event of recyclerRepository
      */
     private val onRepositoryAdapterListener = object :
         RepositoryPagingAdapter.OnRepositoryAdapterListener {

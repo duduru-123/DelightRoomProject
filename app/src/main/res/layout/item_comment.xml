@@ -18,6 +18,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bottom_line_gray_1"
+        android:paddingBottom="10dp"
         android:onClick="@{() -> clickListener.onSelectItem(commentVO)}">
 
         <androidx.constraintlayout.widget.Guideline
