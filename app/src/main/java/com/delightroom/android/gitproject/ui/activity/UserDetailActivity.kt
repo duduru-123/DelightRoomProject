@@ -3,6 +3,7 @@ package com.delightroom.android.gitproject.ui.activity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.navArgs
 import androidx.navigation.ui.NavigationUI
@@ -25,6 +26,7 @@ class UserDetailActivity : AppCompatActivity() {
         init()
         initData()
         initLayout()
+        initViewModel()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -74,5 +76,15 @@ class UserDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.title = userDetailViewModel.userLogin
+    }
+
+
+    /**
+     * init viewModel
+     */
+    private fun initViewModel() {
+        userDetailViewModel.toast.observe(this, Observer {
+            showToast(it)
+        })
     }
 }

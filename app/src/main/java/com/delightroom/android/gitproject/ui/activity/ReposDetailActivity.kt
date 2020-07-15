@@ -3,11 +3,13 @@ package com.delightroom.android.gitproject.ui.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.navArgs
 import androidx.navigation.ui.NavigationUI
 import com.delightroom.android.gitproject.R
 import com.delightroom.android.gitproject.present.viewmodel.ReposDetailViewModel
+import com.delightroom.android.gitproject.utility.showToast
 import kotlinx.android.synthetic.main.activity_repos_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,6 +24,7 @@ class ReposDetailActivity : AppCompatActivity() {
 
         init()
         initLayout()
+        initViewModel()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -57,5 +60,15 @@ class ReposDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.title = reposDetailViewModel.reposName
+    }
+
+
+    /**
+     * init viewModel
+     */
+    private fun initViewModel() {
+        reposDetailViewModel.toast.observe(this, Observer {
+            showToast(it)
+        })
     }
 }

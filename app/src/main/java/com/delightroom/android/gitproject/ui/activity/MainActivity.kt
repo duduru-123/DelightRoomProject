@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.delightroom.android.gitproject.R
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         init()
         initLayout()
+        initViewModel()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -54,5 +56,15 @@ class MainActivity : AppCompatActivity() {
      */
     private fun initLayout() {
         setSupportActionBar(toolbarMain)
+    }
+
+
+    /**
+     * init viewModel
+     */
+    private fun initViewModel() {
+        usersViewModel.toast.observe(this, Observer {
+            showToast(it)
+        })
     }
 }
