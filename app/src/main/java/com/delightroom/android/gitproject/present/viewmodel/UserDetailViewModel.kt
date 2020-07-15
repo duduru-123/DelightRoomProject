@@ -29,6 +29,8 @@ class UserDetailViewModel(
     lateinit var listOfStarredReposVO: LiveData<PagedList<ReposVO>>
     lateinit var listOfUserReposReposVO: LiveData<PagedList<ReposVO>>
     val isLoading = MutableLiveData<Boolean>().apply { value = false }
+    var starredOffsetY = 0
+    var userReposOffsetY = 0
 
 
     /**

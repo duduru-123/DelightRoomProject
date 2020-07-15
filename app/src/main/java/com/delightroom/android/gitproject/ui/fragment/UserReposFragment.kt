@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.delightroom.android.gitproject.R
 import com.delightroom.android.gitproject.common.DefaultItemDecoration
@@ -57,6 +58,13 @@ class UserReposFragment : Fragment() {
         logI("onViewCreated")
     }
 
+    override fun onStop() {
+        super.onStop()
+
+        userDetailViewModel.userReposOffsetY = recyclerUserRepos.computeVerticalScrollOffset()
+        logI("onStop")
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         logI("onSaveInstanceState")
@@ -70,9 +78,13 @@ class UserReposFragment : Fragment() {
         swipeRefreshUserRepos.setOnRefreshListener { userDetailViewModel.refreshListOfUserReposReposVO() }
 
         with(recyclerUserRepos) {
-            layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(context)
             adapter = RepositoryPagingAdapter(onRepositoryAdapterListener)
             addItemDecoration(DefaultItemDecoration(10.px))
+
+            post {
+                layoutManager?.offsetChildrenVertical(-userDetailViewModel.userReposOffsetY)
+            }
         }
     }
 

@@ -63,6 +63,13 @@ class StarredFragment : Fragment() {
         logI("onViewCreated")
     }
 
+    override fun onStop() {
+        super.onStop()
+
+        userDetailViewModel.starredOffsetY = recyclerStarred.computeVerticalScrollOffset()
+        logI("onStop: ${recyclerStarred.computeVerticalScrollOffset()}")
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         logI("onSaveInstanceState")
@@ -79,6 +86,10 @@ class StarredFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = RepositoryPagingAdapter(onRepositoryAdapterListener)
             addItemDecoration(DefaultItemDecoration(10.px))
+
+            post {
+                layoutManager?.offsetChildrenVertical(-userDetailViewModel.starredOffsetY)
+            }
         }
     }
 
