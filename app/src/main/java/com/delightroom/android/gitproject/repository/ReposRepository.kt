@@ -17,6 +17,10 @@ class ReposRepository(
 
     /**
      * request specific repository of user
+     * @param userLogin
+     * @param reposName
+     *
+     * @return ReposDetailVO
      */
     override suspend fun requestUserRepository(
         userLogin: String,
@@ -31,6 +35,10 @@ class ReposRepository(
 
     /**
      * request languages of repository
+     * @param userLogin
+     * @param reposName
+     *
+     * @return Map<String, Int> for languages
      */
     override suspend fun requestLanguages(
         userLogin: String,

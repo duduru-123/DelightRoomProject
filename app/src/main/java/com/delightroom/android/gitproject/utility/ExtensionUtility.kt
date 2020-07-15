@@ -4,6 +4,7 @@ import android.app.Activity
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.delightroom.android.gitproject.BuildConfig
 import com.delightroom.android.gitproject.datasource.remote.model.Comment
 import com.delightroom.android.gitproject.datasource.remote.model.User
 import com.delightroom.android.gitproject.datasource.remote.model.UserDetail
@@ -14,6 +15,10 @@ import com.delightroom.android.gitproject.datasource.vo.*
 /**
  * object converting
  */
+
+/**
+ * convert User to UserVO
+ */
 fun User.convertToUserVO(): UserVO {
     return UserVO(
         id = this.id ?: 0,
@@ -22,6 +27,10 @@ fun User.convertToUserVO(): UserVO {
     )
 }
 
+
+/**
+ * convert UserDetail to UserDetailVO
+ */
 fun UserDetail.convertToUserDetailVO(): UserDetailVO {
     return UserDetailVO(
         id = this.id ?: 0,
@@ -37,6 +46,10 @@ fun UserDetail.convertToUserDetailVO(): UserDetailVO {
     )
 }
 
+
+/**
+ * convert UserRepos to ReposVO
+ */
 fun UserRepos.convertToReposVO(): ReposVO {
     val updateAt = this.createdAt
     val updateDate = if (updateAt == null) {
@@ -58,6 +71,10 @@ fun UserRepos.convertToReposVO(): ReposVO {
     )
 }
 
+
+/**
+ * convert UserRepos to ReposDetailVO
+ */
 fun UserRepos.convertToReposDetailVO(): ReposDetailVO {
     val updateAt = this.createdAt
     val updateDate = if (updateAt == null) {
@@ -96,6 +113,10 @@ fun UserRepos.convertToReposDetailVO(): ReposDetailVO {
     )
 }
 
+
+/**
+ * convert Comment to CommentVO
+ */
 fun Comment.convertToCommentVO(): CommentVO {
     val updateAt = this.createdAt
     val updateDate = if (updateAt == null) {
@@ -114,36 +135,36 @@ fun Comment.convertToCommentVO(): CommentVO {
 
 
 /**
- * visibility
+ * logging
  */
-fun View.show() {
-    this.visibility = View.VISIBLE
-}
 
-fun View.hide() {
-    this.visibility = View.INVISIBLE
-}
 
-fun View.gone() {
-    this.visibility = View.GONE
+/**
+ * log i
+ * @param message nullable
+ * @param distribution
+ */
+fun Any.logI(message: String?, distribution: String = "@@@@@@@@") {
+    if (BuildConfig.DEBUG)
+        Log.i(this::class.java.simpleName, "$distribution $message")
 }
 
 
 /**
- * log
+ * log e
+ * @param message nullable
+ * @param distribution
  */
-fun Any.logI(message: String?, distribution: String = "@@@@@@@@") {
-    Log.i(this::class.java.simpleName, "$distribution $message")
-}
-
 fun Any.logE(message: String?, distribution: String = "@@@@@@@@") {
-    Log.e(this::class.java.simpleName, "$distribution $message")
+    if (BuildConfig.DEBUG)
+        Log.e(this::class.java.simpleName, "$distribution $message")
 }
 
 
 /**
  * show toast
+ * @param message
  */
-fun Activity.showToast(message: String) {
+fun Activity.showToast(message: String?) {
     Toast.makeText(this.applicationContext, message, Toast.LENGTH_SHORT).show()
 }

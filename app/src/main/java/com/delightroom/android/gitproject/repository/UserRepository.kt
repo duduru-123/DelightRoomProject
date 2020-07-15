@@ -12,6 +12,9 @@ class UserRepository(
 
     /**
      * request user by userId
+     * @param userId
+     *
+     * @return UserDetailVO
      */
     override suspend fun requestUser(userId: String): UserDetailVO {
         val userDetail = retrofitManager.createApi(UserService::class.java).getUser(userId)
