@@ -1,9 +1,8 @@
 package com.delightroom.android.gitproject.present.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
@@ -19,9 +18,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class UserDetailViewModel(
+    private val context: Context,
     private val retrofitManager: RetrofitManager,
     private val userRepository: UserRepository
-) : ViewModel() {
+) : BaseViewModel(context) {
 
     var userLogin: String = ""
 
@@ -47,15 +47,11 @@ class UserDetailViewModel(
      * request user detail vo
      */
     fun requestUserDetail() {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                val result = userRepository.requestUser(userLogin)
-                userDetailVO.postValue(result)
-                logI("userDetailVO: $result")
+        job.launch(Dispatchers.IO) {
+            val result = userRepository.requestUser(userLogin)
+            userDetailVO.postValue(result)
 
-            } catch (e: Exception) {
-                logE(e.message)
-            }
+            logI("userDetailVO: $result")
         }
     }
 
@@ -73,7 +69,7 @@ class UserDetailViewModel(
 
         return LivePagedListBuilder(object : DataSource.Factory<Int, ReposVO>() {
             override fun create(): DataSource<Int, ReposVO> {
-                return StarredDataSource(retrofitManager, viewModelScope, userLogin, isLoading)
+                return StarredDataSource(retrofitManager, job, userLogin, isLoading)
             }
         }, config).build()
     }
@@ -92,7 +88,7 @@ class UserDetailViewModel(
 
         return LivePagedListBuilder(object : DataSource.Factory<Int, ReposVO>() {
             override fun create(): DataSource<Int, ReposVO> {
-                return UserReposDataSource(retrofitManager, viewModelScope, userLogin, isLoading)
+                return UserReposDataSource(retrofitManager, job, userLogin, isLoading)
             }
         }, config).build()
     }

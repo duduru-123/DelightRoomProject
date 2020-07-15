@@ -9,7 +9,6 @@ import com.delightroom.android.gitproject.utility.convertToReposVO
 import com.delightroom.android.gitproject.utility.logE
 import com.delightroom.android.gitproject.utility.logI
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class RepositoryDataSource(
@@ -27,22 +26,15 @@ class RepositoryDataSource(
         job.launch {
             isLoading.postValue(true)
 
-
             val currentPage = 0
             val pageSize = params.requestedLoadSize
-
-
-            val result = reposApi.getRepository(
-                page = currentPage,
-                pageSize = pageSize
-            )
+            val result = reposApi.getRepository(page = currentPage, pageSize = pageSize)
             val listOfUserVO = result.map { it.convertToReposVO() }.toList()
             val nextPage = currentPage + 1
 
             logI("loadInitial size: ${listOfUserVO.size}")
+
             callback.onResult(listOfUserVO, null, nextPage)
-
-
 
             isLoading.postValue(false)
         }
@@ -55,22 +47,15 @@ class RepositoryDataSource(
         job.launch {
             isLoading.postValue(true)
 
-            try {
-                val currentPage = params.key
-                val pageSize = params.requestedLoadSize
-                val result = reposApi.getRepository(
-                    page = currentPage,
-                    pageSize = pageSize
-                )
-                val listOfUserVO = result.map { it.convertToReposVO() }.toList()
-                val nextPage = currentPage + 1
+            val currentPage = params.key
+            val pageSize = params.requestedLoadSize
+            val result = reposApi.getRepository(page = currentPage, pageSize = pageSize)
+            val listOfUserVO = result.map { it.convertToReposVO() }.toList()
+            val nextPage = currentPage + 1
 
-                logI("loadAfter size: ${listOfUserVO.size}")
+            logI("loadAfter size: ${listOfUserVO.size}")
 
-                callback.onResult(listOfUserVO, nextPage)
-            } catch (e: Exception) {
-                logE(e.message)
-            }
+            callback.onResult(listOfUserVO, nextPage)
 
             isLoading.postValue(false)
         }

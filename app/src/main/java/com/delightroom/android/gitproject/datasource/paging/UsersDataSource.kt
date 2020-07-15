@@ -6,10 +6,8 @@ import com.delightroom.android.gitproject.datasource.remote.api.UserService
 import com.delightroom.android.gitproject.datasource.vo.UserVO
 import com.delightroom.android.gitproject.manager.RetrofitManager
 import com.delightroom.android.gitproject.utility.convertToUserVO
-import com.delightroom.android.gitproject.utility.logE
 import com.delightroom.android.gitproject.utility.logI
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class UsersDataSource(
@@ -66,10 +64,6 @@ class UsersDataSource(
         callback: LoadCallback<Int, UserVO>
     ) {
         job.launch {
-            try {
-            } catch (e: Exception) {
-                logE(e.message)
-            }
         }
     }
 }
