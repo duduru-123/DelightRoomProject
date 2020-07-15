@@ -8,14 +8,16 @@ import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.delightroom.android.gitproject.R
+import com.delightroom.android.gitproject.common.ProgressDialog
 import com.delightroom.android.gitproject.present.viewmodel.UsersViewModel
 import com.delightroom.android.gitproject.utility.showToast
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     private val usersViewModel by viewModel<UsersViewModel>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +67,14 @@ class MainActivity : AppCompatActivity() {
     private fun initViewModel() {
         usersViewModel.toast.observe(this, Observer {
             showToast(it)
+        })
+
+        usersViewModel.isLoading.observe(this, Observer {
+            if(it) {
+                showProgress()
+            } else {
+                hideProgress()
+            }
         })
     }
 }

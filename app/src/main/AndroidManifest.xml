@@ -13,8 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".ui.activity.ReposDetailActivity"></activity>
+        <activity android:name=".ui.activity.ReposDetailActivity"/>
         <activity android:name=".ui.activity.UserDetailActivity" />
+        <activity android:name=".ui.activity.BaseActivity" />
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

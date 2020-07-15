@@ -13,7 +13,7 @@ import com.delightroom.android.gitproject.utility.showToast
 import kotlinx.android.synthetic.main.activity_repos_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ReposDetailActivity : AppCompatActivity() {
+class ReposDetailActivity : BaseActivity() {
 
     private val reposDetailViewModel by viewModel<ReposDetailViewModel>()
     private val reposDetailActivityArgs by navArgs<ReposDetailActivityArgs>()
@@ -69,6 +69,14 @@ class ReposDetailActivity : AppCompatActivity() {
     private fun initViewModel() {
         reposDetailViewModel.toast.observe(this, Observer {
             showToast(it)
+        })
+
+        reposDetailViewModel.isLoading.observe(this, Observer {
+            if(it) {
+                showProgress()
+            } else {
+                hideProgress()
+            }
         })
     }
 }

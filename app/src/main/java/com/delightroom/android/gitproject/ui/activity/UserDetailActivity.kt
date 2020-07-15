@@ -14,7 +14,7 @@ import com.delightroom.android.gitproject.utility.showToast
 import kotlinx.android.synthetic.main.activity_user_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class UserDetailActivity : AppCompatActivity() {
+class UserDetailActivity : BaseActivity() {
 
     private val userDetailViewModel by viewModel<UserDetailViewModel>()
     private val userDetailActivityArgs by navArgs<UserDetailActivityArgs>()
@@ -85,6 +85,14 @@ class UserDetailActivity : AppCompatActivity() {
     private fun initViewModel() {
         userDetailViewModel.toast.observe(this, Observer {
             showToast(it)
+        })
+
+        userDetailViewModel.isLoading.observe(this, Observer {
+            if(it) {
+                showProgress()
+            } else {
+                hideProgress()
+            }
         })
     }
 }
