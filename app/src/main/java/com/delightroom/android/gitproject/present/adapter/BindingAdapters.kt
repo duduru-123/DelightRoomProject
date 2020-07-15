@@ -100,8 +100,11 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter("app:updateSize")
     fun updateSize(textView: TextView, size: Long) {
-        //todo update size
-        textView.text = "${size}MB"
+        textView.text = when {
+            size / (1024 * 1024) >= 1 -> "${size / (1024 * 1024)}GB"
+            size / (1024) >= 1 -> "${size / (1024)}MB"
+            else -> "${size}KB"
+        }
     }
 
 
