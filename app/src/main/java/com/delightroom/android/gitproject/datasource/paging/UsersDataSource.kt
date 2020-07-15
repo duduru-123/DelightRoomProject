@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class UsersDataSource(
     retrofitManager: RetrofitManager,
-    private val job: CoroutineScope,
+    private val scope: CoroutineScope,
     private val isLoading: MutableLiveData<Boolean>
 ) : PageKeyedDataSource<Int, UserVO>() {
 
@@ -22,7 +22,7 @@ class UsersDataSource(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, UserVO>
     ) {
-        job.launch {
+        scope.launch {
             isLoading.postValue(true)
 
             val currentPage = 0
@@ -42,7 +42,7 @@ class UsersDataSource(
         params: LoadParams<Int>,
         callback: LoadCallback<Int, UserVO>
     ) {
-        job.launch {
+        scope.launch {
             isLoading.postValue(true)
 
             val currentPage = params.key
@@ -63,7 +63,7 @@ class UsersDataSource(
         params: LoadParams<Int>,
         callback: LoadCallback<Int, UserVO>
     ) {
-        job.launch {
+        scope.launch {
         }
     }
 }

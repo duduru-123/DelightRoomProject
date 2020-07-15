@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class CommentsDataSource(
     retrofitManager: RetrofitManager,
-    private val viewModelScope: CoroutineScope,
+    private val scope: CoroutineScope,
     private val userLogin: String,
     private val reposName: String,
     private val isLoading: MutableLiveData<Boolean>
@@ -26,27 +26,22 @@ class CommentsDataSource(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, CommentVO>
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
+        scope.launch {
             isLoading.postValue(true)
 
-            try {
-                val currentPage = 0
-                val pageSize = params.requestedLoadSize
-                val result = reposApi.getComments(
-                    userLogin = userLogin,
-                    reposName = reposName,
-                    page = currentPage,
-                    pageSize = pageSize
-                )
-                val listOfConvertVO = result.map { it.convertToCommentVO() }.toList()
-                val nextPage = currentPage + 1
+            val currentPage = 0
+            val pageSize = params.requestedLoadSize
+            val result = reposApi.getComments(
+                userLogin = userLogin,
+                reposName = reposName,
+                page = currentPage,
+                pageSize = pageSize
+            )
+            val listOfConvertVO = result.map { it.convertToCommentVO() }.toList()
+            val nextPage = currentPage + 1
 
-                logI("loadInitial size: ${listOfConvertVO.size}")
-                callback.onResult(listOfConvertVO, null, nextPage)
-
-            } catch (e: Exception) {
-                logE(e.message)
-            }
+            logI("loadInitial size: ${listOfConvertVO.size}")
+            callback.onResult(listOfConvertVO, null, nextPage)
 
             isLoading.postValue(false)
         }
@@ -56,27 +51,23 @@ class CommentsDataSource(
         params: LoadParams<Int>,
         callback: LoadCallback<Int, CommentVO>
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
+        scope.launch {
             isLoading.postValue(true)
 
-            try {
-                val currentPage = params.key
-                val pageSize = params.requestedLoadSize
-                val result = reposApi.getComments(
-                    userLogin = userLogin,
-                    reposName = reposName,
-                    page = currentPage,
-                    pageSize = pageSize
-                )
-                val listOfConvertVO = result.map { it.convertToCommentVO() }.toList()
-                val nextPage = currentPage + 1
+            val currentPage = params.key
+            val pageSize = params.requestedLoadSize
+            val result = reposApi.getComments(
+                userLogin = userLogin,
+                reposName = reposName,
+                page = currentPage,
+                pageSize = pageSize
+            )
+            val listOfConvertVO = result.map { it.convertToCommentVO() }.toList()
+            val nextPage = currentPage + 1
 
-                logI("loadAfter size: ${listOfConvertVO.size}")
+            logI("loadAfter size: ${listOfConvertVO.size}")
 
-                callback.onResult(listOfConvertVO, nextPage)
-            } catch (e: Exception) {
-                logE(e.message)
-            }
+            callback.onResult(listOfConvertVO, nextPage)
 
             isLoading.postValue(false)
         }
@@ -86,11 +77,7 @@ class CommentsDataSource(
         params: LoadParams<Int>,
         callback: LoadCallback<Int, CommentVO>
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-            } catch (e: Exception) {
-                logE(e.message)
-            }
+        scope.launch {
         }
     }
 }

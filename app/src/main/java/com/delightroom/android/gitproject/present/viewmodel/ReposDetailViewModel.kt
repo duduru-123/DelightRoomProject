@@ -1,9 +1,8 @@
 package com.delightroom.android.gitproject.present.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
@@ -12,15 +11,14 @@ import com.delightroom.android.gitproject.datasource.vo.CommentVO
 import com.delightroom.android.gitproject.datasource.vo.ReposDetailVO
 import com.delightroom.android.gitproject.manager.RetrofitManager
 import com.delightroom.android.gitproject.repository.UserRepository
-import com.delightroom.android.gitproject.utility.logE
 import com.delightroom.android.gitproject.utility.logI
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ReposDetailViewModel(
+    private val context: Context,
     private val userRepository: UserRepository,
     private val retrofitManager: RetrofitManager
-) : ViewModel() {
+) : BaseViewModel(context) {
 
     var userLogin: String = ""
     var reposName: String = ""
@@ -30,7 +28,6 @@ class ReposDetailViewModel(
     val isLoading = MutableLiveData<Boolean>().apply { value = false }
 
 
-
     /**
      * set data
      */
@@ -38,25 +35,18 @@ class ReposDetailViewModel(
         this.userLogin = userLogin
         this.reposName = reposName
 
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                val result = userRepository.requestUserRepository(userLogin, reposName)
-                reposDetailVO.postValue(result)
+        scope.launch {
+            val result = userRepository.requestUserRepository(userLogin, reposName)
+            reposDetailVO.postValue(result)
 
-                val languagesUrl = result.languagesUrl
+            val languagesUrl = result.languagesUrl
 
-                if (languagesUrl != "") {
-                    val languageResult = userRepository.requestLanguages(userLogin, reposName)
-                    updateLanguages(languageResult)
-                }
-
-
-
-                logI("result: $result")
-
-            } catch (e: Exception) {
-                logE(e.message)
+            if (languagesUrl != "") {
+                val languageResult = userRepository.requestLanguages(userLogin, reposName)
+                updateLanguages(languageResult)
             }
+
+            logI("result: $result")
         }
     }
 
@@ -93,7 +83,6 @@ class ReposDetailViewModel(
     }
 
 
-
     /**
      * create comments live data
      */
@@ -107,7 +96,9 @@ class ReposDetailViewModel(
 
         return LivePagedListBuilder(object : DataSource.Factory<Int, CommentVO>() {
             override fun create(): DataSource<Int, CommentVO> {
-                return CommentsDataSource(retrofitManager, viewModelScope, userLogin, reposName, isLoading)
+                return CommentsDataSource(
+                    retrofitManager, scope, userLogin, reposName, isLoading
+                )
             }
         }, config).build()
     }

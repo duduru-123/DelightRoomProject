@@ -9,12 +9,12 @@ import kotlinx.coroutines.*
 
 open class BaseViewModel(private val context: Context) : ViewModel() {
 
-    val job = CoroutineScope(Dispatchers.IO + getExceptionHandler())
+    val scope = CoroutineScope(Dispatchers.IO + getExceptionHandler())
     val toast = MutableLiveData<String>()
 
     override fun onCleared() {
         super.onCleared()
-        job.cancel()
+        scope.cancel()
     }
 
 

@@ -12,7 +12,6 @@ import com.delightroom.android.gitproject.datasource.vo.ReposVO
 import com.delightroom.android.gitproject.datasource.vo.UserDetailVO
 import com.delightroom.android.gitproject.manager.RetrofitManager
 import com.delightroom.android.gitproject.repository.UserRepository
-import com.delightroom.android.gitproject.utility.logE
 import com.delightroom.android.gitproject.utility.logI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -47,7 +46,7 @@ class UserDetailViewModel(
      * request user detail vo
      */
     fun requestUserDetail() {
-        job.launch(Dispatchers.IO) {
+        scope.launch(Dispatchers.IO) {
             val result = userRepository.requestUser(userLogin)
             userDetailVO.postValue(result)
 
@@ -69,7 +68,7 @@ class UserDetailViewModel(
 
         return LivePagedListBuilder(object : DataSource.Factory<Int, ReposVO>() {
             override fun create(): DataSource<Int, ReposVO> {
-                return StarredDataSource(retrofitManager, job, userLogin, isLoading)
+                return StarredDataSource(retrofitManager, scope, userLogin, isLoading)
             }
         }, config).build()
     }
@@ -88,7 +87,7 @@ class UserDetailViewModel(
 
         return LivePagedListBuilder(object : DataSource.Factory<Int, ReposVO>() {
             override fun create(): DataSource<Int, ReposVO> {
-                return UserReposDataSource(retrofitManager, job, userLogin, isLoading)
+                return UserReposDataSource(retrofitManager, scope, userLogin, isLoading)
             }
         }, config).build()
     }
