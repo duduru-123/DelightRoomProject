@@ -36,10 +36,6 @@ class MainActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menuSearch -> {
-                showToast("search!")
-                return true
-            }
         }
         return super.onOptionsItemSelected(item)
     }

@@ -10,13 +10,13 @@ import com.delightroom.android.gitproject.datasource.paging.CommentsDataSource
 import com.delightroom.android.gitproject.datasource.vo.CommentVO
 import com.delightroom.android.gitproject.datasource.vo.ReposDetailVO
 import com.delightroom.android.gitproject.manager.RetrofitManager
-import com.delightroom.android.gitproject.repository.UserRepository
+import com.delightroom.android.gitproject.repository.ReposInterface
 import com.delightroom.android.gitproject.utility.logI
 import kotlinx.coroutines.launch
 
 class ReposDetailViewModel(
     private val context: Context,
-    private val userRepository: UserRepository,
+    private val reposInterface: ReposInterface,
     private val retrofitManager: RetrofitManager
 ) : BaseViewModel(context) {
 
@@ -25,7 +25,6 @@ class ReposDetailViewModel(
     var reposDetailVO = MutableLiveData<ReposDetailVO>()
     var languages = MutableLiveData<String>()
     val listOfCommentVO = createListOfCommentVOLiveData()
-    val isLoading = MutableLiveData<Boolean>().apply { value = false }
 
 
     /**
@@ -36,13 +35,13 @@ class ReposDetailViewModel(
         this.reposName = reposName
 
         scope.launch {
-            val result = userRepository.requestUserRepository(userLogin, reposName)
+            val result = reposInterface.requestUserRepository(userLogin, reposName)
             reposDetailVO.postValue(result)
 
             val languagesUrl = result.languagesUrl
 
             if (languagesUrl != "") {
-                val languageResult = userRepository.requestLanguages(userLogin, reposName)
+                val languageResult = reposInterface.requestLanguages(userLogin, reposName)
                 updateLanguages(languageResult)
             }
 

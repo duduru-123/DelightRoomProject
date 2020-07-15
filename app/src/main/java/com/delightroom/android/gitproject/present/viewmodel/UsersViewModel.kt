@@ -15,14 +15,12 @@ import com.delightroom.android.gitproject.repository.UserRepository
 
 class UsersViewModel(
     private val context: Context,
-    private val retrofitManager: RetrofitManager,
-    private val userRepository: UserRepository
+    private val retrofitManager: RetrofitManager
 ) : BaseViewModel(context) {
 
     // list of userVO
     val listOfUserVO = createListOfUserVOLiveData()
     val listOfRepositoryReposVO = createListOfReposVOLiveData()
-    val isLoading = MutableLiveData<Boolean>().apply { value = false }
 
 
     /**

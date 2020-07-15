@@ -5,6 +5,9 @@ import com.delightroom.android.gitproject.manager.RetrofitManager
 import com.delightroom.android.gitproject.present.viewmodel.ReposDetailViewModel
 import com.delightroom.android.gitproject.present.viewmodel.UserDetailViewModel
 import com.delightroom.android.gitproject.present.viewmodel.UsersViewModel
+import com.delightroom.android.gitproject.repository.ReposInterface
+import com.delightroom.android.gitproject.repository.ReposRepository
+import com.delightroom.android.gitproject.repository.UserInterface
 import com.delightroom.android.gitproject.repository.UserRepository
 import com.facebook.drawee.backends.pipeline.Fresco
 import org.koin.android.ext.koin.androidContext
@@ -35,12 +38,13 @@ class BaseApplication : Application() {
     }
 
     private val viewModelModule = module {
-        viewModel { UsersViewModel(applicationContext ,get(), get()) }
+        viewModel { UsersViewModel(applicationContext, get()) }
         viewModel { UserDetailViewModel(applicationContext, get(), get()) }
         viewModel { ReposDetailViewModel(applicationContext, get(), get()) }
     }
 
     private val repositoryModule = module {
-        factory { UserRepository(get()) }
+        factory<UserInterface> { UserRepository(get()) }
+        factory<ReposInterface> { ReposRepository(get()) }
     }
 }

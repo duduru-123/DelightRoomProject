@@ -11,7 +11,7 @@ import com.delightroom.android.gitproject.datasource.paging.UserReposDataSource
 import com.delightroom.android.gitproject.datasource.vo.ReposVO
 import com.delightroom.android.gitproject.datasource.vo.UserDetailVO
 import com.delightroom.android.gitproject.manager.RetrofitManager
-import com.delightroom.android.gitproject.repository.UserRepository
+import com.delightroom.android.gitproject.repository.UserInterface
 import com.delightroom.android.gitproject.utility.logI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 class UserDetailViewModel(
     private val context: Context,
     private val retrofitManager: RetrofitManager,
-    private val userRepository: UserRepository
+    private val userInterface: UserInterface
 ) : BaseViewModel(context) {
 
     var userLogin: String = ""
@@ -28,7 +28,6 @@ class UserDetailViewModel(
     var userDetailVO = MutableLiveData<UserDetailVO>()
     lateinit var listOfStarredReposVO: LiveData<PagedList<ReposVO>>
     lateinit var listOfUserReposReposVO: LiveData<PagedList<ReposVO>>
-    val isLoading = MutableLiveData<Boolean>().apply { value = false }
     var starredOffsetY = 0
     var userReposOffsetY = 0
 
@@ -49,7 +48,7 @@ class UserDetailViewModel(
      */
     fun requestUserDetail() {
         scope.launch(Dispatchers.IO) {
-            val result = userRepository.requestUser(userLogin)
+            val result = userInterface.requestUser(userLogin)
             userDetailVO.postValue(result)
 
             logI("userDetailVO: $result")

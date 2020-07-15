@@ -11,6 +11,7 @@ open class BaseViewModel(private val context: Context) : ViewModel() {
 
     val scope = CoroutineScope(Dispatchers.IO + getExceptionHandler())
     val toast = MutableLiveData<String>()
+    val isLoading = MutableLiveData<Boolean>().apply { value = false }
 
     override fun onCleared() {
         super.onCleared()
@@ -24,7 +25,16 @@ open class BaseViewModel(private val context: Context) : ViewModel() {
     private fun getExceptionHandler() = CoroutineExceptionHandler { _, exception ->
         logE(exception.message)
 
-        val message = context.getString(R.string.no_data)
-        toast.postValue(message)
+        isLoading.postValue(false)
+
+        exception.message?.let {
+            val message = if (it.contains("403")) {
+                context.getString(R.string.rate_limit_exceeded)
+            } else {
+                context.getString(R.string.no_data)
+            }
+
+            toast.postValue(message)
+        }
     }
 }
