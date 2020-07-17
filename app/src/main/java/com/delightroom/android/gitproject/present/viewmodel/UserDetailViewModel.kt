@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import com.delightroom.android.gitproject.datasource.local.db.AppDatabase
 import com.delightroom.android.gitproject.datasource.paging.StarredDataSource
 import com.delightroom.android.gitproject.datasource.paging.UserReposDataSource
 import com.delightroom.android.gitproject.datasource.vo.ReposVO
@@ -19,6 +20,7 @@ import kotlinx.coroutines.launch
 class UserDetailViewModel(
     private val context: Context,
     private val retrofitManager: RetrofitManager,
+    private val database: AppDatabase,
     private val userInterface: UserInterface
 ) : BaseViewModel(context) {
 
@@ -88,7 +90,7 @@ class UserDetailViewModel(
 
         return LivePagedListBuilder(object : DataSource.Factory<Int, ReposVO>() {
             override fun create(): DataSource<Int, ReposVO> {
-                return UserReposDataSource(retrofitManager, scope, userLogin, isLoading)
+                return UserReposDataSource(retrofitManager, database, scope, userLogin, isLoading)
             }
         }, config).build()
     }

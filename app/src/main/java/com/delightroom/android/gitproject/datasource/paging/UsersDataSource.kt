@@ -25,13 +25,14 @@ class UsersDataSource(
         scope.launch {
             isLoading.postValue(true)
 
+            logI("load users int remote")
             val currentPage = 0
             val pageSize = params.requestedLoadSize
             val result = userApi.getUsers(page = currentPage, pageSize = pageSize)
             val listOfUserVO = result.map { it.convertToUserVO() }.toList()
             val nextPage = currentPage + 1
 
-            logI("loadInitial size: ${listOfUserVO.size}")
+            logI("loadInitial remote size: ${listOfUserVO.size}")
             callback.onResult(listOfUserVO, null, nextPage)
 
             isLoading.postValue(false)
@@ -50,8 +51,6 @@ class UsersDataSource(
             val result = userApi.getUsers(page = currentPage, pageSize = pageSize)
             val listOfUserVO = result.map { it.convertToUserVO() }.toList()
             val nextPage = currentPage + 1
-
-            logI("loadAfter size: ${listOfUserVO.size}")
 
             callback.onResult(listOfUserVO, nextPage)
 

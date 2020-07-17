@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import com.delightroom.android.gitproject.datasource.local.db.AppDatabase
 import com.delightroom.android.gitproject.datasource.paging.RepositoryDataSource
 import com.delightroom.android.gitproject.datasource.paging.UsersDataSource
 import com.delightroom.android.gitproject.datasource.vo.ReposVO
@@ -15,7 +16,8 @@ import com.delightroom.android.gitproject.repository.UserRepository
 
 class UsersViewModel(
     private val context: Context,
-    private val retrofitManager: RetrofitManager
+    private val retrofitManager: RetrofitManager,
+    private val database: AppDatabase
 ) : BaseViewModel(context) {
 
     // list of userVO

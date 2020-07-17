@@ -40,8 +40,8 @@ class BaseApplication : Application() {
     }
 
     private val viewModelModule = module {
-        viewModel { UsersViewModel(applicationContext, get()) }
-        viewModel { UserDetailViewModel(applicationContext, get(), get()) }
+        viewModel { UsersViewModel(applicationContext, get(), get()) }
+        viewModel { UserDetailViewModel(applicationContext, get(), get(), get()) }
         viewModel { ReposDetailViewModel(applicationContext, get(), get()) }
     }
 

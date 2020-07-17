@@ -5,17 +5,17 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.delightroom.android.gitproject.datasource.local.dao.AppDataDao
-import com.delightroom.android.gitproject.datasource.local.dao.UserVODao
+import com.delightroom.android.gitproject.datasource.local.dao.ReposVODao
 import com.delightroom.android.gitproject.datasource.local.model.AppData
-import com.delightroom.android.gitproject.datasource.vo.UserVO
+import com.delightroom.android.gitproject.datasource.vo.ReposVO
 
 
 private const val DB_NAME = "gitproject.db"
 
-@Database(entities = [UserVO::class, AppData::class], version = 1)
+@Database(entities = [ReposVO::class, AppData::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun appDataDao(): AppDataDao
-    abstract fun userVODao(): UserVODao
+    abstract fun reposVODao(): ReposVODao
 
     companion object {
         private var INSTANCE: AppDatabase? = null

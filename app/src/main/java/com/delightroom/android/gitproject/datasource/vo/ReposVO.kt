@@ -1,13 +1,18 @@
 package com.delightroom.android.gitproject.datasource.vo
 
-data class ReposVO (
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
+data class ReposVO(
+    @PrimaryKey
     var id: Long,
     var name: String,
     var userLogin: String,
-    var size: Long = 0L,
+    var size: Long,
     val language: String,
-    var starsCount: Long=0L,
-    var forksCount: Long=0L,
-    var private: Boolean = false,
-    var updateTime: Long = 0L
+    var starsCount: Long,
+    var forksCount: Long,
+    var isPrivate: Boolean,
+    var updateTime: Long
 )

@@ -33,11 +33,11 @@ class StarredDataSource(
                 page = currentPage,
                 pageSize = pageSize
             )
-            val listOfUserVO = result.map { it.convertToReposVO() }.toList()
+            val listOfReposVO = result.map { it.convertToReposVO() }.toList()
             val nextPage = currentPage + 1
 
-            logI("loadInitial size: ${listOfUserVO.size}")
-            callback.onResult(listOfUserVO, null, nextPage)
+            logI("loadInitial size: ${listOfReposVO.size}")
+            callback.onResult(listOfReposVO, null, nextPage)
 
             isLoading.postValue(false)
         }
@@ -57,12 +57,12 @@ class StarredDataSource(
                 page = currentPage,
                 pageSize = pageSize
             )
-            val listOfUserVO = result.map { it.convertToReposVO() }.toList()
+            val listOfReposVO = result.map { it.convertToReposVO() }.toList()
             val nextPage = currentPage + 1
 
-            logI("loadAfter size: ${listOfUserVO.size}")
+            logI("loadAfter size: ${listOfReposVO.size}")
 
-            callback.onResult(listOfUserVO, nextPage)
+            callback.onResult(listOfReposVO, nextPage)
 
             isLoading.postValue(false)
         }

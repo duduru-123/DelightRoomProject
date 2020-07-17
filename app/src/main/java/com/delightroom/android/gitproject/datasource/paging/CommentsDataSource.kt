@@ -6,10 +6,8 @@ import com.delightroom.android.gitproject.datasource.remote.api.ReposService
 import com.delightroom.android.gitproject.datasource.vo.CommentVO
 import com.delightroom.android.gitproject.manager.RetrofitManager
 import com.delightroom.android.gitproject.utility.convertToCommentVO
-import com.delightroom.android.gitproject.utility.logE
 import com.delightroom.android.gitproject.utility.logI
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CommentsDataSource(
@@ -37,11 +35,11 @@ class CommentsDataSource(
                 page = currentPage,
                 pageSize = pageSize
             )
-            val listOfConvertVO = result.map { it.convertToCommentVO() }.toList()
+            val listOfCommentVO = result.map { it.convertToCommentVO() }.toList()
             val nextPage = currentPage + 1
 
-            logI("loadInitial size: ${listOfConvertVO.size}")
-            callback.onResult(listOfConvertVO, null, nextPage)
+            logI("loadInitial size: ${listOfCommentVO.size}")
+            callback.onResult(listOfCommentVO, null, nextPage)
 
             isLoading.postValue(false)
         }
@@ -62,12 +60,12 @@ class CommentsDataSource(
                 page = currentPage,
                 pageSize = pageSize
             )
-            val listOfConvertVO = result.map { it.convertToCommentVO() }.toList()
+            val listOfCommentVO = result.map { it.convertToCommentVO() }.toList()
             val nextPage = currentPage + 1
 
-            logI("loadAfter size: ${listOfConvertVO.size}")
+            logI("loadAfter size: ${listOfCommentVO.size}")
 
-            callback.onResult(listOfConvertVO, nextPage)
+            callback.onResult(listOfCommentVO, nextPage)
 
             isLoading.postValue(false)
         }

@@ -2,7 +2,6 @@ package com.delightroom.android.gitproject.utility
 
 import android.app.Activity
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import com.delightroom.android.gitproject.BuildConfig
 import com.delightroom.android.gitproject.datasource.remote.model.Comment
@@ -65,7 +64,7 @@ fun UserRepos.convertToReposVO(): ReposVO {
         language = this.language ?: "",
         starsCount = this.stargazersCount ?: 0L,
         forksCount = this.forksCount ?: 0L,
-        private = this.private ?: false,
+        isPrivate = this.private ?: false,
         userLogin = this.owner.login ?: "",
         updateTime = updateDate
     )
