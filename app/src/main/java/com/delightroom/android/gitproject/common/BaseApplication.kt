@@ -1,6 +1,7 @@
 package com.delightroom.android.gitproject.common
 
 import android.app.Application
+import com.delightroom.android.gitproject.datasource.local.db.AppDatabase
 import com.delightroom.android.gitproject.manager.RetrofitManager
 import com.delightroom.android.gitproject.present.viewmodel.ReposDetailViewModel
 import com.delightroom.android.gitproject.present.viewmodel.UserDetailViewModel
@@ -35,6 +36,7 @@ class BaseApplication : Application() {
 
     private val managerModule = module {
         single { RetrofitManager(applicationContext) }
+        single { AppDatabase.getInstance(applicationContext) }
     }
 
     private val viewModelModule = module {

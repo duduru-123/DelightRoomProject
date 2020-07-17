@@ -6,7 +6,7 @@ import com.delightroom.android.gitproject.datasource.local.model.AppData
 
 
 /**
- * AppData Dap
+ * AppData Dao
  *
  * for managing app data
  */
